@@ -4,5 +4,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MyHorseShow</string>
+    
+    <string name="username_caption">Username: </string>
+    <string name="password_caption">Password: </string>
+    <string name="forgot_password_prompt">Forgot your password?</string>
+    <string name="submit_caption">Login</string>
+    
+    <string name="new_user_prompt">Create Account</string>
 
 </resources>
