@@ -1,0 +1,2 @@
+INDEX VERSION 1.126 OT2+\\cs\files\Student_Home\teiger\Desktop\application\.metadata\.plugins\org.eclipse.jdt.core
+760141603.index
