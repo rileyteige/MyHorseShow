@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="darker_blue">#153450</color>
+    <color name="dark_blue">#294052</color>
+    <color name="light_blue">#447294</color>
+    <color name="lighter_blue">#8FBCDB</color>
+    <color name="beige">#F4D6BC</color>
+    <color name="light_beige">#F8E4CC</color>
+    
+    <color name="main_background_color">@color/lighter_blue</color>
+    <color name="main_font_color">@color/black</color>
+    <color name="main_link_font_color">@color/dark_blue</color>
+    
+    <color name="edit_text_font_color">@color/black</color>
+    <color name="edit_text_background_color">@color/white</color>
+    
+    <color name="main_button_background_color">@color/darker_blue</color>
+    <color name="main_button_font_color">@color/light_beige</color>
+</resources>
