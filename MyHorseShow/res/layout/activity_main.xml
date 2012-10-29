@@ -79,8 +79,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/main_button_background_color"
-                android:textColor="@color/main_button_font_color"
+                android:background="@drawable/main_button_background_color"
+                android:textColor="@drawable/main_button_foreground_color"
                 android:text="@string/submit_caption" />
                 
         </LinearLayout>
@@ -98,8 +98,8 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:padding="6dp"
-            android:background="@color/main_button_background_color"
-            android:textColor="@color/main_button_font_color"
+            android:background="@drawable/main_button_background_color"
+            android:textColor="@drawable/main_button_foreground_color"
             android:text="@string/new_user_prompt" />
         
     </RelativeLayout>
