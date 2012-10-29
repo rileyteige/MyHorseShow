@@ -10,4 +10,8 @@
         <item name="android:layout_margin">@dimen/activity_header_text_margin</item>
     </style>
     
+    <style name="activity_subheader_text_view_style" parent="@style/activity_header_text_view_style">
+        <item name="android:textSize">@dimen/activity_subheader_text_size</item>
+    </style>
+    
 </resources>

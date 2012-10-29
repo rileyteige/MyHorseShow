@@ -3,10 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
+    <!-- Header -->
     <TextView
         android:id="@+id/activity_home_header_text_view"
         style="@style/activity_header_text_view_style"/>
+    
+    <!-- Split the view, half content on left, half on right -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        
+	    <LinearLayout 
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:orientation="vertical">
+	        
+	        <TextView
+	            style="@style/activity_subheader_text_view_style"
+	            android:text="Hello" />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:orientation="vertical">
+	        
+	        <TextView
+	            style="@style/activity_subheader_text_view_style"
+	            android:text="World!" />
+	        
+	    </LinearLayout>
+	    
+    </LinearLayout>
+        
 
 </LinearLayout>
