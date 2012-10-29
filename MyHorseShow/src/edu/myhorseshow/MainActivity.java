@@ -51,7 +51,10 @@ public class MainActivity extends Activity implements OnClickListener {
     
     private void submitLoginInfo()
     {
-    	startActivity(new Intent(this, HomeActivity.class));
+    	Intent homeActivityIntent = new Intent(this, HomeActivity.class);
+    	String username = "<<SomeUser>>";
+    	homeActivityIntent.putExtra(USERNAME, username);
+    	startActivity(homeActivityIntent);
     }
     
     private void createAccount()
@@ -65,4 +68,5 @@ public class MainActivity extends Activity implements OnClickListener {
     }
     
     private static final String TAG = "MainActivity";
+    public static final String USERNAME = "edu.myhorseshow.USERNAME";
 }
