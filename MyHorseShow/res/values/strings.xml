@@ -14,5 +14,7 @@
     <string name="new_user_prompt">Create Account</string>
 
     <string name="welcome_header">Welcome, %s!</string>
+    <string name="upcoming_events_caption">Upcoming Events</string>
+    <string name="alerts_caption">Alerts</string>
     
 </resources>
