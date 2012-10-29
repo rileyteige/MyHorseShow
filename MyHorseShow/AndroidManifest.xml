@@ -26,10 +26,11 @@
         
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_main"
-            >
+            android:label="@string/title_activity_main" />
             
-        </activity>
+        <activity 
+            android:name=".CreateAccountActivity"
+            android:label="@string/title_activity_main" />
         
     </application>
 

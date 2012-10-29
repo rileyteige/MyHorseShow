@@ -59,7 +59,8 @@ public class MainActivity extends Activity implements OnClickListener {
     
     private void createAccount()
     {
-    	sayNotImplemented("createAccount");
+    	Intent createAccountActivityIntent = new Intent(this, CreateAccountActivity.class);
+    	startActivity(createAccountActivityIntent);
     }
     
     private static void sayNotImplemented(String what)
