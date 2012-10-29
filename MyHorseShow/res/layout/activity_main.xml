@@ -5,11 +5,7 @@
     android:background="@color/main_background_color">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textSize="72dp"
-        android:textColor="@color/main_font_color"
+        style="@style/activity_header_text_view_style"
         android:text="@string/sign_in_caption"/>
     
     <RelativeLayout

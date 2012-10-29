@@ -13,4 +13,6 @@
     
     <string name="new_user_prompt">Create Account</string>
 
+    <string name="welcome_header">Welcome, %s!</string>
+    
 </resources>

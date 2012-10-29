@@ -2,4 +2,12 @@
 
     <style name="AppTheme" parent="android:Theme.Holo" />
 
+    <style name="activity_header_text_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/activity_header_text_size</item>
+        <item name="android:textColor">@color/main_font_color</item>
+        <item name="android:layout_margin">@dimen/activity_header_text_margin</item>
+    </style>
+    
 </resources>
