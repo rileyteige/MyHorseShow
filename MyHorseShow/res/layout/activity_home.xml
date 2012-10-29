@@ -14,23 +14,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/dark_blue">
         
         <!-- Upcoming Events -->
 	    <LinearLayout 
 	        android:layout_width="0dp"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
+	        android:layout_marginRight="10dp"
 	        android:orientation="vertical">
 	        
 	        <TextView
 	            style="@style/activity_subheader_text_view_style"
+	            android:textColor="@color/light_beige"
 	            android:text="@string/upcoming_events_caption" />
 	        
 	        <ListView 
 	            android:id="@+id/home_upcoming_events_listview"
 	            android:layout_width="match_parent"
-	            android:layout_height="match_parent"/>
+	            android:layout_height="match_parent"
+	            android:divider="@color/light_brown"
+	            android:dividerHeight="1dp"
+	            android:background="@color/beige"/>
 	        
 	    </LinearLayout>
 	    
@@ -39,16 +45,21 @@
 	        android:layout_width="0dp"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
+	        android:layout_marginLeft="10dp"
 	        android:orientation="vertical">
 	        
 	        <TextView
 	            style="@style/activity_subheader_text_view_style"
+	            android:textColor="@color/light_beige"
 	            android:text="@string/alerts_caption" />
 	        
 	        <ListView 
 	            android:id="@+id/home_alerts_listview"
 	            android:layout_width="match_parent"
-	            android:layout_height="match_parent"/>
+	            android:layout_height="match_parent"
+	            android:divider="@color/light_brown"
+	            android:dividerHeight="1dp"
+	            android:background="@color/beige" />
 	        
 	    </LinearLayout>
 	    
