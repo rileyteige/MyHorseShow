@@ -4,13 +4,17 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import edu.myhorseshow.alert.*;
 import edu.myhorseshow.event.*;
 
-public class HomeActivity extends Activity
+public class HomeActivity extends Activity implements OnItemClickListener
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -20,6 +24,11 @@ public class HomeActivity extends Activity
 		
 		welcomeUser(getIntent().getStringExtra(MainActivity.USERNAME));
 		setupListAdapters();
+	}
+	
+	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long resourceId)
+	{
+		Log.d(TAG, "An item was clicked!");
 	}
 	
 	private void welcomeUser(String username)
@@ -42,6 +51,11 @@ public class HomeActivity extends Activity
 		}
 		
 		upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, events));
+		upcomingEventsListView.setOnItemClickListener(this);
+		
 		alertsListView.setAdapter(new AlertAdapter(this, R.layout.row_view_alert, alerts));
+		alertsListView.setOnItemClickListener(this);
 	}
+	
+	private static final String TAG = "HomeActivity";
 }
