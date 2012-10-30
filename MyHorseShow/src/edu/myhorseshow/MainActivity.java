@@ -63,11 +63,6 @@ public class MainActivity extends Activity implements OnClickListener {
     	startActivity(createAccountActivityIntent);
     }
     
-    private static void sayNotImplemented(String what)
-    {
-    	Log.w(TAG, what + " has not been implemented yet.");
-    }
-    
     private static final String TAG = "MainActivity";
     public static final String USERNAME = "edu.myhorseshow.USERNAME";
 }

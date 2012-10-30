@@ -28,7 +28,15 @@ public class HomeActivity extends Activity implements OnItemClickListener
 	
 	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long resourceId)
 	{
-		Log.d(TAG, "An item was clicked!");
+		switch(parent.getId())
+		{
+		case R.id.home_upcoming_events_listview:
+			upcomingEventClicked(clickedView, position, resourceId);
+			break;
+		case R.id.home_alerts_listview:
+			alertClicked(clickedView, position, resourceId);
+			break;
+		}
 	}
 	
 	private void welcomeUser(String username)
@@ -55,6 +63,21 @@ public class HomeActivity extends Activity implements OnItemClickListener
 		
 		alertsListView.setAdapter(new AlertAdapter(this, R.layout.row_view_alert, alerts));
 		alertsListView.setOnItemClickListener(this);
+	}
+	
+	private void upcomingEventClicked(View clickedView, int position, long resourceId)
+	{
+		sayNotImplemented("upcomingEventClicked()");
+	}
+	
+	private void alertClicked(View clickedView, int position, long resourceId)
+	{
+		sayNotImplemented("alertClicked()");
+	}
+	
+	private static void sayNotImplemented(String what)
+	{
+		Log.w(TAG, what + " has not been implemented yet.");
 	}
 	
 	private static final String TAG = "HomeActivity";
