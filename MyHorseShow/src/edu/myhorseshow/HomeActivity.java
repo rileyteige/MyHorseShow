@@ -6,15 +6,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import edu.myhorseshow.alert.*;
 import edu.myhorseshow.event.*;
 
-public class HomeActivity extends Activity implements OnItemClickListener
+public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -23,7 +25,24 @@ public class HomeActivity extends Activity implements OnItemClickListener
 		setContentView(R.layout.activity_home);
 		
 		welcomeUser(getIntent().getStringExtra(MainActivity.USERNAME));
+		setupClickListeners();
 		setupListAdapters();
+	}
+	
+	public void onClick(View clickedView)
+	{
+		switch(clickedView.getId())
+		{
+		case R.id.home_admin_portal_button:
+			takeAdminPortal();
+			break;
+		case R.id.home_instructor_portal_button:
+			takeInstructorPortal();
+			break;
+		case R.id.home_rider_portal_button:
+			takeRiderPortal();
+			break;
+		}
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long resourceId)
@@ -43,6 +62,17 @@ public class HomeActivity extends Activity implements OnItemClickListener
 	{
 		TextView headerTextView = (TextView) findViewById(R.id.home_header_text_view);
 		headerTextView.setText(String.format(getString(R.string.welcome_header), username));
+	}
+	
+	private void setupClickListeners()
+	{
+		Button adminPortalButton = (Button) findViewById(R.id.home_admin_portal_button);
+		Button instructorPortalButton = (Button) findViewById(R.id.home_instructor_portal_button);
+		Button riderPortalButton = (Button) findViewById(R.id.home_rider_portal_button);
+		
+		adminPortalButton.setOnClickListener(this);
+		instructorPortalButton.setOnClickListener(this);
+		riderPortalButton.setOnClickListener(this);
 	}
 	
 	private void setupListAdapters()
@@ -73,6 +103,21 @@ public class HomeActivity extends Activity implements OnItemClickListener
 	private void alertClicked(View clickedView, int position, long resourceId)
 	{
 		sayNotImplemented("alertClicked()");
+	}
+	
+	private void takeAdminPortal()
+	{
+		sayNotImplemented("takeAdminPortal()");
+	}
+	
+	private void takeInstructorPortal()
+	{
+		sayNotImplemented("takeInstructorPortal()");
+	}
+	
+	private void takeRiderPortal()
+	{
+		sayNotImplemented("takeRiderPortal()");
 	}
 	
 	private static void sayNotImplemented(String what)
