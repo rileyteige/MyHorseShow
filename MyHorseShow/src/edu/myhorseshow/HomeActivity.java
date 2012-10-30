@@ -3,6 +3,7 @@ package edu.myhorseshow;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -107,17 +108,17 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	
 	private void takeAdminPortal()
 	{
-		sayNotImplemented("takeAdminPortal()");
+		startActivity(new Intent(this, AdminActivity.class));
 	}
 	
 	private void takeInstructorPortal()
 	{
-		sayNotImplemented("takeInstructorPortal()");
+		startActivity(new Intent(this, InstructorActivity.class));
 	}
 	
 	private void takeRiderPortal()
 	{
-		sayNotImplemented("takeRiderPortal()");
+		startActivity(new Intent(this, RiderActivity.class));
 	}
 	
 	private static void sayNotImplemented(String what)
