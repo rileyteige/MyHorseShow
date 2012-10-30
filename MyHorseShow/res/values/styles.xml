@@ -14,4 +14,14 @@
         <item name="android:textSize">@dimen/activity_subheader_text_size</item>
     </style>
     
+    <style name="main_button_style">
+        <item name="android:background">@drawable/main_button_background_color</item>
+        <item name="android:textColor">@drawable/main_button_foreground_color</item>
+    </style>
+    
+    <style name="dark_background_button_style">
+        <item name="android:background">@color/main_background_color</item>
+        <item name="android:textColor">@color/darker_blue</item>
+    </style>
+    
 </resources>

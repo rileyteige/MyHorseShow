@@ -16,5 +16,8 @@
     <string name="welcome_header">Welcome, %s!</string>
     <string name="upcoming_events_caption">Upcoming Events</string>
     <string name="alerts_caption">Alerts</string>
+    <string name="admin_portal_caption">Administrate</string>
+    <string name="instructor_portal_caption">Instruct</string>
+    <string name="rider_portal_caption">Ride</string>
     
 </resources>

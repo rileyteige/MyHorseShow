@@ -19,7 +19,7 @@
         
         <!-- Upcoming Events -->
 	    <LinearLayout 
-	        android:layout_width="0dp"
+	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:layout_marginRight="10dp"
@@ -40,9 +40,54 @@
 	        
 	    </LinearLayout>
 	    
+	    <!-- Portal Buttons -->
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp">
+	        
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_centerVertical="true"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginTop="70dp"
+	            android:layout_marginBottom="70dp"
+	            android:orientation="vertical">
+	            
+	            <Button
+	                style="@style/dark_background_button_style"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:layout_margin="5dp"
+	                android:text="@string/admin_portal_caption" />
+	            
+	            <Button
+	                style="@style/dark_background_button_style"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:layout_margin="5dp"
+	                android:text="@string/instructor_portal_caption" />
+	            
+	            <Button
+	                style="@style/dark_background_button_style"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:layout_margin="5dp"
+	                android:text="@string/rider_portal_caption" />
+	            
+	        </LinearLayout>
+	        
+	    </RelativeLayout>
+	    
 	    <!-- Alerts -->
 	    <LinearLayout
-	        android:layout_width="0dp"
+	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:layout_marginLeft="10dp"
