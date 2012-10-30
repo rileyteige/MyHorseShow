@@ -17,8 +17,15 @@
     <color name="edit_text_font_color">@color/black</color>
     <color name="edit_text_background_color">@color/white</color>
     
+    <!-- Regular button -->
     <color name="main_button_released_background_color">@color/darker_blue</color>
-    <color name="main_button_pressed_background_color">@color/light_beige</color>
     <color name="main_button_released_foreground_color">@color/light_beige</color>
-    <color name="main_button_pressed_foreground_color">@color/darker_blue</color>
+    <color name="main_button_pressed_background_color">@color/main_button_released_foreground_color</color>
+    <color name="main_button_pressed_foreground_color">@color/main_button_released_background_color</color>
+    
+    <!-- Button against a dark background -->
+    <color name="dark_background_button_released_background_color">@color/main_background_color</color>
+    <color name="dark_background_button_released_foreground_color">@color/darker_blue</color>
+    <color name="dark_background_button_pressed_background_color">@color/dark_background_button_released_foreground_color</color>
+    <color name="dark_background_button_pressed_foreground_color">@color/dark_background_button_released_background_color</color>
 </resources>
