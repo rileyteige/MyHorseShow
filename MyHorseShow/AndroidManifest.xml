@@ -32,6 +32,18 @@
             android:name=".CreateAccountActivity"
             android:label="@string/title_activity_main" />
         
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_main" />
+        
+        <activity
+            android:name=".InstructorActivity"
+            android:label="@string/title_activity_main" />
+        
+        <activity
+            android:name=".RiderActivity"
+            android:label="@string/title_activity_main" />
+        
     </application>
 
 </manifest>
