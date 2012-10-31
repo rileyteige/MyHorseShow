@@ -2,11 +2,14 @@ package edu.myhorseshow.alert;
 
 import java.util.ArrayList;
 
+import edu.myhorseshow.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class AlertAdapter extends ArrayAdapter<Alert>
 {
@@ -27,6 +30,8 @@ public class AlertAdapter extends ArrayAdapter<Alert>
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(getRowViewResourceId(), null);
 		}
+		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_alert_label);
+		rowLabel.setText("(ALERT)" + " " + getAlerts().get(position).getId());
 		return rowView;
 	}
 	

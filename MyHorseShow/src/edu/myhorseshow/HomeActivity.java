@@ -85,8 +85,8 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		ArrayList<Event> events = new ArrayList<Event>();
 		for (int i = 0; i < 30; i++)
 		{
-			alerts.add(new Alert());
-			events.add(new Event());
+			alerts.add(new Alert(i + 1));
+			events.add(new Event(i + 1));
 		}
 		
 		upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, events));

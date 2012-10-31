@@ -2,11 +2,14 @@ package edu.myhorseshow.event;
 
 import java.util.ArrayList;
 
+import edu.myhorseshow.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class EventAdapter extends ArrayAdapter<Event>
 {
@@ -26,6 +29,8 @@ public class EventAdapter extends ArrayAdapter<Event>
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(getRowViewResourceId(), null);
 		}
+		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_event_label);
+		rowLabel.setText("(EVENT)" + " " + getEvents().get(position).getId());
 		return rowView;
 	}
 	
