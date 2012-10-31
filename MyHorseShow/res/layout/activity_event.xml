@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView
-        android:id="@+id/row_view_event_label"
-        style="@style/activity_subheader_text_view_style" />
-
+	<TextView
+	    android:id="@+id/event_header_label"
+	    style="@style/activity_header_text_view_style"
+	    android:textColor="@color/portal_font_color" />
+    
 </LinearLayout>
