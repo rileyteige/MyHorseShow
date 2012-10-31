@@ -81,24 +81,27 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		ListView upcomingEventsListView = (ListView) findViewById(R.id.home_upcoming_events_listview);
 		ListView alertsListView = (ListView) findViewById(R.id.home_alerts_listview);
 		
-		ArrayList<Alert> alerts = new ArrayList<Alert>();
-		ArrayList<Event> events = new ArrayList<Event>();
+		mAlerts = new ArrayList<Alert>();
+		mEvents = new ArrayList<Event>();
 		for (int i = 0; i < 30; i++)
 		{
-			alerts.add(new Alert(i + 1));
-			events.add(new Event(i + 1));
+			mAlerts.add(new Alert(i + 1));
+			mEvents.add(new Event(i + 1));
 		}
 		
-		upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, events));
+		upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, mEvents));
 		upcomingEventsListView.setOnItemClickListener(this);
 		
-		alertsListView.setAdapter(new AlertAdapter(this, R.layout.row_view_alert, alerts));
+		alertsListView.setAdapter(new AlertAdapter(this, R.layout.row_view_alert, mAlerts));
 		alertsListView.setOnItemClickListener(this);
 	}
 	
 	private void upcomingEventClicked(View clickedView, int position, long resourceId)
 	{
-		sayNotImplemented("upcomingEventClicked()");
+		Event clickedEvent = mEvents.get(position);
+		Intent eventIntent = new Intent(this, EventActivity.class);
+		eventIntent.putExtra(EVENT_ID, clickedEvent.getId());
+		startActivity(eventIntent);
 	}
 	
 	private void alertClicked(View clickedView, int position, long resourceId)
@@ -126,5 +129,8 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		Log.w(TAG, what + " has not been implemented yet.");
 	}
 	
+	private ArrayList<Alert> mAlerts;
+	private ArrayList<Event> mEvents;
+	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
 	private static final String TAG = "HomeActivity";
 }
