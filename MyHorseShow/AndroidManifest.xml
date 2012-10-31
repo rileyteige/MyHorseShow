@@ -44,6 +44,10 @@
             android:name=".RiderActivity"
             android:label="@string/title_activity_main" />
         
+        <activity
+            android:name=".EventActivity"
+            android:label="@string/title_activity_main" />
+        
     </application>
 
 </manifest>
