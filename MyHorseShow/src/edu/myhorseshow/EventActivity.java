@@ -21,7 +21,6 @@ public class EventActivity extends Activity implements OnClickListener
 		setupClickListeners();
 	}
 
-	@Override
 	public void onClick(View clickedView) {
 		switch(clickedView.getId())
 		{
