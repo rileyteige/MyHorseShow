@@ -2,6 +2,12 @@
 
     <style name="AppTheme" parent="android:Theme.Holo" />
 
+    <!-- Short-hand for these two attributes. -->
+    <style name="match_parent_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    
     <style name="activity_header_text_view_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -22,6 +28,16 @@
     <style name="dark_background_button_style">
         <item name="android:background">@drawable/dark_background_button_background_color</item>
         <item name="android:textColor">@drawable/dark_background_button_foreground_color</item>
+    </style>
+    
+    <style name="event_button_style" parent="@style/main_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:paddingTop">@dimen/event_button_text_margin</item>
+        <item name="android:paddingBottom">@dimen/event_button_text_margin</item>
+        <item name="android:textSize">@dimen/activity_subheader_text_size</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
     
 </resources>

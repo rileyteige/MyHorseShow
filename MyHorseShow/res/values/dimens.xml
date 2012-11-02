@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_header_text_size">72dp</dimen>
-    <dimen name="activity_subheader_text_size">40dp</dimen>
+    <dimen name="activity_header_text_size">54dp</dimen>
+    <dimen name="activity_subheader_text_size">34dp</dimen>
     <dimen name="activity_header_text_margin">10dp</dimen>
+    <dimen name="event_button_text_margin">10dp</dimen>
 </resources>

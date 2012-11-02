@@ -20,4 +20,12 @@
     <string name="instructor_portal_caption">Instructor</string>
     <string name="rider_portal_caption">Rider</string>
     
+    <!-- Event strings -->
+    <string name="event_class_list_caption">Class List</string>
+    <string name="event_ride_times_caption">Ride Times</string>
+    <string name="event_courses_caption">Courses</string>
+    <string name="event_class_results_caption">Class Results</string>
+    <string name="event_barn_info_caption">Barn Info</string>
+    <string name="event_contact_info_caption">Contacts</string>
+    
 </resources>

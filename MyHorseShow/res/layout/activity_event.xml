@@ -9,5 +9,99 @@
 	    android:id="@+id/event_header_label"
 	    style="@style/activity_header_text_view_style"
 	    android:textColor="@color/portal_font_color" />
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal">
+	    
+	    <LinearLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:orientation="vertical">
+	        
+	        <Button
+	            style="@style/event_button_style"
+	            android:id="@+id/event_class_list_button"
+	            android:text="@string/event_class_list_caption" />
+	        
+	        <Button
+	            style="@style/event_button_style"
+	            android:id="@+id/event_ride_times_button"
+	            android:text="@string/event_ride_times_caption" />
+	        
+	        <Button
+	            style="@style/event_button_style"
+	            android:id="@+id/event_barn_info_button"
+	            android:text="@string/event_barn_info_caption" />
+	        
+	        <Button
+	            style="@style/event_button_style"
+	            android:id="@+id/event_contact_info_button"
+	            android:text="@string/event_contact_info_caption" />
+	        
+	    </LinearLayout>
+	    
+	    <RelativeLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="3">
+	        
+	        <RelativeLayout
+	            android:id="@+id/event_class_list_view"
+	            android:visibility="invisible"
+	            style="@style/match_parent_style">
+	            
+	            <TextView
+	                style="@style/activity_header_text_view_style"
+	                android:layout_centerVertical="true"
+	                android:layout_centerHorizontal="true"
+	                android:text="@string/event_class_list_caption" />
+	            
+	        </RelativeLayout>
+	        
+	      	<RelativeLayout
+	            android:id="@+id/event_ride_times_view"
+	            android:visibility="invisible"
+	            style="@style/match_parent_style">
+	            
+	            <TextView
+	                style="@style/activity_header_text_view_style"
+	                android:layout_centerVertical="true"
+	                android:layout_centerHorizontal="true"
+	                android:text="@string/event_ride_times_caption" />
+	            
+	        </RelativeLayout>
+	        
+	      	<RelativeLayout
+	            android:id="@+id/event_barn_info_view"
+	            android:visibility="invisible"
+	            style="@style/match_parent_style">
+	            
+	            <TextView
+	                style="@style/activity_header_text_view_style"
+	                android:layout_centerVertical="true"
+	                android:layout_centerHorizontal="true"
+	                android:text="@string/event_barn_info_caption" />
+	            
+	        </RelativeLayout>
+	        
+	        <RelativeLayout
+	            android:id="@+id/event_contact_info_view"
+	            android:visibility="invisible"
+	            style="@style/match_parent_style">
+	            
+	            <TextView
+	                style="@style/activity_header_text_view_style"
+	                android:layout_centerVertical="true"
+	                android:layout_centerHorizontal="true"
+	                android:text="@string/event_contact_info_caption" />
+	            
+	        </RelativeLayout>
+	        
+	    </RelativeLayout>
+	    
+	</LinearLayout>
     
 </LinearLayout>
