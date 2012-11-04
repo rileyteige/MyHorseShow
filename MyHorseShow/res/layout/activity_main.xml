@@ -34,6 +34,7 @@
 	                android:text="@string/username_caption" />
 	            
 	            <EditText 
+	                android:id="@+id/main_email_edit_text"
 	                android:layout_alignParentRight="true"
 	                android:layout_width="300dp"
 	                android:layout_height="32dp"
@@ -54,7 +55,8 @@
 	                android:textSize="32dp"
 	                android:text="@string/password_caption" />
 	            
-	            <EditText 
+	            <EditText
+	                android:id="@+id/main_password_edit_text"
 	                android:layout_marginLeft="30dp"
 	                android:layout_width="300dp"
 	                android:layout_height="32dp"
