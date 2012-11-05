@@ -9,7 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import edu.myhorseshow.utility.*;
 import edu.myhorseshow.user.User;
@@ -85,7 +85,10 @@ public class MainActivity extends Activity implements OnClickListener {
     			String password = emailPassword[1];
     			
 		    	String serverIp = "140.160.62.42";
-		    	String url = "http://" + serverIp + "/enter.php?addr=" + email + "&p=" + password;
+		    	String url = "http://" + serverIp + "/enter.php?"
+		    					+ Constants.EMAIL_ADDR_PARAM + "=" + email + "&"
+		    					+ Constants.PASSWORD_PARAM + "=" + password;
+		    	
 		    	HttpClient httpclient = new DefaultHttpClient();
 		    	HttpGet httpget = new HttpGet(url);
 		    	HttpResponse response;
@@ -106,14 +109,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		    		
 		    	} catch (Exception e) { e.printStackTrace(); }
 		    	
-		    	try
-		    	{
-		    		return new Gson().fromJson(result, User.class);
-		    	}
-		    	catch (JsonSyntaxException e)
-		    	{
-		    		return null;
-		    	}
+		    	return new Gson().fromJson(result, User.class);
     		}
     		
     		protected void onPostExecute(User user)
@@ -124,7 +120,10 @@ public class MainActivity extends Activity implements OnClickListener {
     		}
     	};
     	
-    	mLoadingDialog = ProgressDialog.show(this, "Logging in...", "This may take a few seconds...");
+    	mLoadingDialog = ProgressDialog.show(this, 
+    			getString(R.string.logging_in_caption), 
+    			getString(R.string.logging_in_description));
+    	
     	fetcher.execute(emailAddress, password);
     }
     
@@ -133,6 +132,13 @@ public class MainActivity extends Activity implements OnClickListener {
     	if (user == null)
     		return;
     	
+    	if (user.getId() == Constants.INVALID_LOGIN_CODE)
+    	{
+    		setInvalidLoginVisible(true);
+    		return;
+    	}
+    	
+    	setInvalidLoginVisible(false);
     	Intent homeActivityIntent = new Intent(this, HomeActivity.class);
     	homeActivityIntent.putExtra(USERNAME, user.getFirstName() + " " + user.getLastName());
     	startActivity(homeActivityIntent);
@@ -150,6 +156,12 @@ public class MainActivity extends Activity implements OnClickListener {
     	EditText passwordText = (EditText) findViewById(R.id.main_password_edit_text);
     	emailText.setText(null);
     	passwordText.setText(null);
+    }
+    
+    private void setInvalidLoginVisible(boolean value)
+    {
+    	TextView invalidTextView = (TextView) findViewById(R.id.main_invalid_login_text_view);
+    	invalidTextView.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
     }
     
     private ProgressDialog mLoadingDialog;

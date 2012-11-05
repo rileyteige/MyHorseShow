@@ -1,6 +1,5 @@
 package edu.myhorseshow;
 
-import edu.myhorseshow.R.id;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

@@ -20,6 +20,15 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
             
+            <TextView
+                android:id="@+id/main_invalid_login_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_header_text_margin"
+                android:visibility="invisible"
+                android:textColor="@color/main_font_color"
+                android:text="@string/invalid_login_caption" />
+            
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +40,7 @@
 	                android:layout_height="wrap_content"
 	                android:textColor="#000000"
 	                android:textSize="32dp"
-	                android:text="@string/username_caption" />
+	                android:text="@string/identifier_caption" />
 	            
 	            <EditText 
 	                android:id="@+id/main_email_edit_text"
@@ -39,6 +48,8 @@
 	                android:layout_width="300dp"
 	                android:layout_height="32dp"
 	                android:background="@color/edit_text_background_color"
+	                android:singleLine="true"
+	                android:hint=""
 	                android:textColor="@color/edit_text_font_color" />
 	            
             </RelativeLayout>
