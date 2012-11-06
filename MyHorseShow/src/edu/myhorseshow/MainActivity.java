@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        Utility.setMainThread(Thread.currentThread());
         setOnClickListeners();
     }
     
@@ -92,35 +93,7 @@ public class MainActivity extends Activity implements OnClickListener {
     					.addArg(Constants.PASSWORD_PARAM, password)
     					.toString();
 		    	
-		    	HttpClient httpclient = new DefaultHttpClient();
-		    	HttpGet httpget = new HttpGet(url);
-		    	HttpResponse response;
-		    	String result = null;
-		    	
-		    	try
-		    	{
-		    		response = httpclient.execute(httpget);
-		    		Log.d(TAG, response.getStatusLine().toString());
-		    		
-		    		HttpEntity entity = response.getEntity();
-		    		if (entity != null)
-		    		{
-		    			InputStream instream = entity.getContent();
-		    			result = Utility.convertStreamToString(instream);
-		    			instream.close();
-		    		}
-		    		
-		    	} catch (Exception e) { e.printStackTrace(); }
-		    	
-		    	try
-		    	{
-		    		return new Gson().fromJson(result, User.class);
-		    	}
-		    	catch (JsonParseException e)
-		    	{
-		    		Log.w(TAG, result);
-		    		return null;
-		    	}
+		    	return Utility.getJsonObject(url, User.class);
     		}
     		
     		@Override
