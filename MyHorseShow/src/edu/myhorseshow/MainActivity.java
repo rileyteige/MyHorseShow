@@ -76,7 +76,8 @@ public class MainActivity extends Activity implements OnClickListener {
     	
     	AsyncTask<String, Integer, User> fetcher = new AsyncTask<String, Integer, User>()
     	{
-    		protected User doInBackground(String... emailPassword)
+    		@Override
+			protected User doInBackground(String... emailPassword)
     		{
     			if (emailPassword.length != 2)
     				return null;
@@ -112,7 +113,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		    	return new Gson().fromJson(result, User.class);
     		}
     		
-    		protected void onPostExecute(User user)
+    		@Override
+			protected void onPostExecute(User user)
     		{
     			mLoadingDialog.dismiss();
     			processUserLogin(user);

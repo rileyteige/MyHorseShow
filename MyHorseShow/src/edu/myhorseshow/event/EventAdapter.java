@@ -20,6 +20,7 @@ public class EventAdapter extends ArrayAdapter<Event>
 		setRowViewResourceId(rowViewResourceId);
 	}
 	
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		View rowView = convertView;

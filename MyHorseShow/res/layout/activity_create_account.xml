@@ -5,8 +5,77 @@
     android:background="@color/main_background_color"
     android:orientation="vertical" >
     
+
+
     <TextView
         style="@style/activity_header_text_view_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_user_prompt" />
+    
+    <EditText 
+        android:id="@+id/create_account_first_name_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_first_name"
+        android:textColor="@color/edit_text_font_color" />
+    
+    <EditText 
+        android:id="@+id/create_account_last_name_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_last_name"
+        android:textColor="@color/edit_text_font_color" />
+    
+    <EditText 
+        android:id="@+id/create_account_email_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_email"
+        android:textColor="@color/edit_text_font_color" />
+    
+    <EditText 
+        android:id="@+id/create_account_username_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_username"
+        android:textColor="@color/edit_text_font_color" />
+    
+    <EditText 
+        android:id="@+id/create_account_password_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_password"
+        android:textColor="@color/edit_text_font_color" />
+    
+    <Button
+        android:id="@+id/create_account_submit_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@drawable/main_button_background_color"
+        android:textColor="@drawable/main_button_foreground_color"
         android:text="@string/new_user_prompt" />
 
 </LinearLayout>

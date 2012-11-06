@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class EventActivity extends Activity implements OnClickListener
 {
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
