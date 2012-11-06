@@ -31,7 +31,7 @@ public class EventAdapter extends ArrayAdapter<Event>
 			rowView = inflater.inflate(getRowViewResourceId(), null);
 		}
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_event_label);
-		rowLabel.setText("(EVENT)" + " " + getEvents().get(position).getId());
+		rowLabel.setText(getEvents().get(position).getName());
 		return rowView;
 	}
 	

@@ -1,9 +1,12 @@
 package edu.myhorseshow;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import edu.myhorseshow.alert.*;
 import edu.myhorseshow.event.*;
+import edu.myhorseshow.utility.*;
 
 public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
 {
@@ -26,6 +30,7 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		setContentView(R.layout.activity_home);
 		
 		welcomeUser(getIntent().getStringExtra(MainActivity.USERNAME));
+		downloadEvents();
 		setupClickListeners();
 		setupListAdapters();
 	}
@@ -65,6 +70,31 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		headerTextView.setText(String.format(getString(R.string.welcome_header), username));
 	}
 	
+	private void downloadEvents()
+	{
+		AsyncTask<String, Integer, Event[]> fetcher = new AsyncTask<String, Integer, Event[]>()
+		{
+			@Override
+			protected Event[] doInBackground(String... args)
+			{
+				String url = new UrlBuilder(Constants.SERVER_DOMAIN)
+						.setScriptChained("pullevents.php")
+						.toString();
+				
+				return Utility.getJsonObject(url, Event[].class);
+			}
+			
+			@Override
+			protected void onPostExecute(Event[] events)
+			{
+				mEvents = new ArrayList<Event>(Arrays.asList(events));
+				setupListAdapters();
+			}
+		};
+		
+		fetcher.execute();
+	}
+	
 	private void setupClickListeners()
 	{
 		Button adminPortalButton = (Button) findViewById(R.id.home_admin_portal_button);
@@ -82,15 +112,17 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		ListView alertsListView = (ListView) findViewById(R.id.home_alerts_listview);
 		
 		mAlerts = new ArrayList<Alert>();
-		mEvents = new ArrayList<Event>();
-		for (int i = 0; i < 30; i++)
-		{
-			mAlerts.add(new Alert(i + 1));
-			mEvents.add(new Event(i + 1));
-		}
 		
-		upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, mEvents));
-		upcomingEventsListView.setOnItemClickListener(this);
+		if (mEvents != null)
+		{
+			upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, mEvents));
+			upcomingEventsListView.setOnItemClickListener(this);
+			upcomingEventsListView.setEnabled(true);
+		}
+		else
+		{
+			upcomingEventsListView.setEnabled(false);
+		}
 		
 		alertsListView.setAdapter(new AlertAdapter(this, R.layout.row_view_alert, mAlerts));
 		alertsListView.setOnItemClickListener(this);

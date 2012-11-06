@@ -76,7 +76,7 @@ public class MainActivity extends Activity implements OnClickListener {
     			String email = emailPassword[0];
     			String password = emailPassword[1];
     			
-    			String url = new UrlBuilder(Constants.SERVER_IP_ADDRESS + "/other")
+    			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
     					.setScriptChained("enter.php")
     					.addArg(Constants.EMAIL_ADDR_PARAM, email)
     					.addArg(Constants.PASSWORD_PARAM, password)

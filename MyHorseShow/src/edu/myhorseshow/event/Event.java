@@ -2,15 +2,13 @@ package edu.myhorseshow.event;
 
 public class Event
 {
-	public Event(long id)
-	{
-		mId = id;
-	}
 	
-	public long getId()
-	{
-		return mId;
-	}
+	public long getId() { return id; }
+	public String getName() { return name; }
 	
-	private long mId;
+	public void setId(int id) { this.id = id; }
+	public void setName(String name) { this.name = name; }
+	
+	private long id;
+	private String name;
 }
