@@ -113,8 +113,8 @@ public class MainActivity extends Activity implements OnClickListener {
     	}
     	
     	setInvalidLoginVisible(false);
+    	UserInfo.setCurrentUser(user);
     	Intent homeActivityIntent = new Intent(this, HomeActivity.class);
-    	homeActivityIntent.putExtra(USERNAME, user.getFirstName() + " " + user.getLastName());
     	startActivity(homeActivityIntent);
     }
     

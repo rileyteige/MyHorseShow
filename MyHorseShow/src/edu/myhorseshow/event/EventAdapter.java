@@ -1,10 +1,14 @@
 package edu.myhorseshow.event;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.myhorseshow.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +34,25 @@ public class EventAdapter extends ArrayAdapter<Event>
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(getRowViewResourceId(), null);
 		}
+		Event event = getEvents().get(position);
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_event_label);
-		rowLabel.setText(getEvents().get(position).getName());
+		TextView dateLabel = (TextView) rowView.findViewById(R.id.row_view_event_date_label);
+		rowLabel.setText(event.getName());
+		dateLabel.setText(getDateString(event.getStartDate()) + " - " + getDateString(event.getEndDate()));
 		return rowView;
+	}
+	
+	protected String getDateString(String str)
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = null;
+		try {
+			date = formatter.parse(str);
+		} catch (ParseException e) {
+			Log.w(TAG, "Bad date given.");
+			e.printStackTrace();
+		}
+		return new SimpleDateFormat("MMM dd, yyyy").format(date);
 	}
 	
 	protected int getRowViewResourceId()
@@ -57,4 +77,5 @@ public class EventAdapter extends ArrayAdapter<Event>
 	
 	private int mRowViewResourceId;
 	private ArrayList<Event> mEvents;
+	private String TAG = "EventAdapter";
 }

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import edu.myhorseshow.alert.*;
 import edu.myhorseshow.event.*;
+import edu.myhorseshow.user.User;
 import edu.myhorseshow.utility.*;
 
 public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
@@ -29,8 +30,10 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
-		welcomeUser(getIntent().getStringExtra(MainActivity.USERNAME));
-		downloadEvents();
+		if (UserInfo.getCurrentUser() == null)
+			throw new NullPointerException("Current user not set");
+		
+		welcomeUser(UserInfo.getCurrentUser());
 		setupClickListeners();
 		setupListAdapters();
 	}
@@ -64,35 +67,11 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		}
 	}
 	
-	private void welcomeUser(String username)
+	private void welcomeUser(User user)
 	{
 		TextView headerTextView = (TextView) findViewById(R.id.home_header_text_view);
-		headerTextView.setText(String.format(getString(R.string.welcome_header), username));
-	}
-	
-	private void downloadEvents()
-	{
-		AsyncTask<String, Integer, Event[]> fetcher = new AsyncTask<String, Integer, Event[]>()
-		{
-			@Override
-			protected Event[] doInBackground(String... args)
-			{
-				String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-						.setScriptChained("pullevents.php")
-						.toString();
-				
-				return Utility.getJsonObject(url, Event[].class);
-			}
-			
-			@Override
-			protected void onPostExecute(Event[] events)
-			{
-				mEvents = new ArrayList<Event>(Arrays.asList(events));
-				setupListAdapters();
-			}
-		};
-		
-		fetcher.execute();
+		headerTextView.setText(String.format(getString(R.string.welcome_header), user.getFirstName() + " " + user.getLastName()));
+		mEvents = new ArrayList<Event>(Arrays.asList(user.getEvents()));
 	}
 	
 	private void setupClickListeners()
