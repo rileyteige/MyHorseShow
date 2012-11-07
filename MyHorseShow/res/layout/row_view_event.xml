@@ -6,6 +6,11 @@
     
     <TextView
         android:id="@+id/row_view_event_label"
-        style="@style/activity_subheader_text_view_style" />
+        style="@style/activity_subheader_text_view_style"
+        android:layout_marginBottom="0dp" />
+    
+    <TextView
+        android:id="@+id/row_view_event_date_label"
+        style="@style/row_view_event_date_style" />
 
 </LinearLayout>

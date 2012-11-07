@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Holo" />
 
@@ -38,6 +38,15 @@
         <item name="android:paddingBottom">@dimen/event_button_text_margin</item>
         <item name="android:textSize">@dimen/activity_subheader_text_size</item>
         <item name="android:gravity">center_vertical</item>
+    </style>
+    
+    <style name="row_view_event_date_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/row_view_event_date_text_size</item>
+        <item name="android:textColor">@color/main_font_color</item>
+        <item name="android:layout_marginLeft">@dimen/activity_header_text_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_header_text_margin</item>
     </style>
     
 </resources>
