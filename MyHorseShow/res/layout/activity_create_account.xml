@@ -47,25 +47,27 @@
         android:textColor="@color/edit_text_font_color" />
     
     <EditText 
-        android:id="@+id/create_account_username_edit_text"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:background="@color/edit_text_background_color"
-        android:singleLine="true"
-        android:hint="@string/create_account_username"
-        android:textColor="@color/edit_text_font_color" />
-    
-    <EditText 
         android:id="@+id/create_account_password_edit_text"
         android:layout_gravity="center_horizontal"
+        android:inputType="128"
         android:layout_margin="15dp"
         android:layout_width="300dp"
         android:layout_height="32dp"
         android:background="@color/edit_text_background_color"
         android:singleLine="true"
         android:hint="@string/create_account_password"
+        android:textColor="@color/edit_text_font_color" /> 
+        
+    <EditText 
+        android:id="@+id/create_account_confirmpass_edit_text"
+        android:layout_gravity="center_horizontal"
+        android:inputType="128"
+        android:layout_margin="15dp"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:background="@color/edit_text_background_color"
+        android:singleLine="true"
+        android:hint="@string/create_account_confirmpass"
         android:textColor="@color/edit_text_font_color" />
     
     <Button

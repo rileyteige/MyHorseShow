@@ -15,7 +15,7 @@
     <string name="invalid_login_caption">Invalid username or password.</string>
     
     <string name="new_user_prompt">Create Account</string>
-    <string name="create_account_username">Username</string>
+    <string name="create_account_confirmpass">Confirm Password</string>
     <string name="create_account_email">Email</string>
     <string name="create_account_first_name">First Name</string>
     <string name="create_account_last_name">Last Name</string>

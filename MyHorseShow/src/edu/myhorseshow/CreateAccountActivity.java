@@ -57,7 +57,8 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     	
     	/*AsyncTask<String, Integer, User> fetcher = new AsyncTask<String, Integer, User>()
     	{
-    		protected User doInBackground(String... emailPassword)
+    		@Override
+			protected User doInBackground(String... emailPassword)
     		{
     			if (emailPassword.length != 2)
     				return null;
@@ -65,46 +66,21 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     			String email = emailPassword[0];
     			String password = emailPassword[1];
     			
-		    	String serverIp = "140.160.62.42";
-		    	String url = "http://" + serverIp + "/enter.php?"
-		    					+ Constants.EMAIL_ADDR_PARAM + "=" + email + "&"
-		    					+ Constants.PASSWORD_PARAM + "=" + password;
+    			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
+    					.setScriptChained("enter.php")
+    					.addArg(Constants.EMAIL_ADDR_PARAM, email)
+    					.addArg(Constants.PASSWORD_PARAM, password)
+    					.toString();
 		    	
-		    	HttpClient httpclient = new DefaultHttpClient();
-		    	HttpGet httpget = new HttpGet(url);
-		    	HttpResponse response;
-		    	String result = null;
-		    	
-		    	try
-		    	{
-		    		response = httpclient.execute(httpget);
-		    		Log.d(TAG, response.getStatusLine().toString());
-		    		
-		    		HttpEntity entity = response.getEntity();
-		    		if (entity != null)
-		    		{
-		    			InputStream instream = entity.getContent();
-		    			result = Utility.convertStreamToString(instream);
-		    			instream.close();
-		    		}
-		    		
-		    	} catch (Exception e) { e.printStackTrace(); }
-		    	
-		    	return new Gson().fromJson(result, User.class);
+		    	return Utility.getJsonObject(url, User.class);
     		}
     		
-    		protected void onPostExecute(User user)
+    		@Override
+			protected void onPostExecute(User user)
     		{
     			mLoadingDialog.dismiss();
     			processUserLogin(user);
     			clearForm();
     		}
-    	};
-    	
-    	mLoadingDialog = ProgressDialog.show(this, 
-    			getString(R.string.logging_in_caption), 
-    			getString(R.string.logging_in_description));
-    	
-    	fetcher.execute(emailAddress, password);*/
-    }
+    	};*/
 }
