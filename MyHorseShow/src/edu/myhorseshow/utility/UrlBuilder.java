@@ -1,7 +1,6 @@
 package edu.myhorseshow.utility;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class UrlBuilder
 {
@@ -10,20 +9,9 @@ public class UrlBuilder
 		mDomain = domain;
 	}
 
-	public void setScript(String scriptName)
+	public UrlBuilder addPath(String value)
 	{
-		mScript = scriptName;
-	}
-	
-	public UrlBuilder setScriptChained(String scriptName)
-	{
-		setScript(scriptName);
-		return this;
-	}
-	
-	public UrlBuilder addArg(String key, String value)
-	{
-		mKeyValues.put(key, value);
+		mPaths.add(value);
 		return this;
 	}
 	
@@ -32,23 +20,17 @@ public class UrlBuilder
 	{
 		StringBuilder rtnBuilder = new StringBuilder();
 		
-		rtnBuilder.append(mProtocol).append("://");
-		rtnBuilder.append(mDomain).append("/");
-		if (mScript != null)
-		{
-			rtnBuilder.append(mScript).append("?");
+		rtnBuilder.append(mProtocol).append("://").append(mDomain);
 			
-			for (String key: mKeyValues.keySet())
-			{
-				rtnBuilder.append(key).append("=").append(mKeyValues.get(key)).append("&");
-			}
+		for (String path: mPaths)
+		{
+			rtnBuilder.append("/").append(path);
 		}
 		
 		return rtnBuilder.toString();
 	}
 	
-	private final Map<String, String> mKeyValues = new HashMap<String, String>();
+	private final ArrayList<String> mPaths = new ArrayList<String>();
 	private String mProtocol = "http";
 	private String mDomain;
-	private String mScript;
 }

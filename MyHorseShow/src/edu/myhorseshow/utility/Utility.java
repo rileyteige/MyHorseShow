@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
@@ -28,7 +31,74 @@ public final class Utility
 		sMainThread = thread;
 	}
 	
-	public static String convertStreamToString(InputStream instream)
+	public static <T> T getJsonObject(String url, Class<T> rtnClass)
+	{
+		if (!verifyThreadAccess())
+			return null;
+		
+    	HttpClient httpclient = new DefaultHttpClient();
+    	HttpGet httpget = new HttpGet(url);
+    	HttpResponse response;
+    	String result = null;
+    	
+    	try
+    	{
+    		response = httpclient.execute(httpget);
+    		
+    		HttpEntity entity = response.getEntity();
+    		if (entity != null)
+    		{
+    			InputStream instream = entity.getContent();
+    			result = Utility.convertStreamToString(instream);
+    			instream.close();
+    		}
+    		
+    	} catch (Exception e) { e.printStackTrace(); }
+    	
+    	try
+    	{
+    		return new Gson().fromJson(result, rtnClass);
+    	}
+    	catch (JsonParseException e)
+    	{
+    		Log.w(TAG, result);
+    		return null;
+    	}
+	}
+	
+	public static <T> void postJsonObject(String url, Object jsonObject)
+	{
+		if (!verifyThreadAccess())
+			return;
+		
+		String json = new Gson().toJson(jsonObject);
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost(url);
+		try {
+			httppost.setEntity(new StringEntity(json));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		httppost.setHeader("Accept", "application/json");
+		httppost.setHeader("Content-type", "application/json");
+		HttpResponse response;
+		String result = null;
+		
+		try
+		{
+			response = httpClient.execute(httppost);
+			
+			HttpEntity entity = response.getEntity();
+			if (entity != null)
+			{
+				result = convertStreamToString(entity.getContent());
+				Log.d(TAG, result);
+			}
+		} catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	private static String convertStreamToString(InputStream instream)
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(instream));
 		StringBuilder builder = new StringBuilder();
@@ -59,43 +129,7 @@ public final class Utility
 		return builder.toString();
 	}
 	
-	public static <T> T getJsonObject(String url, Class<T> rtnClass)
-	{
-		if (!VerifyThreadAccess())
-			return null;
-		
-    	HttpClient httpclient = new DefaultHttpClient();
-    	HttpGet httpget = new HttpGet(url);
-    	HttpResponse response;
-    	String result = null;
-    	
-    	try
-    	{
-    		response = httpclient.execute(httpget);
-    		Log.d(TAG, response.getStatusLine().toString());
-    		
-    		HttpEntity entity = response.getEntity();
-    		if (entity != null)
-    		{
-    			InputStream instream = entity.getContent();
-    			result = Utility.convertStreamToString(instream);
-    			instream.close();
-    		}
-    		
-    	} catch (Exception e) { e.printStackTrace(); }
-    	
-    	try
-    	{
-    		return new Gson().fromJson(result, rtnClass);
-    	}
-    	catch (JsonParseException e)
-    	{
-    		Log.w(TAG, result);
-    		return null;
-    	}
-	}
-	
-	private static boolean VerifyThreadAccess()
+	private static boolean verifyThreadAccess()
 	{
 		if (sMainThread == null)
 		{

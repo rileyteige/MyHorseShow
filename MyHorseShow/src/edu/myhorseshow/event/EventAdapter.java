@@ -44,7 +44,7 @@ public class EventAdapter extends ArrayAdapter<Event>
 	
 	protected String getDateString(String str)
 	{
-		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
 			date = formatter.parse(str);
