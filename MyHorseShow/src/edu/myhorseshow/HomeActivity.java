@@ -71,7 +71,8 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	{
 		TextView headerTextView = (TextView) findViewById(R.id.home_header_text_view);
 		headerTextView.setText(String.format(getString(R.string.welcome_header), user.getFirstName() + " " + user.getLastName()));
-		mEvents = new ArrayList<Event>(Arrays.asList(user.getEvents()));
+		if (user.getEvents() != null)
+			mEvents = new ArrayList<Event>(Arrays.asList(user.getEvents()));
 	}
 	
 	private void setupClickListeners()

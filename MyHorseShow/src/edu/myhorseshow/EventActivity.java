@@ -1,5 +1,6 @@
 package edu.myhorseshow;
 
+import edu.myhorseshow.event.Event;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,13 @@ public class EventActivity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event);
 		
+		long eventId = getIntent().getLongExtra(HomeActivity.EVENT_ID, 0);
+		setEvent(UserInfo.getEvent(eventId));
+		if (getEvent() == null)
+			throw new NullPointerException("Event not found.");
+		
 		TextView headerLabelTextView = (TextView) findViewById(R.id.event_header_label);
-		headerLabelTextView.setText("Event " + getIntent().getLongExtra(HomeActivity.EVENT_ID, 0));
+		headerLabelTextView.setText(getEvent().getName());
 		
 		setupClickListeners();
 	}
@@ -61,15 +67,12 @@ public class EventActivity extends Activity implements OnClickListener
 		setCurrentView(nextView);
 	}
 	
-	private View getCurrentView()
-	{
-		return mCurrentView;
-	}
+	private View getCurrentView() { return mCurrentView; }
+	private void setCurrentView(View view) { mCurrentView = view; }
 	
-	private void setCurrentView(View view)
-	{
-		mCurrentView = view;
-	}
+	private Event getEvent() { return mEvent; }
+	private void setEvent(Event event) { mEvent = event; }
 	
 	private View mCurrentView;
+	private Event mEvent;
 }

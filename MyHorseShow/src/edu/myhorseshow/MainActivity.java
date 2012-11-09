@@ -77,9 +77,9 @@ public class MainActivity extends Activity implements OnClickListener {
     			String password = emailPassword[1];
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-    					.setScriptChained("enter.php")
-    					.addArg(Constants.EMAIL_ADDR_PARAM, email)
-    					.addArg(Constants.PASSWORD_PARAM, password)
+    					.addPath(Constants.USER_PARAM)
+    					.addPath(email)
+    					.addPath(password)
     					.toString();
 		    	
 		    	return Utility.getJsonObject(url, User.class);
@@ -106,7 +106,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	if (user == null)
     		return;
     	
-    	if (user.getId() == Constants.INVALID_LOGIN_CODE)
+    	if (user.getUid() == Constants.INVALID_LOGIN_CODE)
     	{
     		setInvalidLoginVisible(true);
     		return;

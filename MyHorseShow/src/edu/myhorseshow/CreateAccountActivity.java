@@ -1,6 +1,11 @@
 package edu.myhorseshow;
 
+import edu.myhorseshow.user.User;
+import edu.myhorseshow.utility.JsonObject;
+import edu.myhorseshow.utility.UrlBuilder;
+import edu.myhorseshow.utility.Utility;
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,41 +53,54 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     	EditText lastNameField = (EditText) findViewById(R.id.create_account_last_name_edit_text);
     	EditText confirmPasswordField = (EditText) findViewById(R.id.create_account_confirmpass_edit_text);
     	
-    	
     	String emailAddress = emailField.getText().toString();
     	String password = passwordField.getText().toString();
     	String firstName = firstNameField.getText().toString();
     	String lastName = lastNameField.getText().toString();
-    	String userName = confirmPasswordField.getText().toString();
+    	String passwordCheck = confirmPasswordField.getText().toString();
     	
-    	/*AsyncTask<String, Integer, User> fetcher = new AsyncTask<String, Integer, User>()
+    	if (!password.contentEquals(passwordCheck))
+    	{
+    		Log.d(TAG, password + " is not equal to " + passwordCheck);
+    		return;
+    	}
+    	
+    	User createdUser = new User();
+    	createdUser.setEmailAdress(emailAddress);
+    	createdUser.setPassword(password);
+    	createdUser.setFirstName(firstName);
+    	createdUser.setLastName(lastName);
+    	createdUser.setUsefid(0);
+    	
+    	AsyncTask<User, Integer, Void> fetcher = new AsyncTask<User, Integer, Void>()
     	{
     		@Override
-			protected User doInBackground(String... emailPassword)
+			protected Void doInBackground(User... users)
     		{
-    			if (emailPassword.length != 2)
+    			Log.d(TAG, "" + users.length);
+    			if (users.length != 1)
     				return null;
     			
-    			String email = emailPassword[0];
-    			String password = emailPassword[1];
+    			User user = users[0];
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-    					.setScriptChained("enter.php")
-    					
-    					.addArg(Constants.EMAIL_ADDR_PARAM, email)
-    					.addArg(Constants.PASSWORD_PARAM, password)
+    					.addPath(Constants.USER_PARAM)
     					.toString();
 		    	
-		    	return Utility.getJsonObject(url, User.class);
+    			Log.d(TAG, "should be submitting...");
+		    	Utility.postJsonObject(url, new JsonObject(Constants.USER_PARAM, user));
+		    	return null;
     		}
     		
     		@Override
-			protected void onPostExecute(User user)
+			protected void onPostExecute(Void nothing)
     		{
-    			mLoadingDialog.dismiss();
-    			processUserLogin(user);
-    			clearForm();
+    			//mLoadingDialog.dismiss();
+    			//processUserLogin(user);
+    			//clearForm();
     		}
-    	};*/
+    	};
+    	
+    	fetcher.execute(createdUser);
     }
 }
