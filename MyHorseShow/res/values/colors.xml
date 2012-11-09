@@ -14,7 +14,7 @@
     <color name="main_font_color">@color/black</color>
     <color name="main_link_font_color">@color/dark_blue</color>
     
-    <color name="portal_background_color">#9E0B0B</color>
+    <color name="portal_background_color">#71C671</color>
     <color name="portal_font_color">@color/light_brown</color>
     
     <color name="edit_text_font_color">@color/black</color>

@@ -5,4 +5,5 @@
     <dimen name="activity_header_text_margin">10dp</dimen>
     <dimen name="event_button_text_margin">10dp</dimen>
     <dimen name="row_view_event_date_text_size">14dp</dimen>
+    <dimen name="button_text_size">44dp</dimen>
 </resources>

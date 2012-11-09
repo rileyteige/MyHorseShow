@@ -38,5 +38,6 @@
     <string name="event_class_results_caption">Class Results</string>
     <string name="event_barn_info_caption">Barn Info</string>
     <string name="event_contact_info_caption">Contacts</string>
+    <string name="create_event">+Create Event</string>
     
 </resources>
