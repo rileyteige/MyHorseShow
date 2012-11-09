@@ -1,5 +1,6 @@
 package edu.myhorseshow;
 
+import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,6 +69,7 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
     					.setScriptChained("enter.php")
+    					
     					.addArg(Constants.EMAIL_ADDR_PARAM, email)
     					.addArg(Constants.PASSWORD_PARAM, password)
     					.toString();

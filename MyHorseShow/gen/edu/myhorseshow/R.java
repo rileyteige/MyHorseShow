@@ -45,6 +45,7 @@ public final class R {
         public static final int activity_header_text_size=0x7f050000;
         public static final int activity_subheader_text_size=0x7f050001;
         public static final int event_button_text_margin=0x7f050003;
+        public static final int row_view_event_date_text_size=0x7f050004;
     }
     public static final class drawable {
         public static final int dark_background_button_background_color=0x7f020000;
@@ -55,12 +56,12 @@ public final class R {
         public static final int main_button_foreground_color=0x7f020005;
     }
     public static final class id {
+        public static final int create_account_confirmpass_edit_text=0x7f090004;
         public static final int create_account_email_edit_text=0x7f090002;
         public static final int create_account_first_name_edit_text=0x7f090000;
         public static final int create_account_last_name_edit_text=0x7f090001;
-        public static final int create_account_password_edit_text=0x7f090004;
+        public static final int create_account_password_edit_text=0x7f090003;
         public static final int create_account_submit_button=0x7f090005;
-        public static final int create_account_username_edit_text=0x7f090003;
         public static final int event_barn_info_button=0x7f090009;
         public static final int event_barn_info_view=0x7f09000d;
         public static final int event_class_list_button=0x7f090007;
@@ -81,8 +82,9 @@ public final class R {
         public static final int main_password_edit_text=0x7f090017;
         public static final int main_screen_create_account_button=0x7f090019;
         public static final int main_screen_submit_button=0x7f090018;
-        public static final int menu_settings=0x7f09001c;
+        public static final int menu_settings=0x7f09001d;
         public static final int row_view_alert_label=0x7f09001a;
+        public static final int row_view_event_date_label=0x7f09001c;
         public static final int row_view_event_label=0x7f09001b;
     }
     public static final class layout {
@@ -103,11 +105,11 @@ public final class R {
         public static final int admin_portal_caption=0x7f060015;
         public static final int alerts_caption=0x7f060014;
         public static final int app_name=0x7f060000;
+        public static final int create_account_confirmpass=0x7f06000d;
         public static final int create_account_email=0x7f06000e;
         public static final int create_account_first_name=0x7f06000f;
         public static final int create_account_last_name=0x7f060010;
         public static final int create_account_password=0x7f060011;
-        public static final int create_account_username=0x7f06000d;
         public static final int event_barn_info_caption=0x7f06001c;
         /**  Event strings 
          */
@@ -143,5 +145,6 @@ public final class R {
         /**  Short-hand for these two attributes. 
          */
         public static final int match_parent_style=0x7f070001;
+        public static final int row_view_event_date_style=0x7f070007;
     }
 }
