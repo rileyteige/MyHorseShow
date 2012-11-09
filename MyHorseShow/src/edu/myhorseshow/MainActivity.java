@@ -27,12 +27,6 @@ public class MainActivity extends Activity implements OnClickListener {
         setOnClickListeners();
     }
     
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-    
     public void onClick(View clickedView)
     {
     	switch(clickedView.getId())

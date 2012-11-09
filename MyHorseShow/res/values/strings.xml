@@ -1,10 +1,9 @@
 <resources>
 
     <string name="app_name">MyHorseShow</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MyHorseShow</string>
+    <string name="title_activity_main">@string/app_name</string>
     
+    <!-- Login -->
     <string name="sign_in_caption">Sign in</string>
     <string name="identifier_caption">Email: </string>
     <string name="password_caption">Password: </string>
@@ -12,17 +11,19 @@
     <string name="submit_caption">Login</string>
     <string name="logging_in_caption">Logging in&#8230;</string>
     <string name="logging_in_description">This may take a few seconds&#8230;</string>
-    <string name="creating_account_caption">Creating account&#8230;</string>
-    <string name="creating_account_description">You should be logged into your new account shortly.</string>
     <string name="invalid_login_caption">Invalid username or password.</string>
     
+    <!-- CreateAccount -->
     <string name="new_user_prompt">Create Account</string>
     <string name="create_account_confirmpass">Confirm Password</string>
     <string name="create_account_email">Email</string>
     <string name="create_account_first_name">First Name</string>
     <string name="create_account_last_name">Last Name</string>
     <string name="create_account_password">Password</string>
+    <string name="creating_account_caption">Creating account&#8230;</string>
+    <string name="creating_account_description">You should be logged into your new account shortly.</string>
 
+    <!-- HomeActivity -->
     <string name="welcome_header">Welcome, %s!</string>
     <string name="upcoming_events_caption">Upcoming Events</string>
     <string name="alerts_caption">Alerts</string>
@@ -30,7 +31,7 @@
     <string name="instructor_portal_caption">Instructor</string>
     <string name="rider_portal_caption">Rider</string>
     
-    <!-- Event strings -->
+    <!-- Event -->
     <string name="event_class_list_caption">Class List</string>
     <string name="event_ride_times_caption">Ride Times</string>
     <string name="event_courses_caption">Courses</string>
