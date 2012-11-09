@@ -2,11 +2,9 @@ package edu.myhorseshow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 import edu.myhorseshow.alert.*;
 import edu.myhorseshow.event.*;
 import edu.myhorseshow.user.User;
-import edu.myhorseshow.utility.*;
 
 public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
 {

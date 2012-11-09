@@ -10,8 +10,10 @@
     <string name="password_caption">Password: </string>
     <string name="forgot_password_prompt">Forgot your password?</string>
     <string name="submit_caption">Login</string>
-    <string name="logging_in_caption">Logging in&#8320;</string>
-    <string name="logging_in_description">This may take a few seconds&#8320;</string>
+    <string name="logging_in_caption">Logging in&#8230;</string>
+    <string name="logging_in_description">This may take a few seconds&#8230;</string>
+    <string name="creating_account_caption">Creating account&#8230;</string>
+    <string name="creating_account_description">You should be logged into your new account shortly.</string>
     <string name="invalid_login_caption">Invalid username or password.</string>
     
     <string name="new_user_prompt">Create Account</string>

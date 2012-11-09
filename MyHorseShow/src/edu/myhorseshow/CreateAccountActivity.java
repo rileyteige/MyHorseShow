@@ -1,10 +1,13 @@
 package edu.myhorseshow;
 
+import com.google.gson.Gson;
+
 import edu.myhorseshow.user.User;
 import edu.myhorseshow.utility.JsonObject;
 import edu.myhorseshow.utility.UrlBuilder;
 import edu.myhorseshow.utility.Utility;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,10 +75,10 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     	createdUser.setLastName(lastName);
     	createdUser.setUsefid(0);
     	
-    	AsyncTask<User, Integer, Void> fetcher = new AsyncTask<User, Integer, Void>()
+    	AsyncTask<User, Integer, User> fetcher = new AsyncTask<User, Integer, User>()
     	{
     		@Override
-			protected Void doInBackground(User... users)
+			protected User doInBackground(User... users)
     		{
     			Log.d(TAG, "" + users.length);
     			if (users.length != 1)
@@ -88,19 +91,31 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     					.toString();
 		    	
     			Log.d(TAG, "should be submitting...");
-		    	Utility.postJsonObject(url, new JsonObject(Constants.USER_PARAM, user));
-		    	return null;
+		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.USER_PARAM, user));
+		    	return new Gson().fromJson(result, User.class);
     		}
     		
     		@Override
-			protected void onPostExecute(Void nothing)
+			protected void onPostExecute(User newUser)
     		{
-    			//mLoadingDialog.dismiss();
-    			//processUserLogin(user);
-    			//clearForm();
+    			Utility.hideDialog();
+    			if (newUser == null)
+    				return;
+    			
+    			processUserLogin(newUser);
     		}
     	};
     	
+    	Utility.showProgressDialog(this,
+    			getString(R.string.creating_account_caption),
+    			getString(R.string.creating_account_description));
     	fetcher.execute(createdUser);
     }
+	
+	private void processUserLogin(User user)
+	{
+		UserInfo.setCurrentUser(user);
+		Intent homeActivity = new Intent(this, HomeActivity.class);
+		startActivity(homeActivity);
+	}
 }

@@ -14,21 +14,40 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
-import edu.myhorseshow.user.User;
-
 public final class Utility
 {
 	private static final String TAG = "Utility";
 	private static Thread sMainThread = null;
+	private static Dialog mDialog;
 	
 	public static void setMainThread(Thread thread)
 	{
 		sMainThread = thread;
+	}
+	
+	public static void showProgressDialog(Context context, String header, String details)
+	{
+		if (verifyThreadAccess())
+			return;
+		
+    	mDialog = ProgressDialog.show(context, header, details);	
+	}
+	
+	public static void hideDialog()
+	{
+		if (!verifyThreadAccess() && mDialog != null)
+		{
+			mDialog.dismiss();
+			mDialog = null;
+		}
 	}
 	
 	public static <T> T getJsonObject(String url, Class<T> rtnClass)
@@ -66,20 +85,23 @@ public final class Utility
     	}
 	}
 	
-	public static <T> void postJsonObject(String url, Object jsonObject)
+	public static String postJsonObject(String url, Object jsonObject)
 	{
 		if (!verifyThreadAccess())
-			return;
+			return null;
 		
 		String json = new Gson().toJson(jsonObject);
 		
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(url);
+		
 		try {
 			httppost.setEntity(new StringEntity(json));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			return null;
 		}
+		
 		httppost.setHeader("Accept", "application/json");
 		httppost.setHeader("Content-type", "application/json");
 		HttpResponse response;
@@ -93,9 +115,10 @@ public final class Utility
 			if (entity != null)
 			{
 				result = convertStreamToString(entity.getContent());
-				Log.d(TAG, result);
 			}
 		} catch (Exception e) { e.printStackTrace(); }
+		
+		return result;
 	}
 	
 	private static String convertStreamToString(InputStream instream)
