@@ -1,6 +1,5 @@
 package edu.myhorseshow;
 
-import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,14 +46,14 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     	EditText passwordField = (EditText) findViewById(R.id.create_account_password_edit_text);
     	EditText firstNameField = (EditText) findViewById(R.id.create_account_first_name_edit_text);
     	EditText lastNameField = (EditText) findViewById(R.id.create_account_last_name_edit_text);
-    	EditText userNameField = (EditText) findViewById(R.id.create_account_username_edit_text);
+    	EditText confirmPasswordField = (EditText) findViewById(R.id.create_account_confirmpass_edit_text);
     	
     	
     	String emailAddress = emailField.getText().toString();
     	String password = passwordField.getText().toString();
     	String firstName = firstNameField.getText().toString();
     	String lastName = lastNameField.getText().toString();
-    	String userName = userNameField.getText().toString();
+    	String userName = confirmPasswordField.getText().toString();
     	
     	/*AsyncTask<String, Integer, User> fetcher = new AsyncTask<String, Integer, User>()
     	{
@@ -85,4 +84,5 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     			clearForm();
     		}
     	};*/
+    }
 }
