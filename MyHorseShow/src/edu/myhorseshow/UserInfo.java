@@ -22,7 +22,7 @@ public final class UserInfo
 		return currentUser != null;
 	}
 	
-	public static Event getEvent(long eventId)
+	public static Event getEvent (long eventId) throws NullPointerException
 	{
 		if (!isUserLoggedIn())
 			return null;
@@ -33,6 +33,6 @@ public final class UserInfo
 				return e;
 		}
 		
-		return null;
+		throw new NullPointerException("Event id not found.");
 	}
 }

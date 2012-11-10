@@ -1,11 +1,18 @@
 package edu.myhorseshow;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import edu.myhorseshow.event.Event;
+import edu.myhorseshow.showclass.ShowClass;
+import edu.myhorseshow.showclass.ShowClassAdapter;
+import edu.myhorseshow.division.Division;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class EventActivity extends Activity implements OnClickListener
@@ -18,12 +25,8 @@ public class EventActivity extends Activity implements OnClickListener
 		
 		long eventId = getIntent().getLongExtra(HomeActivity.EVENT_ID, 0);
 		setEvent(UserInfo.getEvent(eventId));
-		if (getEvent() == null)
-			throw new NullPointerException("Event not found.");
 		
-		TextView headerLabelTextView = (TextView) findViewById(R.id.event_header_label);
-		headerLabelTextView.setText(getEvent().getName());
-		
+		setupViews();
 		setupClickListeners();
 	}
 
@@ -42,6 +45,25 @@ public class EventActivity extends Activity implements OnClickListener
 		case R.id.event_contact_info_button:
 			makeViewVisible(R.id.event_contact_info_view);
 			break;
+		}
+	}
+	
+	private void setupViews()
+	{
+		TextView headerLabelTextView = (TextView) findViewById(R.id.event_header_label);		
+		headerLabelTextView.setText(getEvent().getName());
+		
+		setupListAdapters();
+	}
+	
+	private void setupListAdapters()
+	{
+		ListView classesListView = (ListView)findViewById(R.id.event_class_list_view);
+		
+		if (getEvent().getDivisions()[0].getClasses() != null)
+		{
+			ArrayList<ShowClass> classes = new ArrayList<ShowClass>(Arrays.asList(getEvent().getDivisions()[0].getClasses()));
+			classesListView.setAdapter(new ShowClassAdapter(this, R.layout.row_view_class, classes));
 		}
 	}
 	

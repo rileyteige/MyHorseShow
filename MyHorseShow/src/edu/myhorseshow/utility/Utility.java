@@ -80,7 +80,7 @@ public final class Utility
     	}
     	catch (JsonParseException e)
     	{
-    		Log.w(TAG, result);
+    		Log.e(TAG, "JSON PARSE EXCEPTION: " + e.getMessage());
     		return null;
     	}
 	}

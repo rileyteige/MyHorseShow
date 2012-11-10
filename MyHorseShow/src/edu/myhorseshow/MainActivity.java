@@ -99,7 +99,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	if (user == null)
     		return;
     	
-    	if (user.getUid() == Constants.INVALID_LOGIN_CODE)
+    	if (user.getId() == Constants.INVALID_LOGIN_CODE)
     	{
     		setInvalidLoginVisible(true);
     		return;

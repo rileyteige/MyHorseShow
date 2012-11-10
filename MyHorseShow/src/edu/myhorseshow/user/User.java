@@ -4,7 +4,7 @@ import edu.myhorseshow.event.Event;
 
 public class User
 {
-	private int uid;
+	private int id;
 	private String email;
 	private String password;
 	private String firstname;
@@ -12,7 +12,7 @@ public class User
 	private Event[] events;
 	private long usefid;
 	
-	public int getUid() { return uid; }
+	public int getId() { return id; }
 	public String getEmailAddress() { return email; }
 	public String getPassword() { return password; }
 	public String getFirstName() { return firstname; }
@@ -20,7 +20,7 @@ public class User
 	public Event[] getEvents() { return events; }
 	public long getUsefid() { return usefid; }
 	
-	public void setUid(int uid) { this.uid = uid; }
+	public void setId(int id) { this.id = id; }
 	public void setEmailAdress(String email) { this.email = email; }
 	public void setPassword(String password) { this.password = password; }
 	public void setFirstName(String first) { this.firstname = first; }
