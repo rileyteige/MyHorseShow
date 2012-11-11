@@ -38,7 +38,8 @@
     <string name="event_class_results_caption">Class Results</string>
     <string name="event_barn_info_caption">Barn Info</string>
     <string name="event_contact_info_caption">Contacts</string>
-    <string name="create_event">+Create Event</string>
+    <string name="event_create_event">+Create Event</string>
+    <string name="event_stall_unoccupied">UNOCCUPIED</string>
     
     <!-- Classes -->
     <string name="class_course_image_description">This is the course riders will take.</string>

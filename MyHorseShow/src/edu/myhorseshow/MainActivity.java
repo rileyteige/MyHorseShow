@@ -81,13 +81,13 @@ public class MainActivity extends Activity implements OnClickListener {
     		@Override
 			protected void onPostExecute(User user)
     		{
-    			mLoadingDialog.dismiss();
+    			Utility.hideDialog();
     			processUserLogin(user);
     			clearForm();
     		}
     	};
     	
-    	mLoadingDialog = ProgressDialog.show(this, 
+    	Utility.showProgressDialog(this, 
     			getString(R.string.logging_in_caption), 
     			getString(R.string.logging_in_description));
     	
@@ -131,7 +131,6 @@ public class MainActivity extends Activity implements OnClickListener {
     	invalidTextView.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
     }
     
-    private ProgressDialog mLoadingDialog;
     private static final String TAG = "MainActivity";
     public static final String USERNAME = "edu.myhorseshow.USERNAME";
 }

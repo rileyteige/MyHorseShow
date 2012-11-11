@@ -80,7 +80,6 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     		@Override
 			protected User doInBackground(User... users)
     		{
-    			Log.d(TAG, "" + users.length);
     			if (users.length != 1)
     				return null;
     			

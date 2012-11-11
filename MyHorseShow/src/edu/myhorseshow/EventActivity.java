@@ -193,7 +193,9 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		TextView occupantTextView = (TextView)findViewById(R.id.event_stall_occupant_text_view);
 		if (occupantTextView != null)
 		{
-			occupantTextView.setText(occupant != null ? occupant.getFirstName() + " " + occupant.getLastName() : "UNOCCUPIED");
+			occupantTextView.setText(occupant != null ?
+					occupant.getFirstName() + " " + occupant.getLastName() :
+					getString(R.string.event_stall_unoccupied));
 			occupantTextView.setVisibility(View.VISIBLE);
 		}
 	}

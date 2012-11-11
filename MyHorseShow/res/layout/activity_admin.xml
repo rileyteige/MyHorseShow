@@ -15,7 +15,7 @@
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
 		android:background="@drawable/main_button_background_color"
-		android:text="@string/create_event"
+		android:text="@string/event_create_event"
 		android:textSize="@dimen/button_text_size" />
 
 
