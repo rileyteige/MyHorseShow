@@ -1,6 +1,7 @@
 package edu.myhorseshow.showclass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import edu.myhorseshow.R;
 import edu.myhorseshow.event.Event;
@@ -14,6 +15,11 @@ import android.widget.TextView;
 
 public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 {
+	public ShowClassAdapter(Context context, int rowViewResourceId, ShowClass[] classes)
+	{
+		this(context, rowViewResourceId, new ArrayList<ShowClass>(Arrays.asList(classes)));
+	}
+	
 	public ShowClassAdapter(Context context, int rowViewResourceId, ArrayList<ShowClass> classes)
 	{
 		super(context, rowViewResourceId, classes);
@@ -38,10 +44,10 @@ public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 		return rowView;
 	}
 	
-	protected ArrayList<ShowClass> getClasses() { return mClasses; }
+	public ArrayList<ShowClass> getClasses() { return mClasses; }
 	protected void setClasses(ArrayList<ShowClass> classes) { mClasses = classes; }
 	
-	protected int getRowViewResourceId() { return mRowViewResourceId; }
+	public int getRowViewResourceId() { return mRowViewResourceId; }
 	protected void setRowViewResourceId(int rowViewResourceId) { mRowViewResourceId = rowViewResourceId; }
 	
 	private ArrayList<ShowClass> mClasses;

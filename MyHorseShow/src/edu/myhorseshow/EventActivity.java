@@ -7,15 +7,20 @@ import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
 import edu.myhorseshow.division.Division;
+import edu.myhorseshow.division.DivisionAdapter;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class EventActivity extends Activity implements OnClickListener
+public class EventActivity extends Activity implements OnClickListener, OnItemClickListener
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -34,7 +39,7 @@ public class EventActivity extends Activity implements OnClickListener
 		switch(clickedView.getId())
 		{
 		case R.id.event_class_list_button:
-			makeViewVisible(R.id.event_class_list_view);
+			makeViewVisible(R.id.event_division_list_view);
 			break;
 		case R.id.event_ride_times_button:
 			makeViewVisible(R.id.event_ride_times_view);
@@ -44,6 +49,19 @@ public class EventActivity extends Activity implements OnClickListener
 			break;
 		case R.id.event_contact_info_button:
 			makeViewVisible(R.id.event_contact_info_view);
+			break;
+		}
+	}
+	
+	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long rowViewResourceId)
+	{
+		switch(parent.getId())
+		{
+		case R.id.event_division_list_view:
+			divisionItemClicked(clickedView, position, rowViewResourceId);
+			break;
+		case R.id.event_class_list_view:
+			classItemClicked(clickedView, position, rowViewResourceId);
 			break;
 		}
 	}
@@ -58,12 +76,12 @@ public class EventActivity extends Activity implements OnClickListener
 	
 	private void setupListAdapters()
 	{
-		ListView classesListView = (ListView)findViewById(R.id.event_class_list_view);
+		ListView classesListView = (ListView)findViewById(R.id.event_division_list_view);
 		
-		if (getEvent().getDivisions()[0].getClasses() != null)
+		if (getEvent().getDivisions() != null)
 		{
-			ArrayList<ShowClass> classes = new ArrayList<ShowClass>(Arrays.asList(getEvent().getDivisions()[0].getClasses()));
-			classesListView.setAdapter(new ShowClassAdapter(this, R.layout.row_view_class, classes));
+			classesListView.setAdapter(new DivisionAdapter(this, R.layout.row_view_division, getEvent().getDivisions()));
+			classesListView.setOnItemClickListener(this);
 		}
 	}
 	
@@ -75,8 +93,50 @@ public class EventActivity extends Activity implements OnClickListener
 		((Button) findViewById(R.id.event_contact_info_button)).setOnClickListener(this);
 	}
 	
+	private void divisionItemClicked(View clickedView, int position, long rowViewResourceId)
+	{
+		Division clickedDivision = getEvent().getDivisions()[position];
+		if (clickedDivision != null)
+			loadClassView(clickedDivision);
+	}
+	
+	private void classItemClicked(View clickedView, int position, long rowViewResourceId)
+	{
+		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
+		ShowClassAdapter classAdapter = (ShowClassAdapter)classListView.getAdapter();
+		if (classAdapter == null)
+			return;
+		
+		ShowClass clickedClass = classAdapter.getClasses().get(position);
+		if (clickedClass != null)
+		{
+			Intent classIntent = new Intent(this, ClassActivity.class);
+			classIntent.putExtra(CLASS_ID, clickedClass.getId());
+			startActivity(classIntent);
+		}
+	}
+	
+	private void loadClassView(Division division)
+	{
+		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
+		if (classListView == null)
+			return;
+		
+		classListView.setAdapter(new ShowClassAdapter(this, R.layout.row_view_class, division.getClasses()));
+		classListView.setOnItemClickListener(this);
+		classListView.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideClassView()
+	{
+		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
+		if (classListView != null)
+			classListView.setVisibility(View.INVISIBLE);
+	}
+	
 	private void makeViewVisible(int viewId)
 	{
+		hideClassView();
 		View nextView = findViewById(viewId);
 		if (nextView == null)
 			return;
@@ -97,4 +157,7 @@ public class EventActivity extends Activity implements OnClickListener
 	
 	private View mCurrentView;
 	private Event mEvent;
+	
+	private static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
+	private static final String TAG = "EventActivity";
 }

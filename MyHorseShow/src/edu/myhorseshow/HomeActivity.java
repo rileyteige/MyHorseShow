@@ -51,15 +51,15 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		}
 	}
 	
-	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long resourceId)
+	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long rowViewResourceId)
 	{
 		switch(parent.getId())
 		{
 		case R.id.home_upcoming_events_listview:
-			upcomingEventClicked(clickedView, position, resourceId);
+			upcomingEventClicked(clickedView, position, rowViewResourceId);
 			break;
 		case R.id.home_alerts_listview:
-			alertClicked(clickedView, position, resourceId);
+			alertClicked(clickedView, position, rowViewResourceId);
 			break;
 		}
 	}
