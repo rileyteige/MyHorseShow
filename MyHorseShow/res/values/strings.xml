@@ -40,4 +40,7 @@
     <string name="event_contact_info_caption">Contacts</string>
     <string name="create_event">+Create Event</string>
     
+    <!-- Classes -->
+    <string name="class_course_image_description">This is the course riders will take.</string>
+    
 </resources>

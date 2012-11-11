@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.event.Event;
 
 import android.content.Context;
 import android.view.LayoutInflater;

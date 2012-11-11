@@ -1,7 +1,6 @@
 package edu.myhorseshow.event;
 
 import edu.myhorseshow.division.Division;
-import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.user.User;
 
 public class Event

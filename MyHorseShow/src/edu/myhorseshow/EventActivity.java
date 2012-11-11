@@ -1,8 +1,5 @@
 package edu.myhorseshow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
@@ -11,7 +8,6 @@ import edu.myhorseshow.division.DivisionAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -112,6 +108,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		{
 			Intent classIntent = new Intent(this, ClassActivity.class);
 			classIntent.putExtra(CLASS_ID, clickedClass.getId());
+			classIntent.putExtra(EVENT_ID, getEvent().getId());
 			startActivity(classIntent);
 		}
 	}
@@ -158,6 +155,6 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	private View mCurrentView;
 	private Event mEvent;
 	
-	private static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
-	private static final String TAG = "EventActivity";
+	public static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
+	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
 }

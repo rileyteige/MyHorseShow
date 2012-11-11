@@ -1,6 +1,8 @@
 package edu.myhorseshow;
 
+import edu.myhorseshow.division.Division;
 import edu.myhorseshow.event.Event;
+import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.user.User;
 
 public final class UserInfo
@@ -22,7 +24,12 @@ public final class UserInfo
 		return currentUser != null;
 	}
 	
-	public static Event getEvent (long eventId) throws NullPointerException
+	public static boolean isCurrentUser(User user)
+	{
+		return user.getId() == getCurrentUser().getId();
+	}
+	
+	public static Event getEvent(long eventId) throws NullPointerException
 	{
 		if (!isUserLoggedIn())
 			return null;
@@ -34,5 +41,26 @@ public final class UserInfo
 		}
 		
 		throw new NullPointerException("Event id not found.");
+	}
+	
+	public static ShowClass getClass(long eventId, long classId)
+	{
+		if (eventId <= 0 || classId <= 0)
+			return null;
+		
+		Event event = getEvent(eventId);
+		if (event == null)
+			return null;
+		
+		for (Division division: event.getDivisions())
+		{
+			for (ShowClass showClass: division.getClasses())
+			{
+				if (showClass.getId() == classId)
+					return showClass;
+			}
+		}
+		
+		return null;
 	}
 }
