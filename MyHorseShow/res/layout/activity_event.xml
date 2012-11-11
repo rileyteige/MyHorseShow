@@ -155,7 +155,14 @@
 	            <RelativeLayout
 	                android:layout_width="0dp"
 	                android:layout_height="match_parent"
-	                android:layout_weight="1" />
+	                android:layout_weight="1">
+	                
+	                <TextView
+	                    android:visibility="invisible"
+	                    android:id="@+id/event_stall_occupant_text_view"
+	                    style="@style/activity_subheader_text_view_style" />
+	                
+	            </RelativeLayout>
 	            
 	        </LinearLayout>
 	        

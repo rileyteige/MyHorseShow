@@ -3,7 +3,9 @@ package edu.myhorseshow;
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
+import edu.myhorseshow.user.User;
 import edu.myhorseshow.barn.Barn;
+import edu.myhorseshow.barn.Stall;
 import edu.myhorseshow.barn.StallListAdapter;
 import edu.myhorseshow.division.Division;
 import android.app.Activity;
@@ -62,6 +64,9 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			break;
 		case R.id.event_barn_list_view:
 			barnItemClicked(position);
+			break;
+		case R.id.event_stall_list_view:
+			stallItemClicked(position);
 			break;
 		}
 	}
@@ -131,6 +136,20 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			loadStallView(clickedBarn);
 	}
 	
+	private void stallItemClicked(int position)
+	{
+		ListView stallListView = (ListView)findViewById(R.id.event_stall_list_view);
+		StallListAdapter stallAdapter = (StallListAdapter)stallListView.getAdapter();
+		if (stallAdapter == null)
+			return;
+		
+		Stall clickedStall = stallAdapter.getStalls().get(position);
+		if (clickedStall != null)
+		{
+			loadStallOccupantView(clickedStall.getOccupant());
+		}
+	}
+	
 	private void loadClassView(Division division)
 	{
 		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
@@ -151,6 +170,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	
 	private void loadStallView(Barn clickedBarn)
 	{
+		hideStallOccupantView();
 		ListView stallListView = (ListView)findViewById(R.id.event_stall_list_view);
 		if (stallListView == null)
 			return;
@@ -162,9 +182,27 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	
 	private void hideStallView()
 	{
+		hideStallOccupantView();
 		ListView stallListView = (ListView)findViewById(R.id.event_stall_list_view);
 		if (stallListView != null)
 			stallListView.setVisibility(View.INVISIBLE);
+	}
+	
+	private void loadStallOccupantView(User occupant)
+	{
+		TextView occupantTextView = (TextView)findViewById(R.id.event_stall_occupant_text_view);
+		if (occupantTextView != null)
+		{
+			occupantTextView.setText(occupant != null ? occupant.getFirstName() + " " + occupant.getLastName() : "UNOCCUPIED");
+			occupantTextView.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	private void hideStallOccupantView()
+	{
+		TextView occupantTextView = (TextView)findViewById(R.id.event_stall_occupant_text_view);
+		if (occupantTextView != null)
+			occupantTextView.setVisibility(View.INVISIBLE);
 	}
 	
 	/**
