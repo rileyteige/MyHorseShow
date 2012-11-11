@@ -10,6 +10,10 @@
 	    style="@style/activity_header_text_view_style"
 	    android:textColor="@color/main_font_color" />
 	
+	
+	<!-- Main Buttons -->
+	
+	
 	<LinearLayout
 	    android:baselineAligned="false"
 	    android:layout_width="match_parent"
@@ -44,6 +48,10 @@
 	            android:text="@string/event_contact_info_caption" />
 	        
 	    </LinearLayout>
+	    
+	    
+	    <!-- Division/Class Info -->
+	    
 	    
 	    <RelativeLayout
 	        android:layout_width="0dp"
@@ -88,6 +96,10 @@
 	            
 	        </LinearLayout>
 	        
+	        
+	        <!-- Ride Times -->
+	        
+	        
 	      	<RelativeLayout
 	            android:id="@+id/event_ride_times_view"
 	            android:visibility="invisible"
@@ -101,18 +113,43 @@
 	            
 	        </RelativeLayout>
 	        
-	      	<RelativeLayout
-	            android:id="@+id/event_barn_info_view"
-	            android:visibility="invisible"
-	            style="@style/match_parent_style">
+	      	
+	      	<!-- Barn Info -->
+	      	
+	      	
+	        <LinearLayout
+	            style="@style/match_parent_style"
+	            android:baselineAligned="false">
 	            
-	            <TextView
-	                style="@style/activity_header_text_view_style"
-	                android:layout_centerVertical="true"
-	                android:layout_centerHorizontal="true"
-	                android:text="@string/event_barn_info_caption" />
+	            <RelativeLayout 
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:layout_marginRight="1dp">
+	                
+		            <ListView
+		                android:visibility="invisible"
+		                android:id="@+id/event_barn_list_view"
+		                style="@style/match_parent_style"
+		                android:dividerHeight="1dp" />
+	                
+	            </RelativeLayout>
 	            
-	        </RelativeLayout>
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1" />
+	            	           	
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1" />
+	            
+	        </LinearLayout>
+	        
+	        
+	        <!-- Contact Info -->
+	        
 	        
 	        <RelativeLayout
 	            android:id="@+id/event_contact_info_view"

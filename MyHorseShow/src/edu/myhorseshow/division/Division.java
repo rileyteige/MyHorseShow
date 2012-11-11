@@ -1,8 +1,9 @@
 package edu.myhorseshow.division;
 
+import edu.myhorseshow.NamedObject;
 import edu.myhorseshow.showclass.ShowClass;
 
-public class Division
+public class Division implements NamedObject
 {
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }

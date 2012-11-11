@@ -4,7 +4,6 @@ import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
 import edu.myhorseshow.division.Division;
-import edu.myhorseshow.division.DivisionAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,7 +40,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			makeViewVisible(R.id.event_ride_times_view);
 			break;
 		case R.id.event_barn_info_button:
-			makeViewVisible(R.id.event_barn_info_view);
+			makeViewVisible(R.id.event_barn_list_view);
 			break;
 		case R.id.event_contact_info_button:
 			makeViewVisible(R.id.event_contact_info_view);
@@ -73,11 +72,18 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	private void setupListAdapters()
 	{
 		ListView classesListView = (ListView)findViewById(R.id.event_division_list_view);
+		ListView barnsListView = (ListView)findViewById(R.id.event_barn_list_view);
 		
 		if (getEvent().getDivisions() != null)
 		{
-			classesListView.setAdapter(new DivisionAdapter(this, R.layout.row_view_division, getEvent().getDivisions()));
+			classesListView.setAdapter(new NameListAdapter(this, getEvent().getDivisions()));
 			classesListView.setOnItemClickListener(this);
+		}
+		
+		if (getEvent().getBarns() != null)
+		{
+			barnsListView.setAdapter(new NameListAdapter(this, getEvent().getBarns()));
+			barnsListView.setOnItemClickListener(this);
 		}
 	}
 	
