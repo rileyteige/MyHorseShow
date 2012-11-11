@@ -3,6 +3,8 @@ package edu.myhorseshow;
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
+import edu.myhorseshow.barn.Barn;
+import edu.myhorseshow.barn.StallListAdapter;
 import edu.myhorseshow.division.Division;
 import android.app.Activity;
 import android.content.Intent;
@@ -57,6 +59,9 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			break;
 		case R.id.event_class_list_view:
 			classItemClicked(clickedView, position, rowViewResourceId);
+			break;
+		case R.id.event_barn_list_view:
+			barnItemClicked(position);
 			break;
 		}
 	}
@@ -119,6 +124,13 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		}
 	}
 	
+	private void barnItemClicked(int position)
+	{
+		Barn clickedBarn = getEvent().getBarns()[position];
+		if (clickedBarn != null)
+			loadStallView(clickedBarn);
+	}
+	
 	private void loadClassView(Division division)
 	{
 		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
@@ -137,9 +149,33 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			classListView.setVisibility(View.INVISIBLE);
 	}
 	
+	private void loadStallView(Barn clickedBarn)
+	{
+		ListView stallListView = (ListView)findViewById(R.id.event_stall_list_view);
+		if (stallListView == null)
+			return;
+		
+		stallListView.setAdapter(new StallListAdapter(this, clickedBarn.getStalls()));
+		stallListView.setOnItemClickListener(this);
+		stallListView.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideStallView()
+	{
+		ListView stallListView = (ListView)findViewById(R.id.event_stall_list_view);
+		if (stallListView != null)
+			stallListView.setVisibility(View.INVISIBLE);
+	}
+	
+	/**
+	 * Makes a primary view visible.
+	 * @param viewId
+	 */
 	private void makeViewVisible(int viewId)
 	{
 		hideClassView();
+		hideStallView();
+		
 		View nextView = findViewById(viewId);
 		if (nextView == null)
 			return;
