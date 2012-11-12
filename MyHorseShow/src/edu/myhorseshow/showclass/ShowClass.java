@@ -1,6 +1,8 @@
 package edu.myhorseshow.showclass;
 
-public class ShowClass
+import edu.myhorseshow.NamedObject;
+
+public class ShowClass implements NamedObject
 {
 	public long getId() { return id; }
 	public String getName() { return name; }

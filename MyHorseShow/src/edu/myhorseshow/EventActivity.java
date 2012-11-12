@@ -1,5 +1,7 @@
 package edu.myhorseshow;
 
+import java.util.ArrayList;
+
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.ShowClass;
 import edu.myhorseshow.showclass.ShowClassAdapter;
@@ -11,6 +13,7 @@ import edu.myhorseshow.division.Division;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -41,7 +44,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			makeViewVisible(R.id.event_division_list_view);
 			break;
 		case R.id.event_ride_times_button:
-			makeViewVisible(R.id.event_ride_times_view);
+			makeViewVisible(R.id.event_ride_times_list_view);
 			break;
 		case R.id.event_barn_info_button:
 			makeViewVisible(R.id.event_barn_list_view);
@@ -83,6 +86,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	{
 		ListView classesListView = (ListView)findViewById(R.id.event_division_list_view);
 		ListView barnsListView = (ListView)findViewById(R.id.event_barn_list_view);
+		ListView rideTimesListView = (ListView)findViewById(R.id.event_ride_times_list_view);
 		
 		if (getEvent().getDivisions() != null)
 		{
@@ -94,6 +98,13 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		{
 			barnsListView.setAdapter(new NameListAdapter(this, getEvent().getBarns()));
 			barnsListView.setOnItemClickListener(this);
+		}
+		
+		ArrayList<ShowClass> userClasses = UserInfo.getUserClasses(getEvent().getId());
+		if (userClasses != null)
+		{
+			rideTimesListView.setAdapter(new NameListAdapter(this, userClasses.toArray(new ShowClass[userClasses.size()])));
+			rideTimesListView.setOnItemClickListener(this);
 		}
 	}
 	
@@ -239,4 +250,5 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	
 	public static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
 	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
+	private static final String TAG = "EventActivity";
 }

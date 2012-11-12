@@ -102,18 +102,35 @@
 	        <!-- Ride Times -->
 	        
 	        
-	      	<RelativeLayout
-	            android:id="@+id/event_ride_times_view"
-	            android:visibility="invisible"
+	      	<LinearLayout
+	            android:orientation="horizontal"
 	            style="@style/match_parent_style">
 	            
-	            <TextView
-	                style="@style/activity_header_text_view_style"
-	                android:layout_centerVertical="true"
-	                android:layout_centerHorizontal="true"
-	                android:text="@string/event_ride_times_caption" />
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1">
+	                
+	                <ListView
+	                    android:id="@+id/event_ride_times_list_view"
+	                    style="@style/match_parent_style"
+	                    android:visibility="invisible"
+	                    android:dividerHeight="1dp" />
+	                    
+	                
+	            </RelativeLayout>
 	            
-	        </RelativeLayout>
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1" />
+	            
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1" />
+	            
+	        </LinearLayout>
 	        
 	      	
 	      	<!-- Barn Info -->
