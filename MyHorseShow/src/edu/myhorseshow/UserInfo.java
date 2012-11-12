@@ -14,6 +14,7 @@ public final class UserInfo
 {
 	private static User currentUser;
 	private static ArrayList<ShowClass> currentUserParticipatingClasses;
+	private static int currentUserEventId = 0;
 	
 	public static void setCurrentUser(User user)
 	{
@@ -82,9 +83,9 @@ public final class UserInfo
 		if (eventId <= 0)
 			return null;
 		
-		// If this problem has already been solved,
+		// If this problem has already been solved for this event,
 		// there's no need to do the work again.
-		if (currentUserParticipatingClasses != null)
+		if (currentUserParticipatingClasses != null && eventId == currentUserEventId)
 			return currentUserParticipatingClasses;
 		
 		Event event = getEvent(eventId);
@@ -120,5 +121,6 @@ public final class UserInfo
 	private static void resetCache()
 	{
 		currentUserParticipatingClasses = null;
+		currentUserEventId = 0;
 	}
 }
