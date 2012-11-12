@@ -85,7 +85,7 @@ public final class Utility
     	}
 	}
 	
-	public static String postJsonObject(String url, Object jsonObject)
+	public static String postJsonObject(String url, JsonObject jsonObject)
 	{
 		if (!verifyThreadAccess())
 			return null;
