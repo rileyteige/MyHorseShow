@@ -83,10 +83,10 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     			User user = users[0];
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-    					.addPath(Constants.USER_PARAM)
+    					.addPath(Constants.TYPE_USER)
     					.toString();
 		    	
-		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.USER_PARAM, user));
+		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_USER, user));
 		    	return new Gson().fromJson(result, User.class);
     		}
     		

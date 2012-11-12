@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements OnClickListener {
     			String password = emailPassword[1];
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-    					.addPath(Constants.USER_PARAM)
+    					.addPath(Constants.TYPE_USER)
     					.addPath(email)
     					.addPath(password)
     					.toString();
