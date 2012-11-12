@@ -44,4 +44,12 @@
     <!-- Classes -->
     <string name="class_course_image_description">This is the course riders will take.</string>
     
+    <!-- Admin -->
+    <string name="admin_rider_button">Riders"</string>
+    <string name="admin_instructor_button">Instructors"</string>
+    <string name="admin_divisions_button">Divisions"</string>
+    <string name="admin_arenas_button">Arenas"</string>
+    <string name="admin_final_results_button">Final Results"</string>
+    
+    
 </resources>

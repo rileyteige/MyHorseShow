@@ -44,6 +44,7 @@ public final class R {
         public static final int activity_header_text_margin=0x7f050002;
         public static final int activity_header_text_size=0x7f050000;
         public static final int activity_subheader_text_size=0x7f050001;
+        public static final int button_text_size=0x7f050005;
         public static final int event_button_text_margin=0x7f050003;
         public static final int row_view_event_date_text_size=0x7f050004;
     }
@@ -56,51 +57,85 @@ public final class R {
         public static final int main_button_foreground_color=0x7f020005;
     }
     public static final class id {
-        public static final int create_account_confirmpass_edit_text=0x7f080004;
-        public static final int create_account_email_edit_text=0x7f080002;
-        public static final int create_account_first_name_edit_text=0x7f080000;
-        public static final int create_account_last_name_edit_text=0x7f080001;
-        public static final int create_account_password_edit_text=0x7f080003;
-        public static final int create_account_submit_button=0x7f080005;
-        public static final int event_barn_info_button=0x7f080009;
-        public static final int event_barn_info_view=0x7f08000d;
-        public static final int event_class_list_button=0x7f080007;
-        public static final int event_class_list_view=0x7f08000b;
-        public static final int event_contact_info_button=0x7f08000a;
-        public static final int event_contact_info_view=0x7f08000e;
-        public static final int event_header_label=0x7f080006;
-        public static final int event_ride_times_button=0x7f080008;
-        public static final int event_ride_times_view=0x7f08000c;
-        public static final int home_admin_portal_button=0x7f080011;
-        public static final int home_alerts_listview=0x7f080014;
-        public static final int home_header_text_view=0x7f08000f;
-        public static final int home_instructor_portal_button=0x7f080012;
-        public static final int home_rider_portal_button=0x7f080013;
-        public static final int home_upcoming_events_listview=0x7f080010;
-        public static final int main_email_edit_text=0x7f080016;
-        public static final int main_invalid_login_text_view=0x7f080015;
-        public static final int main_password_edit_text=0x7f080017;
-        public static final int main_screen_create_account_button=0x7f080019;
-        public static final int main_screen_submit_button=0x7f080018;
-        public static final int row_view_alert_label=0x7f08001a;
-        public static final int row_view_event_date_label=0x7f08001c;
-        public static final int row_view_event_label=0x7f08001b;
+        public static final int admin_arenas_button=0x7f080007;
+        public static final int admin_divisions_button=0x7f080006;
+        public static final int admin_event_info=0x7f080003;
+        public static final int admin_final_results_button=0x7f080008;
+        public static final int admin_instructor_button=0x7f080005;
+        public static final int admin_rider_button=0x7f080004;
+        public static final int class_course_image_view=0x7f08000b;
+        public static final int class_header_label=0x7f08000a;
+        public static final int class_riders_list_view=0x7f08000c;
+        public static final int create_account_confirmpass_edit_text=0x7f080011;
+        public static final int create_account_email_edit_text=0x7f08000f;
+        public static final int create_account_first_name_edit_text=0x7f08000d;
+        public static final int create_account_last_name_edit_text=0x7f08000e;
+        public static final int create_account_password_edit_text=0x7f080010;
+        public static final int create_account_submit_button=0x7f080012;
+        public static final int create_event_button=0x7f080000;
+        public static final int editText1=0x7f080001;
+        public static final int event_barn_info_button=0x7f080016;
+        public static final int event_barn_list_view=0x7f08001b;
+        public static final int event_class_list_button=0x7f080014;
+        public static final int event_class_list_view=0x7f080019;
+        public static final int event_contact_info_button=0x7f080017;
+        public static final int event_contact_info_view=0x7f08001e;
+        public static final int event_division_list_view=0x7f080018;
+        public static final int event_header_label=0x7f080013;
+        public static final int event_ride_times_button=0x7f080015;
+        public static final int event_ride_times_list_view=0x7f08001a;
+        public static final int event_stall_list_view=0x7f08001c;
+        public static final int event_stall_occupant_text_view=0x7f08001d;
+        public static final int home_admin_portal_button=0x7f080021;
+        public static final int home_alerts_listview=0x7f080024;
+        public static final int home_header_text_view=0x7f08001f;
+        public static final int home_instructor_portal_button=0x7f080022;
+        public static final int home_rider_portal_button=0x7f080023;
+        public static final int home_upcoming_events_listview=0x7f080020;
+        public static final int listText=0x7f080009;
+        public static final int main_email_edit_text=0x7f080026;
+        public static final int main_invalid_login_text_view=0x7f080025;
+        public static final int main_password_edit_text=0x7f080027;
+        public static final int main_screen_create_account_button=0x7f080029;
+        public static final int main_screen_submit_button=0x7f080028;
+        public static final int mylist=0x7f080002;
+        public static final int row_view_alert_label=0x7f08002a;
+        public static final int row_view_class_label=0x7f08002b;
+        public static final int row_view_class_time=0x7f08002c;
+        public static final int row_view_event_date_label=0x7f08002e;
+        public static final int row_view_event_label=0x7f08002d;
+        public static final int row_view_named_object_label=0x7f08002f;
+        public static final int row_view_user_label=0x7f080030;
     }
     public static final class layout {
         public static final int activity_admin=0x7f030000;
-        public static final int activity_create_account=0x7f030001;
-        public static final int activity_event=0x7f030002;
-        public static final int activity_home=0x7f030003;
-        public static final int activity_instructor=0x7f030004;
-        public static final int activity_main=0x7f030005;
-        public static final int activity_rider=0x7f030006;
-        public static final int row_view_alert=0x7f030007;
-        public static final int row_view_event=0x7f030008;
+        public static final int activity_class=0x7f030001;
+        public static final int activity_create_account=0x7f030002;
+        public static final int activity_event=0x7f030003;
+        public static final int activity_home=0x7f030004;
+        public static final int activity_instructor=0x7f030005;
+        public static final int activity_main=0x7f030006;
+        public static final int activity_rider=0x7f030007;
+        public static final int row_view_alert=0x7f030008;
+        public static final int row_view_class=0x7f030009;
+        public static final int row_view_event=0x7f03000a;
+        public static final int row_view_named_object=0x7f03000b;
+        public static final int row_view_user=0x7f03000c;
     }
     public static final class string {
+        public static final int admin_arenas_button=0x7f060024;
+        public static final int admin_divisions_button=0x7f060023;
+        public static final int admin_final_results_button=0x7f060025;
+        public static final int admin_instructor_button=0x7f060022;
         public static final int admin_portal_caption=0x7f060015;
+        /**  Admin 
+         */
+        public static final int admin_rider_button=0x7f060021;
         public static final int alerts_caption=0x7f060014;
         public static final int app_name=0x7f060000;
+        /**  Classes 
+         */
+        public static final int class_course_image_description=0x7f060020;
         public static final int create_account_confirmpass=0x7f06000b;
         public static final int create_account_email=0x7f06000c;
         public static final int create_account_first_name=0x7f06000d;
@@ -115,7 +150,9 @@ public final class R {
         public static final int event_class_results_caption=0x7f06001b;
         public static final int event_contact_info_caption=0x7f06001d;
         public static final int event_courses_caption=0x7f06001a;
+        public static final int event_create_event=0x7f06001e;
         public static final int event_ride_times_caption=0x7f060019;
+        public static final int event_stall_unoccupied=0x7f06001f;
         public static final int forgot_password_prompt=0x7f060005;
         public static final int identifier_caption=0x7f060003;
         public static final int instructor_portal_caption=0x7f060016;
