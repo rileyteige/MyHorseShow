@@ -63,10 +63,7 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     	String passwordCheck = confirmPasswordField.getText().toString();
     	
     	if (!password.contentEquals(passwordCheck))
-    	{
-    		Log.d(TAG, password + " is not equal to " + passwordCheck);
     		return;
-    	}
     	
     	User createdUser = new User();
     	createdUser.setEmailAdress(emailAddress);
@@ -89,7 +86,6 @@ public class CreateAccountActivity extends Activity implements OnClickListener
     					.addPath(Constants.USER_PARAM)
     					.toString();
 		    	
-    			Log.d(TAG, "should be submitting...");
 		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.USER_PARAM, user));
 		    	return new Gson().fromJson(result, User.class);
     		}

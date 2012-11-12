@@ -71,6 +71,9 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		case R.id.event_stall_list_view:
 			stallItemClicked(position);
 			break;
+		case R.id.event_ride_times_list_view:
+			rideTimeItemClicked(position);
+			break;
 		}
 	}
 	
@@ -103,7 +106,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		ArrayList<ShowClass> userClasses = UserInfo.getUserClasses(getEvent().getId());
 		if (userClasses != null)
 		{
-			rideTimesListView.setAdapter(new NameListAdapter(this, userClasses.toArray(new ShowClass[userClasses.size()])));
+			rideTimesListView.setAdapter(new ShowClassAdapter(this, userClasses));
 			rideTimesListView.setOnItemClickListener(this);
 		}
 	}
@@ -133,10 +136,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		ShowClass clickedClass = classAdapter.getClasses().get(position);
 		if (clickedClass != null)
 		{
-			Intent classIntent = new Intent(this, ClassActivity.class);
-			classIntent.putExtra(CLASS_ID, clickedClass.getId());
-			classIntent.putExtra(EVENT_ID, getEvent().getId());
-			startActivity(classIntent);
+			loadClassActivity(clickedClass);
 		}
 	}
 	
@@ -161,13 +161,25 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		}
 	}
 	
+	private void rideTimeItemClicked(int position)
+	{
+		ListView rideTimesListView = (ListView)findViewById(R.id.event_ride_times_list_view);
+		ShowClassAdapter classAdapter = (ShowClassAdapter)rideTimesListView.getAdapter();
+		if (classAdapter == null)
+			return;
+		
+		ShowClass clickedClass = classAdapter.getClasses().get(position);
+		if (clickedClass != null)
+			loadClassActivity(clickedClass);
+	}
+	
 	private void loadClassView(Division division)
 	{
 		ListView classListView = (ListView)findViewById(R.id.event_class_list_view);
 		if (classListView == null)
 			return;
 		
-		classListView.setAdapter(new ShowClassAdapter(this, R.layout.row_view_class, division.getClasses()));
+		classListView.setAdapter(new ShowClassAdapter(this, division.getClasses()));
 		classListView.setOnItemClickListener(this);
 		classListView.setVisibility(View.VISIBLE);
 	}
@@ -216,6 +228,14 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		TextView occupantTextView = (TextView)findViewById(R.id.event_stall_occupant_text_view);
 		if (occupantTextView != null)
 			occupantTextView.setVisibility(View.INVISIBLE);
+	}
+	
+	private void loadClassActivity(ShowClass showClass)
+	{
+		Intent classIntent = new Intent(this, ClassActivity.class);
+		classIntent.putExtra(CLASS_ID, showClass.getId());
+		classIntent.putExtra(EVENT_ID, getEvent().getId());
+		startActivity(classIntent);
 	}
 	
 	/**

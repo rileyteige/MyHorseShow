@@ -6,7 +6,13 @@
     
     <TextView
         android:id="@+id/row_view_class_label"
-        style="@style/event_button_style"
+        style="@style/activity_subheader_text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp" />
+    
+    <TextView
+        android:id="@+id/row_view_class_time"
+        style="@style/row_view_event_date_style"/>
     
 </LinearLayout>

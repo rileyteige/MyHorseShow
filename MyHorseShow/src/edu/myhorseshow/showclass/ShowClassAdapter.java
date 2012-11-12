@@ -14,12 +14,18 @@ import android.widget.TextView;
 
 public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 {
-	public ShowClassAdapter(Context context, int rowViewResourceId, ShowClass[] classes)
+	
+	public ShowClassAdapter(Context context, ShowClass[] classes)
 	{
-		this(context, rowViewResourceId, new ArrayList<ShowClass>(Arrays.asList(classes)));
+		this(context, new ArrayList<ShowClass>(Arrays.asList(classes)));
 	}
 	
-	public ShowClassAdapter(Context context, int rowViewResourceId, ArrayList<ShowClass> classes)
+	public ShowClassAdapter(Context context, ArrayList<ShowClass> classes)
+	{
+		this(context, R.layout.row_view_class, classes);
+	}
+	
+	private ShowClassAdapter(Context context, int rowViewResourceId, ArrayList<ShowClass> classes)
 	{
 		super(context, rowViewResourceId, classes);
 		setClasses(classes);
@@ -39,7 +45,10 @@ public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 		
 		ShowClass showClass = getClasses().get(position);
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_class_label);
+		TextView rowTime = (TextView) rowView.findViewById(R.id.row_view_class_time);
+		
 		rowLabel.setText(showClass.getName());
+		rowTime.setText(showClass.getStartTime() != null ? showClass.getStartTime() : "Ride times not posted yet.");
 		return rowView;
 	}
 	
