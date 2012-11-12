@@ -13,7 +13,6 @@ import edu.myhorseshow.division.Division;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -270,5 +269,4 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	
 	public static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
 	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
-	private static final String TAG = "EventActivity";
 }

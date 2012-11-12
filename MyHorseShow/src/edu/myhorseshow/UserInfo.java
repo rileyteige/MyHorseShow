@@ -2,8 +2,6 @@ package edu.myhorseshow;
 
 import java.util.ArrayList;
 
-import android.util.Log;
-
 import edu.myhorseshow.division.Division;
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.showclass.Participation;
