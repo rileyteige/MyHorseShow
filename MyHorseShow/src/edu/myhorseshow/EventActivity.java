@@ -49,7 +49,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			makeViewVisible(R.id.event_barn_list_view);
 			break;
 		case R.id.event_contact_info_button:
-			makeViewVisible(R.id.event_contact_info_view);
+			makeViewVisible(R.id.event_contacts_list_view);
 			break;
 		}
 	}
@@ -73,6 +73,9 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		case R.id.event_ride_times_list_view:
 			rideTimeItemClicked(position);
 			break;
+		case R.id.event_contacts_list_view:
+			contactItemClicked(position);
+			break;
 		}
 	}
 	
@@ -89,6 +92,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		ListView classesListView = (ListView)findViewById(R.id.event_division_list_view);
 		ListView barnsListView = (ListView)findViewById(R.id.event_barn_list_view);
 		ListView rideTimesListView = (ListView)findViewById(R.id.event_ride_times_list_view);
+		ListView contactsListView = (ListView)findViewById(R.id.event_contacts_list_view);
 		
 		if (getEvent().getDivisions() != null)
 		{
@@ -107,6 +111,12 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		{
 			rideTimesListView.setAdapter(new ShowClassAdapter(this, userClasses));
 			rideTimesListView.setOnItemClickListener(this);
+		}
+		
+		if (getEvent().getContacts() != null)
+		{
+			contactsListView.setAdapter(new NameListAdapter(this, getEvent().getContacts()));
+			contactsListView.setOnItemClickListener(this);
 		}
 	}
 	
@@ -170,6 +180,11 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		ShowClass clickedClass = classAdapter.getClasses().get(position);
 		if (clickedClass != null)
 			loadClassActivity(clickedClass);
+	}
+	
+	private void contactItemClicked(int position)
+	{
+		
 	}
 	
 	private void loadClassView(Division division)

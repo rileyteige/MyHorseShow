@@ -72,7 +72,12 @@ public final class Utility
     			instream.close();
     		}
     		
-    	} catch (Exception e) { e.printStackTrace(); }
+    	}
+    	catch (Exception e)
+    	{
+    		Log.e(TAG, "Download failed.");
+    		e.printStackTrace();
+    	}
     	
     	try
     	{
