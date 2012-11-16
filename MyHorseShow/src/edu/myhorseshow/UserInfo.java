@@ -12,7 +12,8 @@ public final class UserInfo
 {
 	private static User currentUser;
 	private static ArrayList<ShowClass> currentUserParticipatingClasses;
-	private static int currentUserEventId = 0;
+	private static ArrayList<Event> currentUserAdminEvents;
+	private static int lastClassesEventId = 0;
 	
 	public static void setCurrentUser(User user)
 	{
@@ -83,7 +84,7 @@ public final class UserInfo
 		
 		// If this problem has already been solved for this event,
 		// there's no need to do the work again.
-		if (currentUserParticipatingClasses != null && eventId == currentUserEventId)
+		if (currentUserParticipatingClasses != null && eventId == lastClassesEventId)
 			return currentUserParticipatingClasses;
 		
 		Event event = getEvent(eventId);
@@ -116,9 +117,29 @@ public final class UserInfo
 		return currentUserParticipatingClasses.size() > 0 ? currentUserParticipatingClasses : null;
 	}
 	
+	public static ArrayList<Event> getUserAdminEvents()
+	{
+		if (!isUserLoggedIn())
+			return null;
+		
+		if (currentUserAdminEvents != null)
+			return currentUserAdminEvents;
+		
+		currentUserAdminEvents = new ArrayList<Event>();
+		
+		for (Event event: currentUser.getEvents())
+		{
+			if (isCurrentUser(event.getAdmin()))
+				currentUserAdminEvents.add(event);
+		}
+		
+		return currentUserAdminEvents.size() > 0 ? currentUserAdminEvents : null;
+	}
+	
 	private static void resetCache()
 	{
 		currentUserParticipatingClasses = null;
-		currentUserEventId = 0;
+		currentUserAdminEvents = null;
+		lastClassesEventId = 0;
 	}
 }
