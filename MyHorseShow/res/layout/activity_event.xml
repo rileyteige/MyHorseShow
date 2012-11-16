@@ -190,30 +190,14 @@
 	        <LinearLayout
 	            style="@style/match_parent_style"
 	            android:baselineAligned="false">
-	            
-	            <RelativeLayout
-	                android:layout_width="0dp"
-	                android:layout_height="match_parent"
-	                android:layout_weight="1">
 	                
-	                <ListView
-	                    android:id="@+id/event_contacts_list_view"
-	                    style="@style/match_parent_style"
-	                    android:visibility="invisible"
-	                    android:dividerHeight="1dp" />
-	                    
-	                
-	            </RelativeLayout>
-	            
-	            <RelativeLayout
-	                android:layout_width="0dp"
-	                android:layout_height="match_parent"
-	                android:layout_weight="1" />
-	            
-	            <RelativeLayout
-	                android:layout_width="0dp"
-	                android:layout_height="match_parent"
-	                android:layout_weight="1" />
+                <GridView
+                    android:id="@+id/event_contacts_grid_view"
+                    style="@style/match_parent_style"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:visibility="invisible"
+                    android:dividerHeight="1dp" />
 	            
 	        </LinearLayout>
 	        

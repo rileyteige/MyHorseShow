@@ -9,6 +9,7 @@ import edu.myhorseshow.user.User;
 import edu.myhorseshow.barn.Barn;
 import edu.myhorseshow.barn.Stall;
 import edu.myhorseshow.barn.StallListAdapter;
+import edu.myhorseshow.contact.ContactGridAdapter;
 import edu.myhorseshow.division.Division;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -49,7 +51,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			makeViewVisible(R.id.event_barn_list_view);
 			break;
 		case R.id.event_contact_info_button:
-			makeViewVisible(R.id.event_contacts_list_view);
+			makeViewVisible(R.id.event_contacts_grid_view);
 			break;
 		}
 	}
@@ -73,7 +75,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		case R.id.event_ride_times_list_view:
 			rideTimeItemClicked(position);
 			break;
-		case R.id.event_contacts_list_view:
+		case R.id.event_contacts_grid_view:
 			contactItemClicked(position);
 			break;
 		}
@@ -92,7 +94,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		ListView classesListView = (ListView)findViewById(R.id.event_division_list_view);
 		ListView barnsListView = (ListView)findViewById(R.id.event_barn_list_view);
 		ListView rideTimesListView = (ListView)findViewById(R.id.event_ride_times_list_view);
-		ListView contactsListView = (ListView)findViewById(R.id.event_contacts_list_view);
+		GridView contactsGridView = (GridView)findViewById(R.id.event_contacts_grid_view);
 		
 		if (getEvent().getDivisions() != null)
 		{
@@ -115,8 +117,8 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		
 		if (getEvent().getContacts() != null)
 		{
-			contactsListView.setAdapter(new NameListAdapter(this, getEvent().getContacts()));
-			contactsListView.setOnItemClickListener(this);
+			contactsGridView.setAdapter(new ContactGridAdapter(this, getEvent().getContacts()));
+			contactsGridView.setOnItemClickListener(this);
 		}
 	}
 	
