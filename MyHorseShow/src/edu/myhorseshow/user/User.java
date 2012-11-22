@@ -12,6 +12,8 @@ public class User
 	private Event[] events;
 	private long usefid;
 	
+	public String getName() { return getFirstName() + " " + getLastName(); }
+	
 	public int getId() { return id; }
 	public String getEmailAddress() { return email; }
 	public String getPassword() { return password; }
