@@ -31,9 +31,9 @@ public final class UserInfo
 		return currentUser != null;
 	}
 	
-	public static boolean isCurrentUser(User user)
+	public static boolean isCurrentUser(int id)
 	{
-		return user.getId() == getCurrentUser().getId();
+		return id == getCurrentUser().getId();
 	}
 	
 	public static Event getEvent(long eventId) throws NullPointerException
@@ -93,6 +93,9 @@ public final class UserInfo
 		
 		currentUserParticipatingClasses = new ArrayList<ShowClass>();
 		
+		if (event.getDivisions() == null)
+			return currentUserParticipatingClasses;
+		
 		for (Division division: event.getDivisions())
 		{
 			if (division.getClasses() == null)
@@ -105,7 +108,7 @@ public final class UserInfo
 				
 				for (Participation participation: showClass.getParticipations())
 				{
-					if (isCurrentUser(participation.getRider()))
+					if (isCurrentUser(participation.getRider().getId()))
 					{
 						currentUserParticipatingClasses.add(showClass);
 						break;
@@ -129,7 +132,7 @@ public final class UserInfo
 		
 		for (Event event: currentUser.getEvents())
 		{
-			if (isCurrentUser(event.getAdmin()))
+			if (isCurrentUser(event.getAdminId()))
 				currentUserAdminEvents.add(event);
 		}
 		

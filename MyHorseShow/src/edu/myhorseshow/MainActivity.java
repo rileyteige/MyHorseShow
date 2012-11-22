@@ -23,6 +23,19 @@ public class MainActivity extends Activity implements OnClickListener {
         
         Utility.setMainThread(Thread.currentThread());
         setOnClickListeners();
+        
+        test();
+    }
+    
+    private void test()
+    {
+    	EditText emailField = (EditText) findViewById(R.id.main_email_edit_text);
+    	EditText passwordField = (EditText) findViewById(R.id.main_password_edit_text);
+    	
+    	emailField.setText("riley.teige@gmail.com");
+    	passwordField.setText("password");
+    	
+    	submitLoginInfo();
     }
     
     public void onClick(View clickedView)

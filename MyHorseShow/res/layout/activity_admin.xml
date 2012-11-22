@@ -7,97 +7,142 @@
     
     <TextView
         style="@style/activity_header_text_view_style"
-        android:textColor="@color/main_font_color"
+        android:textColor="@color/portal_font_color"
         android:text="@string/admin_portal_caption" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/create_event_button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/main_button_background_color"
-            android:text="@string/event_create_event"
-            android:textSize="@dimen/button_text_size" />
-
-        <TextView
-            android:id="@+id/editText1"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="Event Title"
-            android:textSize="@dimen/button_text_size"
-            android:background="@color/light_blue"
-            android:textColor="@color/light_beige" >
-
-        </TextView>
-
-    </LinearLayout>
-
-   	<RelativeLayout
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content" >
-   	    
-   	    <ListView
-   	        android:id="@+id/mylist"
-   	        android:layout_width ="300dp"
-   	        android:layout_height="wrap_content"
-   	        android:background="@color/light_blue"
-   	        android:divider="@color/lighter_blue"
-   	        android:dividerHeight="1dp" >
-
-	    </ListView>
-		
-   	    <LinearLayout
-   	        android:id="@+id/admin_event_info"
-   	        android:layout_width="250dp"
-	        android:layout_height="match_parent"
-	        android:layout_marginRight="1dp"
+        android:baselineAligned="false"
+        style="@style/match_parent_style">
+        
+	    <LinearLayout
 	        android:orientation="vertical"
-	        android:visibility="visible"
-	        android:layout_toRightOf="@+id/mylist">
-	        
-	        
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1" >
+	
 	        <Button
-	            style="@style/event_button_style"
-	            android:id="@+id/admin_rider_button"
-	            android:text="@string/admin_rider_button" />
-	        
-	        <Button
-	            style="@style/event_button_style"
-	            android:id="@+id/admin_instructor_button"
-	            android:text="@string/admin_instructor_button" />
-	        
-	        <Button
-	            style="@style/event_button_style"
-	            android:id="@+id/admin_divisions_button"
-	            android:text="@string/admin_divisions_button" />
-	        
-	        <Button
-	            style="@style/event_button_style"
-	            android:id="@+id/admin_arenas_button"
-	            android:text="@string/admin_arenas_button" />
-	        
-	        <Button
-	            style="@style/event_button_style"
-	            android:id="@+id/admin_final_results_button"
-	            android:text="@string/admin_final_results_button" />
-	        
+	            android:id="@+id/admin_create_event_button"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/main_button_background_color"
+	            android:text="@string/event_create_event"
+	            android:textSize="@dimen/button_text_size" />
+	
+	        <ListView
+	            android:id="@+id/admin_event_list_view"
+	            style="@style/match_parent_style"
+	            android:background="@color/beige"
+	            android:divider="@color/light_brown"
+	            android:dividerHeight="1dp" />
+	
 	    </LinearLayout>
-
-   	    <TextView
-   	        android:id="@+id/listText"
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:layout_alignParentBottom="true"
-   	        android:layout_alignParentRight="true"
-   	        android:layout_alignParentTop="true"
-   	        android:layout_toRightOf="@+id/admin_event_info"
-   	        android:ems="10">
-   	    </TextView>
-   	    
-   	</RelativeLayout>
+	
+	    <RelativeLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="3">
+	        
+	        
+	        <!-- Create Event -->
+	        
+	        
+	        <RelativeLayout
+	            android:id="@+id/admin_create_event_relative_layout"
+	            style="@style/match_parent_style"
+	            android:visibility="invisible">
+	            
+	            <LinearLayout
+	                style="@style/match_parent_style"
+	                android:layout_margin="@dimen/admin_create_event_form_margin"
+	                android:orientation="vertical">
+	                
+	                <LinearLayout
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content">
+	                    
+	                    <TextView
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:textColor="@color/main_button_released_foreground_color"
+	                        android:text="@string/admin_create_event_name_caption"/>
+	                    
+		                <EditText
+		                    android:id="@+id/admin_create_event_event_name_edit_text"
+		                    style="@style/edit_text_default_style" />
+		                
+	                </LinearLayout>
+	                
+	                <LinearLayout
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content">
+	                    
+		                <DatePicker
+		                    android:id="@+id/admin_create_event_event_start_date_date_picker"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:calendarViewShown="false" />
+		                
+		                <DatePicker
+		                    android:id="@+id/admin_create_event_event_end_date_date_picker"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:calendarViewShown="false" />
+			                
+	                </LinearLayout>"
+	                
+	            	<Button
+		                android:id="@+id/admin_create_event_submit_button"
+		                android:layout_marginTop="10dp"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:background="@drawable/main_button_background_color"
+		                android:textColor="@drawable/main_button_foreground_color"
+		                android:text="@string/submit_caption" />
+	                
+	            </LinearLayout>
+	            
+	        </RelativeLayout>
+	        
+	        
+	        <!-- Event Info -->
+	        
+	        
+	   	    <LinearLayout
+	   	        android:id="@+id/admin_event_info_linear_layout"
+	   	        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:orientation="vertical"
+		        android:visibility="invisible">      
+		        
+		        <Button
+		            style="@style/event_button_style"
+		            android:id="@+id/admin_rider_button"
+		            android:text="@string/admin_rider_button" />
+		        
+		        <Button
+		            style="@style/event_button_style"
+		            android:id="@+id/admin_instructor_button"
+		            android:text="@string/admin_instructor_button" />
+		        
+		        <Button
+		            style="@style/event_button_style"
+		            android:id="@+id/admin_divisions_button"
+		            android:text="@string/admin_divisions_button" />
+		        
+		        <Button
+		            style="@style/event_button_style"
+		            android:id="@+id/admin_arenas_button"
+		            android:text="@string/admin_arenas_button" />
+		        
+		        <Button
+		            style="@style/event_button_style"
+		            android:id="@+id/admin_final_results_button"
+		            android:text="@string/admin_final_results_button" />
+		        
+		    </LinearLayout>
+		    
+	    </RelativeLayout>
+	   	    
+   	</LinearLayout>
     
 </LinearLayout>

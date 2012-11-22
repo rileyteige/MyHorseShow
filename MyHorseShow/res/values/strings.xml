@@ -3,12 +3,15 @@
     <string name="app_name">MyHorseShow</string>
     <string name="title_activity_main">@string/app_name</string>
     
+    <!-- Misc. -->
+    <string name="submit_caption">Submit</string>
+    
     <!-- Login -->
     <string name="sign_in_caption">Sign in</string>
     <string name="identifier_caption">Email: </string>
     <string name="password_caption">Password: </string>
     <string name="forgot_password_prompt">Forgot your password?</string>
-    <string name="submit_caption">Login</string>
+    <string name="login_caption">Login</string>
     <string name="logging_in_caption">Logging in&#8230;</string>
     <string name="logging_in_description">This may take a few seconds&#8230;</string>
     <string name="invalid_login_caption">Invalid username or password.</string>
@@ -50,6 +53,8 @@
     <string name="admin_divisions_button">Divisions"</string>
     <string name="admin_arenas_button">Arenas"</string>
     <string name="admin_final_results_button">Final Results"</string>
-    
+    <string name="admin_create_event_name_caption">Name: </string>
+    <string name="admin_creating_event_caption">Creating event&#8230;</string>
+    <string name="admin_creating_event_description">This should only take a moment.</string>
     
 </resources>

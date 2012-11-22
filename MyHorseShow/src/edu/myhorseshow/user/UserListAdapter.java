@@ -39,7 +39,7 @@ public class UserListAdapter extends ArrayAdapter<User>
 		
 		User rider = getRiders().get(position);
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_user_label);
-		rowLabel.setText((UserInfo.isCurrentUser(rider) ? "YOU: " : "") + rider.getFirstName() + " " + rider.getLastName());
+		rowLabel.setText((UserInfo.isCurrentUser(rider.getId()) ? "YOU: " : "") + rider.getFirstName() + " " + rider.getLastName());
 		return rowView;
 	}
 	

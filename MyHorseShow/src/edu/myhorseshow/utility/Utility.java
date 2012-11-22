@@ -83,7 +83,7 @@ public final class Utility
     	{
     		return new Gson().fromJson(result, rtnClass);
     	}
-    	catch (JsonParseException e)
+    	catch (Exception e)
     	{
     		Log.e(TAG, "JSON PARSE EXCEPTION: " + e.getMessage());
     		return null;
@@ -96,6 +96,8 @@ public final class Utility
 			return null;
 		
 		String json = new Gson().toJson(jsonObject);
+		
+		Log.d(TAG, "POSTING: " + json);
 		
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(url);

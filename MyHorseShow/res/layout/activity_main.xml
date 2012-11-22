@@ -45,8 +45,8 @@
 	            <EditText 
 	                android:id="@+id/main_email_edit_text"
 	                android:layout_alignParentRight="true"
-	                android:layout_width="300dp"
-	                android:layout_height="32dp"
+	                android:layout_width="@dimen/edit_text_default_width"
+	                android:layout_height="@dimen/edit_text_default_height"
 	                android:background="@color/edit_text_background_color"
 	                android:singleLine="true"
 	                android:hint=""
@@ -69,8 +69,8 @@
 	            <EditText
 	                android:id="@+id/main_password_edit_text"
 	                android:layout_marginLeft="30dp"
-	                android:layout_width="300dp"
-	                android:layout_height="32dp"
+	                android:layout_width="@dimen/edit_text_default_width"
+	                android:layout_height="@dimen/edit_text_default_height"
 	                android:inputType="textPassword"
 	                android:background="@color/edit_text_background_color"
 	                android:textColor="@color/edit_text_font_color" />
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/main_button_background_color"
                 android:textColor="@drawable/main_button_foreground_color"
-                android:text="@string/submit_caption" />
+                android:text="@string/login_caption" />
                 
         </LinearLayout>
     </RelativeLayout>

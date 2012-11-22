@@ -6,10 +6,9 @@ import edu.myhorseshow.division.Division;
 import edu.myhorseshow.user.User;
 
 public class Event
-{
-	
+{	
 	public long getId() { return id; }
-	public User getAdmin() { return admin; }
+	public int getAdminId() { return adminId; }
 	public String getName() { return name; }
 	public String getStartDate() { return startdate; }
 	public String getEndDate() { return enddate; }
@@ -18,7 +17,7 @@ public class Event
 	public Contact[] getContacts() { return ownContact; }
 	
 	public void setId(int id) { this.id = id; }
-	public void setAdmin(User admin) { this.admin = admin; }
+	public void setAdminId(int id) { this.adminId = id; }
 	public void setName(String name) { this.name = name; }
 	public void setStartDate(String startdate) { this.startdate = startdate; }
 	public void setEndDate(String enddate) { this.enddate = enddate; }
@@ -27,7 +26,7 @@ public class Event
 	public void setContacts(Contact[] contacts) { this.ownContact = contacts; }
 	
 	private long id;
-	private User admin;
+	private int adminId;
 	private String name;
 	private String startdate;
 	private String enddate;
