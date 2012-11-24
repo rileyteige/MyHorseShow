@@ -3,7 +3,6 @@ package edu.myhorseshow.event;
 import edu.myhorseshow.barn.Barn;
 import edu.myhorseshow.contact.Contact;
 import edu.myhorseshow.division.Division;
-import edu.myhorseshow.user.User;
 
 public class Event
 {	

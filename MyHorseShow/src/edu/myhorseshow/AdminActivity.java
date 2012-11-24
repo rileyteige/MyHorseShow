@@ -3,34 +3,27 @@ package edu.myhorseshow;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.google.gson.Gson;
-
-import edu.myhorseshow.alert.Alert;
-import edu.myhorseshow.alert.AlertAdapter;
 import edu.myhorseshow.event.Event;
 import edu.myhorseshow.event.EventAdapter;
 import android.app.Activity;
-import android.app.SearchManager.OnCancelListener;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import edu.myhorseshow.user.User;
-import edu.myhorseshow.utility.JsonObject;
-import edu.myhorseshow.utility.UrlBuilder;
+import edu.myhorseshow.utility.AdminProxy;
 import edu.myhorseshow.utility.Utility;
 
 public class AdminActivity extends Activity implements OnClickListener, OnItemClickListener
 {
+	public static final int CREATE_EVENT = 0;
+	public static final int ADD_USER_TO_EVENT = 1;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -140,6 +133,12 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 		showEventInfoButtons();
 	}
 	
+	private void addEvent(Event event)
+	{
+		UserInfo.getCurrentUser().addEvent(event);
+		setupListAdapters();
+	}
+	
 	private void createEvent()
 	{
 		EditText eventNameEditText = (EditText)findViewById(R.id.admin_create_event_event_name_edit_text);
@@ -156,36 +155,25 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 		createdEvent.setStartDate(startDate);
 		createdEvent.setEndDate(endDate);
 		
-		AsyncTask<Event, Integer, Event> fetcher = new AsyncTask<Event, Integer, Event>()
-    	{
-    		@Override
-			protected Event doInBackground(Event... events)
-    		{
-    			if (events.length != 1)
-    				return null;
-    			
-    			Event event = events[0];
-    			
-    			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
-    					.addPath(Constants.TYPE_EVENT)
-    					.toString();
-		    	
-		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_EVENT, event));
-		    	Log.d(TAG, result);
-		    	return new Gson().fromJson(result, Event.class);
-    		}
-    		
-    		@Override
-			protected void onPostExecute(Event newEvent)
-    		{
-    			Utility.hideDialog();
-    		}
-    	};
-		    	
-    	Utility.showProgressDialog(this,
-    			getString(R.string.admin_creating_event_caption),
-    			getString(R.string.admin_creating_event_description));
-    	fetcher.execute(createdEvent);
+		Utility.showProgressDialog(this, 
+				getString(R.string.admin_creating_event_caption), 
+				getString(R.string.admin_creating_event_description));
+		AdminProxy.createEvent(this, createdEvent);
+	}
+	
+	public void signalProxyFinished(int what, Object returnValue)
+	{
+		switch (what)
+		{
+		case (CREATE_EVENT):
+			if (returnValue != null)
+				addEvent((Event)returnValue);
+			break;
+		case (ADD_USER_TO_EVENT):
+			break;
+		}
+		
+		Utility.hideDialog();
 	}
 	
 	private String extractDatePickerDateString(DatePicker datePicker)

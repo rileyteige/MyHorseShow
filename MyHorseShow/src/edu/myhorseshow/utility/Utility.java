@@ -13,6 +13,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -20,7 +23,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
+
+import edu.myhorseshow.Constants;
 
 public final class Utility
 {
@@ -55,14 +59,13 @@ public final class Utility
 		if (!verifyThreadAccess())
 			return null;
 		
-    	HttpClient httpclient = new DefaultHttpClient();
     	HttpGet httpget = new HttpGet(url);
-    	HttpResponse response;
+    	HttpClient httpclient = getDefaultHttpClient();
     	String result = null;
     	
     	try
     	{
-    		response = httpclient.execute(httpget);
+    		HttpResponse response = httpclient.execute(httpget);
     		
     		HttpEntity entity = response.getEntity();
     		if (entity != null)
@@ -99,7 +102,7 @@ public final class Utility
 		
 		Log.d(TAG, "POSTING: " + json);
 		
-		HttpClient httpClient = new DefaultHttpClient();
+    	HttpClient httpClient = getDefaultHttpClient();
 		HttpPost httppost = new HttpPost(url);
 		
 		try {
@@ -111,12 +114,11 @@ public final class Utility
 		
 		httppost.setHeader("Accept", "application/json");
 		httppost.setHeader("Content-type", "application/json");
-		HttpResponse response;
 		String result = null;
 		
 		try
 		{
-			response = httpClient.execute(httppost);
+			HttpResponse response = httpClient.execute(httppost);
 			
 			HttpEntity entity = response.getEntity();
 			if (entity != null)
@@ -157,6 +159,14 @@ public final class Utility
 		}
 		
 		return builder.toString();
+	}
+	
+	private static HttpClient getDefaultHttpClient()
+	{
+		HttpParams params = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(params, Constants.HTTP_CONNECTION_TIMEOUT);
+		HttpConnectionParams.setSoTimeout(params, Constants.HTTP_WAITING_TIMEOUT);
+		return new DefaultHttpClient(params);
 	}
 	
 	private static boolean verifyThreadAccess()

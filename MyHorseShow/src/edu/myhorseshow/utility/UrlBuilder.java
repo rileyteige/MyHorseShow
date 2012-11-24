@@ -9,6 +9,8 @@ public class UrlBuilder
 		mDomain = domain;
 	}
 
+	public UrlBuilder addPath(int value) { return addPath("" + value); }
+	public UrlBuilder addPath(long value) { return addPath("" + value); }
 	public UrlBuilder addPath(String value)
 	{
 		mPaths.add(value);

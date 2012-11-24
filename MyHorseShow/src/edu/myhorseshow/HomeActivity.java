@@ -1,7 +1,6 @@
 package edu.myhorseshow;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -32,6 +31,13 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		
 		welcomeUser(UserInfo.getCurrentUser());
 		setupClickListeners();
+		setupListAdapters();
+	}
+	
+	@Override
+	public void onResume()
+	{
+		super.onResume();
 		setupListAdapters();
 	}
 	
@@ -68,8 +74,6 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	{
 		TextView headerTextView = (TextView) findViewById(R.id.home_header_text_view);
 		headerTextView.setText(String.format(getString(R.string.welcome_header), user.getFirstName() + " " + user.getLastName()));
-		if (user.getEvents() != null)
-			mEvents = new ArrayList<Event>(Arrays.asList(user.getEvents()));
 	}
 	
 	private void setupClickListeners()
@@ -90,9 +94,9 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		
 		mAlerts = new ArrayList<Alert>();
 		
-		if (mEvents != null)
+		if (UserInfo.getCurrentUser().getEvents() != null)
 		{
-			upcomingEventsListView.setAdapter(new EventAdapter(this, R.layout.row_view_event, mEvents));
+			upcomingEventsListView.setAdapter(new EventAdapter(this, UserInfo.getCurrentUser().getEvents()));
 			upcomingEventsListView.setOnItemClickListener(this);
 			upcomingEventsListView.setEnabled(true);
 		}
@@ -107,7 +111,7 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	
 	private void upcomingEventClicked(View clickedView, int position, long resourceId)
 	{
-		Event clickedEvent = mEvents.get(position);
+		Event clickedEvent = UserInfo.getCurrentUser().getEvents()[position];
 		Intent eventIntent = new Intent(this, EventActivity.class);
 		eventIntent.putExtra(EVENT_ID, clickedEvent.getId());
 		startActivity(eventIntent);
@@ -139,7 +143,6 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	}
 	
 	private ArrayList<Alert> mAlerts;
-	private ArrayList<Event> mEvents;
 	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
 	private static final String TAG = "HomeActivity";
 }

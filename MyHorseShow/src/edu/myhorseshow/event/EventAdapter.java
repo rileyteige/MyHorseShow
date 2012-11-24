@@ -3,6 +3,7 @@ package edu.myhorseshow.event;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import edu.myhorseshow.R;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 public class EventAdapter extends ArrayAdapter<Event>
 {
+	public EventAdapter(Context context, Event[] events) { this(context, new ArrayList<Event>(Arrays.asList(events))); }
+	public EventAdapter(Context context, ArrayList<Event> events) { this(context, R.layout.row_view_event, events); }
 	public EventAdapter(Context context, int rowViewResourceId, ArrayList<Event> events)
 	{
 		super(context, rowViewResourceId, events);

@@ -12,4 +12,6 @@ public final class Constants
 	public static final String TYPE_DIVISION = "division";
 	public static final String TYPE_BARN = "barn";
 	public static final String TYPE_EVENT = "event";
+	public static final int HTTP_CONNECTION_TIMEOUT = 3000; // milliseconds, waiting for connection
+	public static final int HTTP_WAITING_TIMEOUT = 5000; // milliseconds, waiting for data
 }

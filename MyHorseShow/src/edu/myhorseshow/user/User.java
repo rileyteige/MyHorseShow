@@ -1,5 +1,8 @@
 package edu.myhorseshow.user;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import edu.myhorseshow.event.Event;
 
 public class User
@@ -13,6 +16,17 @@ public class User
 	private long usefid;
 	
 	public String getName() { return getFirstName() + " " + getLastName(); }
+	
+	public void addEvent(Event event)
+	{
+		ArrayList<Event> events = getEvents() != null ?
+				new ArrayList<Event>(Arrays.asList(getEvents())) :
+				new ArrayList<Event>();
+		
+		events.add(event);
+		
+		setEvents(events.toArray(new Event[events.size()]));
+	}
 	
 	public int getId() { return id; }
 	public String getEmailAddress() { return email; }

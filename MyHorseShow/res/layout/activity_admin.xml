@@ -18,7 +18,8 @@
 	        android:orientation="vertical"
 	        android:layout_width="0dp"
 	        android:layout_height="match_parent"
-	        android:layout_weight="1" >
+	        android:layout_weight="1"
+	        android:layout_marginRight="4dp" >
 	
 	        <Button
 	            android:id="@+id/admin_create_event_button"
@@ -88,7 +89,7 @@
 		                    android:layout_height="wrap_content"
 		                    android:calendarViewShown="false" />
 			                
-	                </LinearLayout>"
+	                </LinearLayout>
 	                
 	            	<Button
 		                android:id="@+id/admin_create_event_submit_button"
