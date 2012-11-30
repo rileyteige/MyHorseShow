@@ -2,8 +2,6 @@ package edu.myhorseshow.activities;
 
 import edu.myhorseshow.R;
 import edu.myhorseshow.UserInfo;
-import edu.myhorseshow.R.id;
-import edu.myhorseshow.R.layout;
 import edu.myhorseshow.adapters.ParticipationListAdapter;
 import edu.myhorseshow.models.ShowClass;
 import android.app.Activity;

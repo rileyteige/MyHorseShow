@@ -5,9 +5,6 @@ import java.util.Arrays;
 
 import edu.myhorseshow.R;
 import edu.myhorseshow.UserInfo;
-import edu.myhorseshow.R.id;
-import edu.myhorseshow.R.layout;
-import edu.myhorseshow.R.string;
 import edu.myhorseshow.adapters.EventAdapter;
 import edu.myhorseshow.models.Event;
 import android.app.Activity;

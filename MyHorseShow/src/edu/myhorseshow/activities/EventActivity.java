@@ -2,7 +2,6 @@ package edu.myhorseshow.activities;
 
 import java.util.ArrayList;
 
-import edu.myhorseshow.NameListAdapter;
 import edu.myhorseshow.R;
 import edu.myhorseshow.UserInfo;
 import edu.myhorseshow.models.Barn;
@@ -11,10 +10,8 @@ import edu.myhorseshow.models.Event;
 import edu.myhorseshow.models.ShowClass;
 import edu.myhorseshow.models.Stall;
 import edu.myhorseshow.models.User;
-import edu.myhorseshow.R.id;
-import edu.myhorseshow.R.layout;
-import edu.myhorseshow.R.string;
 import edu.myhorseshow.adapters.ContactGridAdapter;
+import edu.myhorseshow.adapters.NameListAdapter;
 import edu.myhorseshow.adapters.ShowClassAdapter;
 import edu.myhorseshow.adapters.StallListAdapter;
 import android.app.Activity;

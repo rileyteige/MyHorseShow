@@ -14,9 +14,6 @@ import android.widget.TextView;
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.R;
 import edu.myhorseshow.UserInfo;
-import edu.myhorseshow.R.id;
-import edu.myhorseshow.R.layout;
-import edu.myhorseshow.R.string;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.utility.*;
 

@@ -1,6 +1,5 @@
 package edu.myhorseshow.models;
 
-import edu.myhorseshow.NamedObject;
 
 public class Barn implements NamedObject
 {
