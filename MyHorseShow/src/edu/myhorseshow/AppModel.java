@@ -35,7 +35,7 @@ public class AppModel extends EventDispatcher
 	{
 		resetCache();
 		currentUser = user;
-		dispatchEvent(new SimpleEvent(EventMeta.CURRENT_USER_CHANGED));
+		notifyChange(EventMeta.CURRENT_USER_CHANGED);
 	}
 	
 	public User getCurrentUser()
@@ -154,6 +154,11 @@ public class AppModel extends EventDispatcher
 		}
 		
 		return currentUserAdminEvents.size() > 0 ? currentUserAdminEvents : null;
+	}
+	
+	private void notifyChange(String type)
+	{
+		dispatchEvent(new SimpleEvent(type));
 	}
 	
 	private void resetCache()

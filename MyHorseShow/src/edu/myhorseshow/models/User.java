@@ -3,8 +3,11 @@ package edu.myhorseshow.models;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.myhorseshow.events.EventDispatcher;
+import edu.myhorseshow.events.SimpleEvent;
 
-public class User
+
+public class User extends EventDispatcher
 {
 	private int id;
 	private String email;
@@ -13,6 +16,13 @@ public class User
 	private String lastname;
 	private ShowEvent[] events;
 	private long usefid;
+	
+	public User() { super(); }
+	
+	public static class EventMeta
+	{
+		public static final String EVENT_COUNT_CHANGED = EventMeta.class.getSimpleName() + "EVENT_COUNT_CHANGED";
+	}
 	
 	public String getName() { return getFirstName() + " " + getLastName(); }
 	
@@ -25,6 +35,7 @@ public class User
 		events.add(event);
 		
 		setEvents(events.toArray(new ShowEvent[events.size()]));
+		dispatchEvent(new SimpleEvent(EventMeta.EVENT_COUNT_CHANGED));
 	}
 	
 	public int getId() { return id; }

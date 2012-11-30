@@ -18,22 +18,25 @@ import edu.myhorseshow.R;
 import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.AlertAdapter;
 import edu.myhorseshow.adapters.EventAdapter;
+import edu.myhorseshow.events.Event;
+import edu.myhorseshow.events.EventListener;
 import edu.myhorseshow.models.Alert;
 import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
 
-public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
+public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener, EventListener
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		getModel().addListener(AppModel.EventMeta.CURRENT_USER_CHANGED, this);
 		
-		if (AppModel.getCurrentUser() == null)
+		if (getModel().getCurrentUser() == null)
 			throw new NullPointerException("Current user not set");
 		
-		welcomeUser(AppModel.getCurrentUser());
+		welcomeUser(getModel().getCurrentUser());
 		setupClickListeners();
 		setupListAdapters();
 	}
@@ -43,6 +46,18 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	{
 		super.onResume();
 		setupListAdapters();
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		getModel().removeListener(AppModel.EventMeta.CURRENT_USER_CHANGED, this);
+		super.onDestroy();
+	}
+	
+	public void onEvent(Event event)
+	{
+		//TODO: Implement this method to process user login change.
 	}
 	
 	public void onClick(View clickedView)
@@ -98,9 +113,9 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		
 		mAlerts = new ArrayList<Alert>();
 		
-		if (AppModel.getCurrentUser().getEvents() != null)
+		if (getModel().getCurrentUser().getEvents() != null)
 		{
-			upcomingEventsListView.setAdapter(new EventAdapter(this, AppModel.getCurrentUser().getEvents()));
+			upcomingEventsListView.setAdapter(new EventAdapter(this, getModel().getCurrentUser().getEvents()));
 			upcomingEventsListView.setOnItemClickListener(this);
 			upcomingEventsListView.setEnabled(true);
 		}
@@ -115,7 +130,7 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	
 	private void upcomingEventClicked(View clickedView, int position, long resourceId)
 	{
-		ShowEvent clickedEvent = AppModel.getCurrentUser().getEvents()[position];
+		ShowEvent clickedEvent = getModel().getCurrentUser().getEvents()[position];
 		Intent eventIntent = new Intent(this, EventActivity.class);
 		eventIntent.putExtra(EVENT_ID, clickedEvent.getId());
 		startActivity(eventIntent);
@@ -146,7 +161,10 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		Log.w(TAG, what + " has not been implemented yet.");
 	}
 	
+	private AppModel getModel() { return mAppModel; }
+	
 	private ArrayList<Alert> mAlerts;
 	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";
 	private static final String TAG = "HomeActivity";
+	private final AppModel mAppModel = AppModel.getInstance();
 }

@@ -4,12 +4,10 @@ import com.google.gson.Gson;
 
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.R;
-import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.utility.JsonObject;
 import edu.myhorseshow.utility.UrlBuilder;
 import edu.myhorseshow.utility.Utility;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,7 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class CreateAccountActivity extends Activity implements OnClickListener
+public class CreateAccountActivity extends AppActivity implements OnClickListener
 {
 	private static final String TAG = "CreateAccountActivity";
 
@@ -112,7 +110,7 @@ public class CreateAccountActivity extends Activity implements OnClickListener
 	
 	private void processUserLogin(User user)
 	{
-		AppModel.setCurrentUser(user);
+		getModel().setCurrentUser(user);
 		Intent homeActivity = new Intent(this, HomeActivity.class);
 		startActivity(homeActivity);
 	}

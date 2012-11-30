@@ -25,6 +25,9 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
         
         Utility.setMainThread(Thread.currentThread());
+        
+        initializeApp();
+        
         setOnClickListeners();
         
         test();
@@ -54,6 +57,11 @@ public class MainActivity extends Activity implements OnClickListener {
     	default:
     		Log.w(TAG, "Firing unimplemented button event.");
     	}
+    }
+
+    private void initializeApp()
+    {
+    	setModel(AppModel.getInstance());
     }
     
     private void setOnClickListeners()
@@ -121,7 +129,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	}
     	
     	setInvalidLoginVisible(false);
-    	AppModel.setCurrentUser(user);
+    	getModel().setCurrentUser(user);
     	Intent homeActivityIntent = new Intent(this, HomeActivity.class);
     	startActivity(homeActivityIntent);
     }
@@ -146,6 +154,10 @@ public class MainActivity extends Activity implements OnClickListener {
     	invalidTextView.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
     }
     
+    private AppModel getModel() { return mAppModel; }
+    private void setModel(AppModel model) { mAppModel = model; }
+    
     private static final String TAG = "MainActivity";
+    private AppModel mAppModel;
     public static final String USERNAME = "edu.myhorseshow.USERNAME";
 }

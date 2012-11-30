@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ClassActivity extends Activity
+public class ClassActivity extends AppActivity
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -20,7 +20,7 @@ public class ClassActivity extends Activity
 		long eventId = getIntent().getLongExtra(EventActivity.EVENT_ID, 0);
 		long classId = getIntent().getLongExtra(EventActivity.CLASS_ID, 0);
 		
-		setShowClass(AppModel.getClass(eventId, classId));
+		setShowClass(getModel().getClass(eventId, classId));
 		if (getShowClass() == null)
 			throw new NullPointerException("ShowClass");
 		

@@ -21,7 +21,7 @@ import android.view.View.OnClickListener;
 import edu.myhorseshow.utility.AdminProxy;
 import edu.myhorseshow.utility.Utility;
 
-public class AdminActivity extends Activity implements OnClickListener, OnItemClickListener
+public class AdminActivity extends AppActivity implements OnClickListener, OnItemClickListener
 {
 	public static final int CREATE_EVENT = 0;
 	public static final int ADD_USER_TO_EVENT = 1;
@@ -93,8 +93,8 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 	{
 		ListView EventsListView = (ListView) findViewById(R.id.admin_event_list_view);
 		
-		if (AppModel.getCurrentUser().getEvents() != null)
-			setEvents(new ArrayList<ShowEvent>(Arrays.asList(AppModel.getCurrentUser().getEvents())));
+		if (getModel().getCurrentUser().getEvents() != null)
+			setEvents(new ArrayList<ShowEvent>(Arrays.asList(getModel().getCurrentUser().getEvents())));
 		
 		if (getEvents() != null)
 		{
@@ -131,13 +131,13 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 	{
 		sayNotImplemented("clicking on the list");
 		ShowEvent clickedEvent = getEvents().get(position);
-		setCurrentEvent(AppModel.getEvent(clickedEvent.getId()));
+		setCurrentEvent(getModel().getEvent(clickedEvent.getId()));
 		showEventInfoButtons();
 	}
 	
 	private void addEvent(ShowEvent event)
 	{
-		AppModel.getCurrentUser().addEvent(event);
+		getModel().getCurrentUser().addEvent(event);
 		setupListAdapters();
 	}
 	
@@ -152,7 +152,7 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 		String endDate = extractDatePickerDateString(eventEndDateDatePicker);
 		
 		ShowEvent createdEvent = new ShowEvent();
-		createdEvent.setAdminId(AppModel.getCurrentUser().getId());
+		createdEvent.setAdminId(getModel().getCurrentUser().getId());
 		createdEvent.setName(eventName);
 		createdEvent.setStartDate(startDate);
 		createdEvent.setEndDate(endDate);

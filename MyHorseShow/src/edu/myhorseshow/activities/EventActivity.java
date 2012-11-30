@@ -14,7 +14,6 @@ import edu.myhorseshow.adapters.ContactGridAdapter;
 import edu.myhorseshow.adapters.NameListAdapter;
 import edu.myhorseshow.adapters.ShowClassAdapter;
 import edu.myhorseshow.adapters.StallListAdapter;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +25,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class EventActivity extends Activity implements OnClickListener, OnItemClickListener
+public class EventActivity extends AppActivity implements OnClickListener, OnItemClickListener
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -35,7 +34,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		setContentView(R.layout.activity_event);
 		
 		long eventId = getIntent().getLongExtra(HomeActivity.EVENT_ID, 0);
-		setEvent(AppModel.getEvent(eventId));
+		setEvent(getModel().getEvent(eventId));
 		
 		setupViews();
 		setupClickListeners();
@@ -111,7 +110,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			barnsListView.setOnItemClickListener(this);
 		}
 		
-		ArrayList<ShowClass> userClasses = AppModel.getUserClasses(getEvent().getId());
+		ArrayList<ShowClass> userClasses = getModel().getUserClasses(getEvent().getId());
 		if (userClasses != null)
 		{
 			rideTimesListView.setAdapter(new ShowClassAdapter(this, userClasses));
@@ -189,7 +188,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	
 	private void contactItemClicked(int position)
 	{
-		
+		//TODO: Are we interacting with contact items?
 	}
 	
 	private void loadClassView(Division division)
