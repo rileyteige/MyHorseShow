@@ -31,11 +31,6 @@ public class Stall extends EventDispatcher implements NamedObject
 		notifyChange(EventMeta.OCCUPANT_CHANGED);
 	}
 	
-	private void notifyChange(String type)
-	{
-		dispatchEvent(new SimpleEvent(type));
-	}
-	
 	private int id;
 	private String name;
 	private User occupant;

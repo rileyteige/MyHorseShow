@@ -66,6 +66,11 @@ public class EventDispatcher implements Dispatcher
 			listener.onEvent(event);
 	}
 	
+	protected void notifyChange(String type)
+	{
+		dispatchEvent(new SimpleEvent(type));
+	}
+	
 	private HashMap<String, ArrayList<EventListener>> mListenersMap;
 	private static final String TAG = EventDispatcher.class.getSimpleName();
 }

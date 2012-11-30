@@ -156,11 +156,6 @@ public class AppModel extends EventDispatcher
 		return currentUserAdminEvents.size() > 0 ? currentUserAdminEvents : null;
 	}
 	
-	private void notifyChange(String type)
-	{
-		dispatchEvent(new SimpleEvent(type));
-	}
-	
 	private void resetCache()
 	{
 		currentUserParticipatingClasses = null;
