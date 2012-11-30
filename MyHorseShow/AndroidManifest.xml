@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" 
             android:windowSoftInputMode="stateHidden">
             
@@ -27,31 +27,31 @@
         </activity>
         
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:label="@string/title_activity_main" />
             
         <activity 
-            android:name=".CreateAccountActivity"
+            android:name=".activities.CreateAccountActivity"
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".AdminActivity"
+            android:name=".activities.AdminActivity"
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".InstructorActivity"
+            android:name=".activities.InstructorActivity"
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".RiderActivity"
+            android:name=".activities.RiderActivity"
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".EventActivity"
+            android:name=".activities.EventActivity"
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".ClassActivity"
+            android:name=".activities.ClassActivity"
             android:label="@string/title_activity_main" />
         
     </application>

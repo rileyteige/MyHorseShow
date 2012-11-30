@@ -71,6 +71,7 @@ public class EventDispatcher implements Dispatcher
 		dispatchEvent(new SimpleEvent(type));
 	}
 	
-	private HashMap<String, ArrayList<EventListener>> mListenersMap;
+	private HashMap<String, ArrayList<EventListener>> mListenersMap
+		= new HashMap<String, ArrayList<EventListener>>();
 	private static final String TAG = EventDispatcher.class.getSimpleName();
 }
