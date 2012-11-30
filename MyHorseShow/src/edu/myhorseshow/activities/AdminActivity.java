@@ -5,7 +5,10 @@ import java.util.Arrays;
 
 import edu.myhorseshow.R;
 import edu.myhorseshow.adapters.EventAdapter;
+import edu.myhorseshow.events.Event;
+import edu.myhorseshow.events.EventListener;
 import edu.myhorseshow.models.ShowEvent;
+import edu.myhorseshow.models.User;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
@@ -19,7 +22,7 @@ import android.view.View.OnClickListener;
 import edu.myhorseshow.utility.AdminProxy;
 import edu.myhorseshow.utility.Utility;
 
-public class AdminActivity extends AppActivity implements OnClickListener, OnItemClickListener
+public class AdminActivity extends AppActivity implements OnClickListener, OnItemClickListener, EventListener
 {
 	public static final int CREATE_EVENT = 0;
 	public static final int ADD_USER_TO_EVENT = 1;
@@ -29,11 +32,25 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
+		getModel().getCurrentUser().addListener(User.EventMeta.EVENT_COUNT_CHANGED, this);
 		
 		setupListAdapters();
 		setupClickListeners();
 	}
 
+	@Override
+	public void onDestroy()
+	{
+		getModel().getCurrentUser().removeListener(User.EventMeta.EVENT_COUNT_CHANGED, this);
+		super.onDestroy();
+	}
+	
+	public void onEvent(Event event)
+	{
+		//TODO: Implement onEvent
+		Log.d(TAG, "Got the event! Type = " + event.getType());
+	}
+	
 	public void onClick(View clickedView)
 	{
 		switch(clickedView.getId())

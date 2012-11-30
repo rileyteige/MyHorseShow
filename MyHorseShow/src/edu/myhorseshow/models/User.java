@@ -21,7 +21,7 @@ public class User extends EventDispatcher
 	
 	public static class EventMeta
 	{
-		public static final String EVENT_COUNT_CHANGED = EventMeta.class.getSimpleName() + "EVENT_COUNT_CHANGED";
+		public static final String EVENT_COUNT_CHANGED = EventMeta.class.getName() + "EVENT_COUNT_CHANGED";
 	}
 	
 	public String getName() { return getFirstName() + " " + getLastName(); }
