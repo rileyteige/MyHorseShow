@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import edu.myhorseshow.AdminActivity;
 import edu.myhorseshow.Constants;
-import edu.myhorseshow.event.Event;
-import edu.myhorseshow.user.User;
+import edu.myhorseshow.activities.AdminActivity;
+import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.User;
 
 public final class AdminProxy
 {
@@ -30,7 +30,8 @@ public final class AdminProxy
     					.toString();
 		    	
 		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_EVENT, event));
-		    	Log.d(TAG, result);
+		    	if (result != null)
+		    		Log.d(TAG, result);
 		    	return new Gson().fromJson(result, Event.class);
     		}
     		

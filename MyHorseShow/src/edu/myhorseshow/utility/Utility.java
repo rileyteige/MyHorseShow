@@ -89,6 +89,7 @@ public final class Utility
     	catch (Exception e)
     	{
     		Log.e(TAG, "JSON PARSE EXCEPTION: " + e.getMessage());
+    		Log.e(TAG, result);
     		return null;
     	}
 	}

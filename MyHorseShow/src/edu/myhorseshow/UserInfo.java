@@ -2,11 +2,11 @@ package edu.myhorseshow;
 
 import java.util.ArrayList;
 
-import edu.myhorseshow.division.Division;
-import edu.myhorseshow.event.Event;
-import edu.myhorseshow.showclass.Participation;
-import edu.myhorseshow.showclass.ShowClass;
-import edu.myhorseshow.user.User;
+import edu.myhorseshow.models.Division;
+import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.Participation;
+import edu.myhorseshow.models.ShowClass;
+import edu.myhorseshow.models.User;
 
 public final class UserInfo
 {
