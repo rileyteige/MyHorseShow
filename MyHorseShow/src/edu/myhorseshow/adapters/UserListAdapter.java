@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.User;
 
 import android.content.Context;
@@ -40,7 +40,7 @@ public class UserListAdapter extends ArrayAdapter<User>
 		
 		User rider = getRiders().get(position);
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_user_label);
-		rowLabel.setText((UserInfo.isCurrentUser(rider.getId()) ? "YOU: " : "") + rider.getFirstName() + " " + rider.getLastName());
+		rowLabel.setText((AppModel.isCurrentUser(rider.getId()) ? "YOU: " : "") + rider.getFirstName() + " " + rider.getLastName());
 		return rowView;
 	}
 	

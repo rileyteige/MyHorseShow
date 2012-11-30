@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.EventAdapter;
-import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.ShowEvent;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
@@ -93,8 +93,8 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 	{
 		ListView EventsListView = (ListView) findViewById(R.id.admin_event_list_view);
 		
-		if (UserInfo.getCurrentUser().getEvents() != null)
-			setEvents(new ArrayList<Event>(Arrays.asList(UserInfo.getCurrentUser().getEvents())));
+		if (AppModel.getCurrentUser().getEvents() != null)
+			setEvents(new ArrayList<ShowEvent>(Arrays.asList(AppModel.getCurrentUser().getEvents())));
 		
 		if (getEvents() != null)
 		{
@@ -130,14 +130,14 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long rowViewResourceId)
 	{
 		sayNotImplemented("clicking on the list");
-		Event clickedEvent = getEvents().get(position);
-		setCurrentEvent(UserInfo.getEvent(clickedEvent.getId()));
+		ShowEvent clickedEvent = getEvents().get(position);
+		setCurrentEvent(AppModel.getEvent(clickedEvent.getId()));
 		showEventInfoButtons();
 	}
 	
-	private void addEvent(Event event)
+	private void addEvent(ShowEvent event)
 	{
-		UserInfo.getCurrentUser().addEvent(event);
+		AppModel.getCurrentUser().addEvent(event);
 		setupListAdapters();
 	}
 	
@@ -151,8 +151,8 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 		String startDate = extractDatePickerDateString(eventStartDateDatePicker);
 		String endDate = extractDatePickerDateString(eventEndDateDatePicker);
 		
-		Event createdEvent = new Event();
-		createdEvent.setAdminId(UserInfo.getCurrentUser().getId());
+		ShowEvent createdEvent = new ShowEvent();
+		createdEvent.setAdminId(AppModel.getCurrentUser().getId());
 		createdEvent.setName(eventName);
 		createdEvent.setStartDate(startDate);
 		createdEvent.setEndDate(endDate);
@@ -169,7 +169,7 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 		{
 		case (CREATE_EVENT):
 			if (returnValue != null)
-				addEvent((Event)returnValue);
+				addEvent((ShowEvent)returnValue);
 			break;
 		case (ADD_USER_TO_EVENT):
 			break;
@@ -227,14 +227,14 @@ public class AdminActivity extends Activity implements OnClickListener, OnItemCl
 	
 	// prefer unused getter to not having a getter available
 	@SuppressWarnings("unused")
-	private Event getCurrentEvent() { return mCurrentEvent; }
-	private void setCurrentEvent(Event event) { mCurrentEvent = event; }
+	private ShowEvent getCurrentEvent() { return mCurrentEvent; }
+	private void setCurrentEvent(ShowEvent event) { mCurrentEvent = event; }
 	
-	private ArrayList<Event> getEvents() { return mEvents; }
-	private void setEvents(ArrayList<Event> events) { mEvents = events; }
+	private ArrayList<ShowEvent> getEvents() { return mEvents; }
+	private void setEvents(ArrayList<ShowEvent> events) { mEvents = events; }
 	
-	private ArrayList<Event> mEvents;
-	private Event mCurrentEvent;
+	private ArrayList<ShowEvent> mEvents;
+	private ShowEvent mCurrentEvent;
 	private static final String TAG = "AdminActivity";
 	
 }

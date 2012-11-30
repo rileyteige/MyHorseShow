@@ -2,10 +2,10 @@ package edu.myhorseshow.events;
 
 public class SimpleEvent implements Event {
 
-	public SimpleEvent(String type, Object source)
+	public SimpleEvent(String type)
 	{
 		mType = type;
-		mSource = source;
+		mSource = null;
 	}
 	
 	public String getType() { return mType; }

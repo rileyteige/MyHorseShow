@@ -6,24 +6,24 @@ import android.os.AsyncTask;
 import android.util.Log;
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.activities.AdminActivity;
-import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
 
 public final class AdminProxy
 {
 	private AdminProxy() {}
 	
-	public static void createEvent(final AdminActivity activity, Event event)
+	public static void createEvent(final AdminActivity activity, ShowEvent event)
 	{
-		new AsyncTask<Event, Integer, Event>()
+		new AsyncTask<ShowEvent, Integer, ShowEvent>()
     	{
     		@Override
-			protected Event doInBackground(Event... events)
+			protected ShowEvent doInBackground(ShowEvent... events)
     		{
     			if (events.length != 1)
     				return null;
     			
-    			Event event = events[0];
+    			ShowEvent event = events[0];
     			
     			String url = new UrlBuilder(Constants.SERVER_DOMAIN)
     					.addPath(Constants.TYPE_EVENT)
@@ -32,11 +32,11 @@ public final class AdminProxy
 		    	String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_EVENT, event));
 		    	if (result != null)
 		    		Log.d(TAG, result);
-		    	return new Gson().fromJson(result, Event.class);
+		    	return new Gson().fromJson(result, ShowEvent.class);
     		}
     		
     		@Override
-			protected void onPostExecute(Event newEvent)
+			protected void onPostExecute(ShowEvent newEvent)
     		{
     			activity.signalProxyFinished(AdminActivity.CREATE_EVENT, newEvent);
     		}
@@ -46,9 +46,9 @@ public final class AdminProxy
 	
 	public static void addUserToEvent(final AdminActivity activity, String email, long eventId)
 	{
-		new AsyncTask<Object, Integer, Event>()
+		new AsyncTask<Object, Integer, ShowEvent>()
 		{
-			public Event doInBackground(Object... params)
+			public ShowEvent doInBackground(Object... params)
 			{
 				if (params.length != 2)
 					return null;
@@ -70,7 +70,7 @@ public final class AdminProxy
 				return null;
 			}
 			
-			public void onPostExecute(Event event)
+			public void onPostExecute(ShowEvent event)
 			{
 				activity.signalProxyFinished(AdminActivity.ADD_USER_TO_EVENT, event);
 			}

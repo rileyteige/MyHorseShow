@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.utility.*;
 
@@ -121,7 +121,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	}
     	
     	setInvalidLoginVisible(false);
-    	UserInfo.setCurrentUser(user);
+    	AppModel.setCurrentUser(user);
     	Intent homeActivityIntent = new Intent(this, HomeActivity.class);
     	startActivity(homeActivityIntent);
     }

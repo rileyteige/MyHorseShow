@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.utility.JsonObject;
 import edu.myhorseshow.utility.UrlBuilder;
@@ -112,7 +112,7 @@ public class CreateAccountActivity extends Activity implements OnClickListener
 	
 	private void processUserLogin(User user)
 	{
-		UserInfo.setCurrentUser(user);
+		AppModel.setCurrentUser(user);
 		Intent homeActivity = new Intent(this, HomeActivity.class);
 		startActivity(homeActivity);
 	}

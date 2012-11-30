@@ -3,10 +3,10 @@ package edu.myhorseshow.activities;
 import java.util.ArrayList;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.Barn;
 import edu.myhorseshow.models.Division;
-import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.ShowClass;
 import edu.myhorseshow.models.Stall;
 import edu.myhorseshow.models.User;
@@ -35,7 +35,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 		setContentView(R.layout.activity_event);
 		
 		long eventId = getIntent().getLongExtra(HomeActivity.EVENT_ID, 0);
-		setEvent(UserInfo.getEvent(eventId));
+		setEvent(AppModel.getEvent(eventId));
 		
 		setupViews();
 		setupClickListeners();
@@ -111,7 +111,7 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 			barnsListView.setOnItemClickListener(this);
 		}
 		
-		ArrayList<ShowClass> userClasses = UserInfo.getUserClasses(getEvent().getId());
+		ArrayList<ShowClass> userClasses = AppModel.getUserClasses(getEvent().getId());
 		if (userClasses != null)
 		{
 			rideTimesListView.setAdapter(new ShowClassAdapter(this, userClasses));
@@ -281,11 +281,11 @@ public class EventActivity extends Activity implements OnClickListener, OnItemCl
 	private View getCurrentView() { return mCurrentView; }
 	private void setCurrentView(View view) { mCurrentView = view; }
 	
-	private Event getEvent() { return mEvent; }
-	private void setEvent(Event event) { mEvent = event; }
+	private ShowEvent getEvent() { return mEvent; }
+	private void setEvent(ShowEvent event) { mEvent = event; }
 	
 	private View mCurrentView;
-	private Event mEvent;
+	private ShowEvent mEvent;
 	
 	public static final String CLASS_ID = "edu.myhorseshow.CLASS_ID";
 	public static final String EVENT_ID = "edu.myhorseshow.EVENT_ID";

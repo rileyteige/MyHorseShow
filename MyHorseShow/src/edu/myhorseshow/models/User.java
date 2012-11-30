@@ -11,20 +11,20 @@ public class User
 	private String password;
 	private String firstname;
 	private String lastname;
-	private Event[] events;
+	private ShowEvent[] events;
 	private long usefid;
 	
 	public String getName() { return getFirstName() + " " + getLastName(); }
 	
-	public void addEvent(Event event)
+	public void addEvent(ShowEvent event)
 	{
-		ArrayList<Event> events = getEvents() != null ?
-				new ArrayList<Event>(Arrays.asList(getEvents())) :
-				new ArrayList<Event>();
+		ArrayList<ShowEvent> events = getEvents() != null ?
+				new ArrayList<ShowEvent>(Arrays.asList(getEvents())) :
+				new ArrayList<ShowEvent>();
 		
 		events.add(event);
 		
-		setEvents(events.toArray(new Event[events.size()]));
+		setEvents(events.toArray(new ShowEvent[events.size()]));
 	}
 	
 	public int getId() { return id; }
@@ -32,7 +32,7 @@ public class User
 	public String getPassword() { return password; }
 	public String getFirstName() { return firstname; }
 	public String getLastName() { return lastname; }
-	public Event[] getEvents() { return events; }
+	public ShowEvent[] getEvents() { return events; }
 	public long getUsefid() { return usefid; }
 	
 	public void setId(int id) { this.id = id; }
@@ -40,7 +40,7 @@ public class User
 	public void setPassword(String password) { this.password = password; }
 	public void setFirstName(String first) { this.firstname = first; }
 	public void setLastName(String last) { this.lastname = last; }
-	public void setEvents(Event[] events) { this.events = events; }
+	public void setEvents(ShowEvent[] events) { this.events = events; }
 	public void setUsefid(long usefid) { this.usefid = usefid; }
 	
 }

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.ShowEvent;
 
 import android.content.Context;
 import android.util.Log;
@@ -17,11 +17,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class EventAdapter extends ArrayAdapter<Event>
+public class EventAdapter extends ArrayAdapter<ShowEvent>
 {
-	public EventAdapter(Context context, Event[] events) { this(context, new ArrayList<Event>(Arrays.asList(events))); }
-	public EventAdapter(Context context, ArrayList<Event> events) { this(context, R.layout.row_view_event, events); }
-	public EventAdapter(Context context, int rowViewResourceId, ArrayList<Event> events)
+	public EventAdapter(Context context, ShowEvent[] events) { this(context, new ArrayList<ShowEvent>(Arrays.asList(events))); }
+	public EventAdapter(Context context, ArrayList<ShowEvent> events) { this(context, R.layout.row_view_event, events); }
+	public EventAdapter(Context context, int rowViewResourceId, ArrayList<ShowEvent> events)
 	{
 		super(context, rowViewResourceId, events);
 		mEvents = events;
@@ -38,7 +38,7 @@ public class EventAdapter extends ArrayAdapter<Event>
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(getRowViewResourceId(), null);
 		}
-		Event event = getEvents().get(position);
+		ShowEvent event = getEvents().get(position);
 		TextView rowLabel = (TextView) rowView.findViewById(R.id.row_view_event_label);
 		TextView dateLabel = (TextView) rowView.findViewById(R.id.row_view_event_date_label);
 		rowLabel.setText(event.getName());
@@ -69,17 +69,17 @@ public class EventAdapter extends ArrayAdapter<Event>
 		mRowViewResourceId = value;
 	}
 
-	protected ArrayList<Event> getEvents()
+	protected ArrayList<ShowEvent> getEvents()
 	{
 		return mEvents;
 	}
 	
-	protected void setEvents(ArrayList<Event> events)
+	protected void setEvents(ArrayList<ShowEvent> events)
 	{
 		mEvents = events;
 	}
 	
 	private int mRowViewResourceId;
-	private ArrayList<Event> mEvents;
+	private ArrayList<ShowEvent> mEvents;
 	private String TAG = "EventAdapter";
 }

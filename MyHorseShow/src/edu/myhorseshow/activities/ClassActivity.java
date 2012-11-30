@@ -1,7 +1,7 @@
 package edu.myhorseshow.activities;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.ParticipationListAdapter;
 import edu.myhorseshow.models.ShowClass;
 import android.app.Activity;
@@ -20,7 +20,7 @@ public class ClassActivity extends Activity
 		long eventId = getIntent().getLongExtra(EventActivity.EVENT_ID, 0);
 		long classId = getIntent().getLongExtra(EventActivity.CLASS_ID, 0);
 		
-		setShowClass(UserInfo.getClass(eventId, classId));
+		setShowClass(AppModel.getClass(eventId, classId));
 		if (getShowClass() == null)
 			throw new NullPointerException("ShowClass");
 		

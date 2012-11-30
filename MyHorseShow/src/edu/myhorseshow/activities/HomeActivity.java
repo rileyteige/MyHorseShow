@@ -15,11 +15,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.UserInfo;
+import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.AlertAdapter;
 import edu.myhorseshow.adapters.EventAdapter;
 import edu.myhorseshow.models.Alert;
-import edu.myhorseshow.models.Event;
+import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
 
 public class HomeActivity extends Activity implements OnItemClickListener, OnClickListener
@@ -30,10 +30,10 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
-		if (UserInfo.getCurrentUser() == null)
+		if (AppModel.getCurrentUser() == null)
 			throw new NullPointerException("Current user not set");
 		
-		welcomeUser(UserInfo.getCurrentUser());
+		welcomeUser(AppModel.getCurrentUser());
 		setupClickListeners();
 		setupListAdapters();
 	}
@@ -98,9 +98,9 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		
 		mAlerts = new ArrayList<Alert>();
 		
-		if (UserInfo.getCurrentUser().getEvents() != null)
+		if (AppModel.getCurrentUser().getEvents() != null)
 		{
-			upcomingEventsListView.setAdapter(new EventAdapter(this, UserInfo.getCurrentUser().getEvents()));
+			upcomingEventsListView.setAdapter(new EventAdapter(this, AppModel.getCurrentUser().getEvents()));
 			upcomingEventsListView.setOnItemClickListener(this);
 			upcomingEventsListView.setEnabled(true);
 		}
@@ -115,7 +115,7 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	
 	private void upcomingEventClicked(View clickedView, int position, long resourceId)
 	{
-		Event clickedEvent = UserInfo.getCurrentUser().getEvents()[position];
+		ShowEvent clickedEvent = AppModel.getCurrentUser().getEvents()[position];
 		Intent eventIntent = new Intent(this, EventActivity.class);
 		eventIntent.putExtra(EVENT_ID, clickedEvent.getId());
 		startActivity(eventIntent);
