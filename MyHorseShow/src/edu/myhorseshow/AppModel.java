@@ -3,7 +3,6 @@ package edu.myhorseshow;
 import java.util.ArrayList;
 
 import edu.myhorseshow.events.EventDispatcher;
-import edu.myhorseshow.events.SimpleEvent;
 import edu.myhorseshow.models.Division;
 import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.Participation;

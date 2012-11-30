@@ -3,7 +3,6 @@ package edu.myhorseshow.activities;
 import java.util.ArrayList;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.AppModel;
 import edu.myhorseshow.models.Barn;
 import edu.myhorseshow.models.Division;
 import edu.myhorseshow.models.ShowEvent;

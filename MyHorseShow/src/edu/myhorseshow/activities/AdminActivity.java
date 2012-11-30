@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.EventAdapter;
 import edu.myhorseshow.models.ShowEvent;
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;

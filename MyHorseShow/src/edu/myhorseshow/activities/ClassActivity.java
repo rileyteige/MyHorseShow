@@ -1,10 +1,8 @@
 package edu.myhorseshow.activities;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.AppModel;
 import edu.myhorseshow.adapters.ParticipationListAdapter;
 import edu.myhorseshow.models.ShowClass;
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;

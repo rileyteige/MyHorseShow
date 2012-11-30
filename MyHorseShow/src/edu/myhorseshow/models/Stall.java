@@ -1,8 +1,6 @@
 package edu.myhorseshow.models;
 
 import edu.myhorseshow.events.EventDispatcher;
-import edu.myhorseshow.events.SimpleEvent;
-
 
 public class Stall extends EventDispatcher implements NamedObject
 {
