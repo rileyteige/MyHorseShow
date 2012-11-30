@@ -12,10 +12,10 @@ import edu.myhorseshow.models.User;
 public class AppModel extends EventDispatcher
 {
 	private static AppModel mInstance;
-	private static User currentUser;
-	private static ArrayList<ShowClass> currentUserParticipatingClasses;
-	private static ArrayList<ShowEvent> currentUserAdminEvents;
-	private static int lastClassesEventId = 0;
+	private User currentUser;
+	private ArrayList<ShowClass> currentUserParticipatingClasses;
+	private ArrayList<ShowEvent> currentUserAdminEvents;
+	private int lastClassesEventId = 0;
 	
 	public static class EventMeta
 	{
