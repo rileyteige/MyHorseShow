@@ -35,6 +35,7 @@
         <item name="android:layout_height">@dimen/edit_text_default_height</item>
         <item name="android:background">@color/edit_text_background_color</item>
         <item name="android:singleLine">true</item>
+        <item name="android:inputType">textNoSuggestions|textVisiblePassword</item>
         <item name="android:hint" />
         <item name="android:textColor">@color/edit_text_font_color</item>
     </style>
