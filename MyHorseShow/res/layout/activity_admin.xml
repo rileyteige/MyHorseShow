@@ -145,9 +145,27 @@
 		            	    android:divider="@color/light_brown"
 		            	    android:dividerHeight="1dp"
 		            	    android:layout_marginLeft="1dp"
-		            	    android:layout_toRightOf="@id/admin_event_participants_list_view">
+		            	    android:layout_toRightOf="@id/admin_event_participants_list_view" />
 		            	    
-		            	</ListView>
+		            	<LinearLayout 
+		            	    android:layout_height="400dp"
+		            	    android:layout_width="275dp"
+		            	    android:orientation="vertical"
+		            	    android:layout_marginLeft="1dp"
+		            	    android:layout_toRightOf="@id/admin_event_participant_classes_list_view">
+		            	    
+		            	    <EditText
+		            	        style="@style/edit_text_default_style"
+		            	        android:id="@+id/admin_event_add_participant_email_edit_text"
+		            	        android:inputType="textVisiblePassword" />
+		            	    
+		            	    <Button
+		            	        android:id="@+id/admin_event_add_participant_button"
+		            	        android:layout_width="wrap_content"
+		            	        android:layout_height="wrap_content"
+		            	        android:text="@string/submit_caption" />
+		            	    		            	    
+		            	</LinearLayout>
 			            
 			        </RelativeLayout>
 			        

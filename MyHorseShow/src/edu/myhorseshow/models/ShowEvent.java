@@ -1,5 +1,8 @@
 package edu.myhorseshow.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import edu.myhorseshow.events.EventDispatcher;
 
 
@@ -7,14 +10,24 @@ public class ShowEvent extends EventDispatcher
 {	
 	public static class EventMeta
 	{
-		private static final String ADMIN_CHANGED = getFullName("ADMIN_CHANGED");
-		private static final String NAME_CHANGED = getFullName("NAME_CHANGED");
-		private static final String DATE_CHANGED = getFullName("DATE_CHANGED");
-		private static final String DIVISIONS_CHANGED = getFullName("DIVISIONS_CHANGED");
-		private static final String BARNS_CHANGED = getFullName("BARNS_CHANGED");
-		private static final String CONTACTS_CHANGED = getFullName("CONTACTS_CHANGED");
-		private static final String PARTICIPANTS_CHANGED = getFullName("PARTICIPANTS_CHANGED");
+		public static final String ADMIN_CHANGED = getFullName("ADMIN_CHANGED");
+		public static final String NAME_CHANGED = getFullName("NAME_CHANGED");
+		public static final String DATE_CHANGED = getFullName("DATE_CHANGED");
+		public static final String DIVISIONS_CHANGED = getFullName("DIVISIONS_CHANGED");
+		public static final String BARNS_CHANGED = getFullName("BARNS_CHANGED");
+		public static final String CONTACTS_CHANGED = getFullName("CONTACTS_CHANGED");
+		public static final String PARTICIPANTS_CHANGED = getFullName("PARTICIPANTS_CHANGED");
 		private static String getFullName(String str) { return EventMeta.class.getName() + str; }
+	}
+	
+	public void addParticipant(Participant user)
+	{
+		ArrayList<Participant> users = getParticipants() != null ?
+				new ArrayList<Participant>(Arrays.asList(getParticipants())) :
+				new ArrayList<Participant>();
+		
+		users.add(user);
+		setParticipants(users.toArray(new Participant[users.size()]));
 	}
 	
 	public long getId() { return id; }

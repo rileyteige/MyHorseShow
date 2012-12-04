@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.activities.AdminActivity;
+import edu.myhorseshow.models.Participant;
 import edu.myhorseshow.models.Participation;
 import edu.myhorseshow.models.ShowClass;
 import edu.myhorseshow.models.ShowEvent;
@@ -51,9 +52,9 @@ public final class AdminProxy
 	
 	public static void addUserToEvent(final AdminActivity activity, String email, long eventId)
 	{
-		new AsyncTask<Object, Integer, ShowEvent>()
+		new AsyncTask<Object, Integer, Participant>()
 		{
-			public ShowEvent doInBackground(Object... params)
+			public Participant doInBackground(Object... params)
 			{
 				if (params.length != 2)
 					return null;
@@ -72,12 +73,15 @@ public final class AdminProxy
 				String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_USER, newUser));
 				Log.d(TAG, result);
 				
-				return null;
+				return new Gson().fromJson(result, Participant.class);
 			}
 			
-			public void onPostExecute(ShowEvent event)
+			public void onPostExecute(Participant user)
 			{
-				activity.signalProxyFinished(AdminActivity.ADD_USER_TO_EVENT, event);
+				if (user != null)
+					activity.signalProxyFinished(AdminActivity.ADD_USER_TO_EVENT, user);
+				else
+					Log.d("ASD", "returned null.");
 			}
 		}
 		.execute(email, eventId);

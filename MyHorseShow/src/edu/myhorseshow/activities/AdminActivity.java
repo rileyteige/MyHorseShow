@@ -60,6 +60,10 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 			if (item.getIsParticipating())
 				AdminProxy.addUserToClass(this, getCurrentEvent().getId(), item.getShowClass().getId(), getSelectedRider().getId(), "Deja Vu");
 		}
+		else if (type == ShowEvent.EventMeta.PARTICIPANTS_CHANGED) {
+			Log.d(TAG, "Participants changed!");
+			setupEventListAdapters();
+		}
 	}
 	
 	public void onClick(View clickedView)
@@ -86,6 +90,9 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 			break;
 		case R.id.admin_arenas_button:
 			takearenas();
+			break;
+		case R.id.admin_event_add_participant_button:
+			addParticipant(((EditText)findViewById(R.id.admin_event_add_participant_email_edit_text)).getText().toString());
 			break;
 		}
 	}
@@ -144,6 +151,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		Button divisions = (Button) findViewById(R.id.admin_divisions_button);
 		Button arenas = (Button) findViewById(R.id.admin_arenas_button);
 		Button final_results = (Button) findViewById(R.id.admin_final_results_button);
+		Button addRiderButton = (Button)findViewById(R.id.admin_event_add_participant_button);
 		
 		createEventButton.setOnClickListener(this);
 		submitEventButton.setOnClickListener(this);
@@ -152,6 +160,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		divisions.setOnClickListener(this);
 		arenas.setOnClickListener(this);
 		final_results.setOnClickListener(this);
+		addRiderButton.setOnClickListener(this);
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long rowViewResourceId)
@@ -170,10 +179,16 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		}
 	}
 	
+	private void addParticipant(String email)
+	{
+		AdminProxy.addUserToEvent(this, email, getCurrentEvent().getId());
+	}
+	
 	private void eventListItemClicked(int position)
 	{
 		ShowEvent clickedEvent = getEvents().get(position);
 		setCurrentEvent(getModel().getEvent(clickedEvent.getId()));
+		getCurrentEvent().addListener(ShowEvent.EventMeta.PARTICIPANTS_CHANGED, this);
 		setupEventListAdapters();
 		showEventInfoButtons();
 	}
@@ -280,6 +295,8 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 				addEvent((ShowEvent)returnValue);
 			break;
 		case (ADD_USER_TO_EVENT):
+			if (returnValue != null)
+				addLocalUserToEvent((Participant)returnValue);
 			break;
 		case (ADD_USER_TO_CLASS):
 			if (returnValue != null)
@@ -289,6 +306,12 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		}
 		
 		Utility.hideDialog();
+	}
+	
+	private void addLocalUserToEvent(Participant user)
+	{
+		Log.d(TAG, "Adding participant...");
+		getCurrentEvent().addParticipant(user);
 	}
 	
 	private void addLocalClassToUser(ShowClass inClass)
