@@ -7,6 +7,7 @@ import android.util.Log;
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.activities.AdminActivity;
 import edu.myhorseshow.models.Participation;
+import edu.myhorseshow.models.ShowClass;
 import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.utility.JsonObject;
@@ -84,9 +85,9 @@ public final class AdminProxy
 	
 	public static void addUserToClass(final AdminActivity activity, long eventId, long classId, long userId, String horseName)
 	{
-		new AsyncTask<Object, Integer, Object>()
+		new AsyncTask<Object, Integer, ShowClass>()
 		{
-			public Object doInBackground(Object... params)
+			public ShowClass doInBackground(Object... params)
 			{
 				if (params.length != 4)
 					return null;
@@ -109,10 +110,14 @@ public final class AdminProxy
 				String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_USER, newParticipation));
 				Log.d(TAG, result);
 				
-				return null;
+				try {
+					return new Gson().fromJson(result, ShowClass.class);
+				} catch (Exception e) {
+					return null;
+				}
 			}
 			
-			public void onPostExecute(Object result)
+			public void onPostExecute(ShowClass result)
 			{
 				activity.signalProxyFinished(AdminActivity.ADD_USER_TO_CLASS, result);
 			}

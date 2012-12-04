@@ -282,10 +282,35 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		case (ADD_USER_TO_EVENT):
 			break;
 		case (ADD_USER_TO_CLASS):
+			if (returnValue != null)
+				addLocalClassToUser((ShowClass)returnValue);
+				setupEventListAdapters();
 			break;
 		}
 		
 		Utility.hideDialog();
+	}
+	
+	private void addLocalClassToUser(ShowClass inClass)
+	{
+		ArrayList<ShowClass> classes = getModel().getEventClasses(getCurrentEvent().getId());
+		ShowClass showClass = null;
+		for (ShowClass c: classes) {
+			if (c.getId() == inClass.getId()) {
+				showClass = c;
+				break;
+			}
+		}
+		
+		if (showClass == null)
+			return;
+		
+		Participant participant = getSelectedRider();
+		participant.addClass(showClass);
+		Participation participation = new Participation();
+		participation.setUser(participant);
+		participation.setHorse("Deja vu");
+		showClass.addParticipation(participation);
 	}
 	
 	private String extractDatePickerDateString(DatePicker datePicker)
@@ -338,15 +363,15 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	private ShowEvent getCurrentEvent() { return mCurrentEvent; }
 	private void setCurrentEvent(ShowEvent event) { mCurrentEvent = event; }
 	
-	private User getSelectedRider() { return mSelectedRider; }
-	private void setSelectedRider(User rider) { mSelectedRider = rider; }
+	private Participant getSelectedRider() { return mSelectedRider; }
+	private void setSelectedRider(Participant rider) { mSelectedRider = rider; }
 	
 	private ArrayList<ShowEvent> getEvents() { return mEvents; }
 	private void setEvents(ArrayList<ShowEvent> events) { mEvents = events; }
 	
 	private ArrayList<ShowEvent> mEvents;
 	private ShowEvent mCurrentEvent;
-	private User mSelectedRider;
+	private Participant mSelectedRider;
 	private static final String TAG = "AdminActivity";
 	
 }
