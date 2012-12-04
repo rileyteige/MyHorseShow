@@ -90,6 +90,35 @@ public class AppModel extends EventDispatcher
 		return null;
 	}
 	
+	public ArrayList<ShowClass> getEventClasses(long eventId)
+	{
+		if (!isUserLoggedIn())
+			return null;
+		
+		if (eventId <= 0)
+			return null;
+		
+		ShowEvent event = getEvent(eventId);
+		if (event == null)
+			return null;
+		
+		ArrayList<ShowClass> classes = new ArrayList<ShowClass>();
+		
+		if (event.getDivisions() == null)
+			return null;
+		
+		for (Division division: event.getDivisions())
+		{
+			if (division.getClasses() == null)
+				continue;
+			
+			for (ShowClass showClass: division.getClasses())
+				classes.add(showClass);
+		}
+		
+		return classes;
+	}
+	
 	public ArrayList<ShowClass> getUserClasses(long eventId)
 	{
 		if (!isUserLoggedIn())

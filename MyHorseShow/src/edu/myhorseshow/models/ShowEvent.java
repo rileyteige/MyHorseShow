@@ -13,6 +13,7 @@ public class ShowEvent extends EventDispatcher
 		private static final String DIVISIONS_CHANGED = getFullName("DIVISIONS_CHANGED");
 		private static final String BARNS_CHANGED = getFullName("BARNS_CHANGED");
 		private static final String CONTACTS_CHANGED = getFullName("CONTACTS_CHANGED");
+		private static final String PARTICIPANTS_CHANGED = getFullName("PARTICIPANTS_CHANGED");
 		private static String getFullName(String str) { return EventMeta.class.getName() + str; }
 	}
 	
@@ -24,6 +25,7 @@ public class ShowEvent extends EventDispatcher
 	public Division[] getDivisions() { return ownDivision; }
 	public Barn[] getBarns() { return ownBarn; }
 	public Contact[] getContacts() { return ownContact; }
+	public Participant[] getParticipants() { return sharedUser; }
 	
 	public void setId(int id)
 	{
@@ -72,6 +74,12 @@ public class ShowEvent extends EventDispatcher
 		notifyChange(EventMeta.CONTACTS_CHANGED);
 	}
 	
+	public void setParticipants(Participant[] users)
+	{
+		this.sharedUser = users;
+		notifyChange(EventMeta.PARTICIPANTS_CHANGED);
+	}
+	
 	private long id;
 	private int adminId;
 	private String name;
@@ -80,4 +88,5 @@ public class ShowEvent extends EventDispatcher
 	private Division[] ownDivision;
 	private Barn[] ownBarn;
 	private Contact[] ownContact;
+	private Participant[] sharedUser;
 }

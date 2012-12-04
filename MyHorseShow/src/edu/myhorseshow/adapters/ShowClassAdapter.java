@@ -26,7 +26,7 @@ public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 		this(context, R.layout.row_view_class, classes);
 	}
 	
-	private ShowClassAdapter(Context context, int rowViewResourceId, ArrayList<ShowClass> classes)
+	protected ShowClassAdapter(Context context, int rowViewResourceId, ArrayList<ShowClass> classes)
 	{
 		super(context, rowViewResourceId, classes);
 		setClasses(classes);

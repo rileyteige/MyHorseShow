@@ -16,15 +16,26 @@ import android.widget.TextView;
 
 public class UserListAdapter extends ArrayAdapter<User>
 {
-	public UserListAdapter(Context context, int rowViewResourceId, User[] riders)
+	public UserListAdapter(Context context, User[] users)
 	{
-		this(context, rowViewResourceId, new ArrayList<User>(Arrays.asList(riders)));
+		this(context, users, true);
 	}
 	
-	public UserListAdapter(Context context, int rowViewResourceId, ArrayList<User> riders) {
-		super(context, rowViewResourceId, riders);
+	public UserListAdapter(Context context, User[] users, boolean showCurrentUser)
+	{
+		this(context, new ArrayList<User>(Arrays.asList(users)), showCurrentUser);
+	}
+	
+	public UserListAdapter(Context context, ArrayList<User> users, boolean showCurrentUser)
+	{
+		this(context, R.layout.row_view_user, users, showCurrentUser);
+	}
+	
+	private UserListAdapter(Context context, int rowViewResourceId, ArrayList<User> users, boolean showCurrentUser) {
+		super(context, rowViewResourceId, users);
 		setRowViewResourceId(rowViewResourceId);
-		setRiders(riders);
+		setRiders(users);
+		setShowCurrentUser(showCurrentUser);
 	}
 	
 	@Override
@@ -50,6 +61,10 @@ public class UserListAdapter extends ArrayAdapter<User>
 	public int getRowViewResourceId() { return mRowViewResourceId; }
 	protected void setRowViewResourceId(int id) { mRowViewResourceId = id; }
 	
+	protected boolean getShowCurrentUser() { return mShowCurrentUser; }
+	protected void setShowCurrentUser(boolean value) { mShowCurrentUser = value; }
+	
 	private int mRowViewResourceId;
 	private ArrayList<User> mRiders;
+	private boolean mShowCurrentUser;
 }

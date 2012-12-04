@@ -107,40 +107,73 @@
 	        
 	        <!-- Event Info -->
 	        
-	        
-	   	    <LinearLayout
-	   	        android:id="@+id/admin_event_info_linear_layout"
-	   	        android:layout_width="match_parent"
-		        android:layout_height="match_parent"
-		        android:orientation="vertical"
-		        android:visibility="invisible">      
-		        
-		        <Button
-		            style="@style/event_button_style"
-		            android:id="@+id/admin_rider_button"
-		            android:text="@string/admin_rider_button" />
-		        
-		        <Button
-		            style="@style/event_button_style"
-		            android:id="@+id/admin_instructor_button"
-		            android:text="@string/admin_instructor_button" />
-		        
-		        <Button
-		            style="@style/event_button_style"
-		            android:id="@+id/admin_divisions_button"
-		            android:text="@string/admin_divisions_button" />
-		        
-		        <Button
-		            style="@style/event_button_style"
-		            android:id="@+id/admin_arenas_button"
-		            android:text="@string/admin_arenas_button" />
-		        
-		        <Button
-		            style="@style/event_button_style"
-		            android:id="@+id/admin_final_results_button"
-		            android:text="@string/admin_final_results_button" />
-		        
-		    </LinearLayout>
+	        <ScrollView
+	            android:id="@+id/admin_event_info_scroll_view"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:visibility="invisible">
+	            
+		   	    <LinearLayout
+		   	        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="vertical">      
+			        
+			        <Button
+			            style="@style/event_button_style"
+			            android:id="@+id/admin_rider_button"
+			            android:text="@string/admin_rider_button" />
+			        
+			        <RelativeLayout
+			            android:id="@+id/admin_rider_subview"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:visibility="gone">
+			            
+		            	<ListView
+		            	    android:id="@+id/admin_event_participants_list_view"
+							android:layout_height="400dp"
+							android:layout_width="275dp"
+				            android:background="@color/beige"
+				            android:divider="@color/light_brown"
+				            android:dividerHeight="1dp" />
+		            	
+		            	<ListView
+		            	    android:id="@+id/admin_event_participant_classes_list_view"
+		            	    android:layout_height="400dp"
+		            	    android:layout_width="275dp"
+		            	    android:background="@color/beige"
+		            	    android:divider="@color/light_brown"
+		            	    android:dividerHeight="1dp"
+		            	    android:layout_marginLeft="1dp"
+		            	    android:layout_toRightOf="@id/admin_event_participants_list_view">
+		            	    
+		            	</ListView>
+			            
+			        </RelativeLayout>
+			        
+			        <Button
+			            style="@style/event_button_style"
+			            android:id="@+id/admin_instructor_button"
+			            android:text="@string/admin_instructor_button" />
+			        
+			        <Button
+			            style="@style/event_button_style"
+			            android:id="@+id/admin_divisions_button"
+			            android:text="@string/admin_divisions_button" />
+			        
+			        <Button
+			            style="@style/event_button_style"
+			            android:id="@+id/admin_arenas_button"
+			            android:text="@string/admin_arenas_button" />
+			        
+			        <Button
+			            style="@style/event_button_style"
+			            android:id="@+id/admin_final_results_button"
+			            android:text="@string/admin_final_results_button" />
+			        
+			    </LinearLayout>
+			    
+		    </ScrollView>
 		    
 	    </RelativeLayout>
 	   	    

@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
+import edu.myhorseshow.adapters.CheckableShowClassAdapter;
 import edu.myhorseshow.adapters.EventAdapter;
+import edu.myhorseshow.adapters.ShowClassAdapter;
+import edu.myhorseshow.adapters.UserListAdapter;
 import edu.myhorseshow.events.Event;
 import edu.myhorseshow.events.EventListener;
+import edu.myhorseshow.models.Participant;
+import edu.myhorseshow.models.Participation;
+import edu.myhorseshow.models.ShowClass;
+import edu.myhorseshow.models.ShowClassParticipator;
 import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
+import edu.myhorseshow.proxies.AdminProxy;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
@@ -19,13 +27,13 @@ import android.widget.ListView;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import edu.myhorseshow.utility.AdminProxy;
 import edu.myhorseshow.utility.Utility;
 
 public class AdminActivity extends AppActivity implements OnClickListener, OnItemClickListener, EventListener
 {
 	public static final int CREATE_EVENT = 0;
 	public static final int ADD_USER_TO_EVENT = 1;
+	public static final int ADD_USER_TO_CLASS = 2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -47,8 +55,12 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	
 	public void onEvent(Event event)
 	{
-		//TODO: Implement onEvent
-		Log.d(TAG, "Got the event! Type = " + event.getType());
+		String type = event.getType();
+		if (type == ShowClassParticipator.EventMeta.PARTICIPATING_CHANGED) {
+			ShowClassParticipator item = (ShowClassParticipator)event.getSource();
+			if (item.getIsParticipating())
+				AdminProxy.addUserToClass(this, getCurrentEvent().getId(), item.getShowClass().getId(), getSelectedRider().getId(), "Deja Vu");
+		}
 	}
 	
 	public void onClick(View clickedView)
@@ -71,7 +83,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 			takeinstructor();
 			break;
 		case R.id.admin_rider_button:
-			takerider();
+			riderButtonClicked();
 			break;
 		case R.id.admin_arenas_button:
 			takearenas();
@@ -94,9 +106,10 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		sayNotImplemented("instructor()");
 	}
 	
-	private void takerider()
+	private void riderButtonClicked()
 	{
-		sayNotImplemented("rider()");
+		View view = findViewById(R.id.admin_rider_subview);
+		view.setVisibility(view.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
 	}
 	
 	private void takearenas()
@@ -109,7 +122,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		ListView EventsListView = (ListView) findViewById(R.id.admin_event_list_view);
 		
 		if (getModel().getCurrentUser().getEvents() != null)
-			setEvents(new ArrayList<ShowEvent>(Arrays.asList(getModel().getCurrentUser().getEvents())));
+			setEvents(new ArrayList<ShowEvent>(Arrays.asList(getModel().getCurrentUser().getEvents())));			
 		
 		if (getEvents() != null)
 		{
@@ -144,10 +157,91 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	
 	public void onItemClick(AdapterView<?> parent, View clickedView, int position, long rowViewResourceId)
 	{
-		sayNotImplemented("clicking on the list");
+		switch(parent.getId())
+		{
+		case (R.id.admin_event_list_view):
+			eventListItemClicked(position);
+			break;
+		case (R.id.admin_event_participants_list_view):
+			participantItemClicked(position);
+			break;
+		case (R.id.admin_event_participant_classes_list_view):
+			classItemClicked(position);
+			break;
+		}
+	}
+	
+	private void eventListItemClicked(int position)
+	{
 		ShowEvent clickedEvent = getEvents().get(position);
 		setCurrentEvent(getModel().getEvent(clickedEvent.getId()));
+		setupEventListAdapters();
 		showEventInfoButtons();
+	}
+	
+	private void participantItemClicked(int position)
+	{
+		Participant clickedParticipant = getCurrentEvent().getParticipants()[position];
+		setSelectedRider(clickedParticipant);
+		setupEventListAdapters();
+	}
+	
+	private void classItemClicked(int position)
+	{
+		ListView lv = (ListView)findViewById(R.id.admin_event_participant_classes_list_view);
+		CheckableShowClassAdapter adapter = (CheckableShowClassAdapter)lv.getAdapter();
+		ShowClassParticipator item = adapter.getItems().get(position);
+		if (item.getIsParticipating())
+			Log.d(TAG, "true!");
+	}
+	
+	private void setupEventListAdapters()
+	{
+		if (getCurrentEvent() == null)
+			return;
+		
+		Participant[] participants = getCurrentEvent().getParticipants();
+		ListView participantsListView = (ListView)findViewById(R.id.admin_event_participants_list_view);
+		participantsListView.setAdapter(new UserListAdapter(this, getParticipantsWithoutCurrentUser(participants), false));
+		participantsListView.setOnItemClickListener(this);
+		
+		ListView classesListView = (ListView)findViewById(R.id.admin_event_participant_classes_list_view);
+		
+		ArrayList<ShowClass> classes = getModel().getEventClasses(getCurrentEvent().getId());
+		if (classes == null)
+			classes = new ArrayList<ShowClass>();
+		
+		ArrayList<ShowClassParticipator> checkableClasses = new ArrayList<ShowClassParticipator>();
+		for (ShowClass showClass: classes) {
+			boolean riding = false;
+			if (getSelectedRider() != null && showClass.getParticipations() != null) {
+				for (Participation p: showClass.getParticipations()) {
+					if (p.getRider().getId() == getSelectedRider().getId())
+						riding = true;
+				}
+			}
+			
+			ShowClassParticipator item = new ShowClassParticipator(showClass, riding);
+			item.addListener(ShowClassParticipator.EventMeta.PARTICIPATING_CHANGED, this);
+			
+			checkableClasses.add(item);
+		}
+		
+		classesListView.setAdapter(new CheckableShowClassAdapter(this, checkableClasses));
+		classesListView.setOnItemClickListener(this);
+	}
+	
+	private ArrayList<User> getParticipantsWithoutCurrentUser(User[] users)
+	{
+		if (users == null)
+			return new ArrayList<User>();
+		
+		ArrayList<User> newUsers = new ArrayList<User>();
+		for (User user: users) {
+			if (!getModel().isCurrentUser(user.getId()))
+				newUsers.add(user);
+		}
+		return newUsers;
 	}
 	
 	private void addEvent(ShowEvent event)
@@ -188,6 +282,8 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 			break;
 		case (ADD_USER_TO_EVENT):
 			break;
+		case (ADD_USER_TO_CLASS):
+			break;
 		}
 		
 		Utility.hideDialog();
@@ -220,12 +316,12 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	private void showEventInfoButtons()
 	{
 		hideCreateEventForm();
-		setViewVisible(R.id.admin_event_info_linear_layout, true);
+		setViewVisible(R.id.admin_event_info_scroll_view, true);
 	}
 	
 	private void hideEventInfoButtons()
 	{
-		setViewVisible(R.id.admin_event_info_linear_layout, false);
+		setViewVisible(R.id.admin_event_info_scroll_view, false);
 	}
 	
 	private void setViewVisible(int id, boolean visibilityFlag)
@@ -245,11 +341,15 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	private ShowEvent getCurrentEvent() { return mCurrentEvent; }
 	private void setCurrentEvent(ShowEvent event) { mCurrentEvent = event; }
 	
+	private User getSelectedRider() { return mSelectedRider; }
+	private void setSelectedRider(User rider) { mSelectedRider = rider; }
+	
 	private ArrayList<ShowEvent> getEvents() { return mEvents; }
 	private void setEvents(ArrayList<ShowEvent> events) { mEvents = events; }
 	
 	private ArrayList<ShowEvent> mEvents;
 	private ShowEvent mCurrentEvent;
+	private User mSelectedRider;
 	private static final String TAG = "AdminActivity";
 	
 }
