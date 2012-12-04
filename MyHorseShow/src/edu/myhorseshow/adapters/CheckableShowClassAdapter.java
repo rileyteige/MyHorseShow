@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.myhorseshow.R;
-import edu.myhorseshow.models.ShowClass;
 import edu.myhorseshow.models.ShowClassParticipator;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;

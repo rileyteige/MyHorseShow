@@ -6,7 +6,6 @@ import java.util.Arrays;
 import edu.myhorseshow.R;
 import edu.myhorseshow.adapters.CheckableShowClassAdapter;
 import edu.myhorseshow.adapters.EventAdapter;
-import edu.myhorseshow.adapters.ShowClassAdapter;
 import edu.myhorseshow.adapters.UserListAdapter;
 import edu.myhorseshow.events.Event;
 import edu.myhorseshow.events.EventListener;
@@ -336,8 +335,6 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		Log.w(TAG, what + " has not been implemented yet.");
 	}
 	
-	// prefer unused getter to not having a getter available
-	@SuppressWarnings("unused")
 	private ShowEvent getCurrentEvent() { return mCurrentEvent; }
 	private void setCurrentEvent(ShowEvent event) { mCurrentEvent = event; }
 	
