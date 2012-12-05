@@ -59,4 +59,12 @@
         <item name="android:layout_marginRight">@dimen/activity_header_text_margin</item>
     </style>
     
+    <style name="list_view_default_style">
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:background">@color/beige</item>
+		<item name="android:divider">@color/light_brown</item>
+		<item name="android:dividerHeight">1dp</item>
+    </style>
+    
 </resources>

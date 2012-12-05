@@ -5,6 +5,7 @@
     
     <!-- Misc. -->
     <string name="submit_caption">Submit</string>
+    <string name="ok_caption">OK</string>
     
     <!-- Login -->
     <string name="sign_in_caption">Sign in</string>
@@ -51,10 +52,15 @@
     <string name="admin_rider_button">Riders"</string>
     <string name="admin_instructor_button">Instructors"</string>
     <string name="admin_divisions_button">Divisions"</string>
+    <string name="admin_divisions_add_division_caption">Add Division</string>
+    <string name="admin_divisions_add_class_caption">Add Class</string>
     <string name="admin_arenas_button">Arenas"</string>
     <string name="admin_final_results_button">Final Results"</string>
     <string name="admin_create_event_name_caption">Name: </string>
     <string name="admin_creating_event_caption">Creating event&#8230;</string>
     <string name="admin_creating_event_description">This should only take a moment.</string>
+    <string name="admin_prompt_horse_name">Enter Horse Name</string>
+    <string name="admin_prompt_division_name">Enter Division Name</string>
+    <string name="admin_prompt_class_name">Enter Class Name</string>
     
 </resources>

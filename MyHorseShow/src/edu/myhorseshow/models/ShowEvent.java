@@ -20,6 +20,15 @@ public class ShowEvent extends EventDispatcher
 		private static String getFullName(String str) { return EventMeta.class.getName() + str; }
 	}
 	
+	public void addDivision(Division div)
+	{
+		ArrayList<Division> divisions = getDivisions() != null ?
+				new ArrayList<Division>(Arrays.asList(getDivisions())) :
+				new ArrayList<Division>();
+		divisions.add(div);
+		setDivisions(divisions.toArray(new Division[divisions.size()]));
+	}
+	
 	public void addParticipant(Participant user)
 	{
 		ArrayList<Participant> users = getParticipants() != null ?

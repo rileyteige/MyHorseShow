@@ -17,7 +17,9 @@ public class NameListAdapter extends ArrayAdapter<NamedObject>
 {
 	public NameListAdapter(Context context, NamedObject[] objects)
 	{
-		this(context, new ArrayList<NamedObject>(Arrays.asList(objects)));
+		this(context, objects != null ?
+				new ArrayList<NamedObject>(Arrays.asList(objects)) :
+				new ArrayList<NamedObject>());
 	}
 	
 	public NameListAdapter(Context context, ArrayList<NamedObject> objects)

@@ -17,7 +17,9 @@ public class StallListAdapter extends ArrayAdapter<Stall>
 {
 	public StallListAdapter(Context context, Stall[] stalls)
 	{
-		this(context, new ArrayList<Stall>(Arrays.asList(stalls)));
+		this(context, stalls != null ?
+				new ArrayList<Stall>(Arrays.asList(stalls)) :
+				new ArrayList<Stall>());
 	}
 	
 	public StallListAdapter(Context context, ArrayList<Stall> stalls)

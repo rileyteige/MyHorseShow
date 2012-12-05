@@ -21,6 +21,17 @@ public class EventDispatcher implements Dispatcher
 		}
 	}
 
+	public void removeListener(EventListener listener) {
+		synchronized (mListenersMap) {
+			if (mListenersMap.keySet() == null)
+				return;
+			
+			String[] keys = mListenersMap.keySet().toArray(new String[mListenersMap.keySet().size()]);
+			for (String key: keys)
+				removeListener(key, listener);
+		}
+	}
+	
 	public void removeListener(String type, EventListener listener) {
 		synchronized (mListenersMap)
 		{

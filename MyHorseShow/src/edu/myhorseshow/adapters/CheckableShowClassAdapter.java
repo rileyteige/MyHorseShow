@@ -6,6 +6,7 @@ import java.util.Arrays;
 import edu.myhorseshow.R;
 import edu.myhorseshow.models.ShowClassParticipator;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +45,19 @@ public class CheckableShowClassAdapter extends ItemListAdapter<ShowClassParticip
 		nameTextView.setText(item.getShowClass().getName());
 		
 		CheckBox ridingCheckBox = (CheckBox)rowView.findViewById(R.id.row_view_checkable_class_checkbox);
+		ridingCheckBox.setOnCheckedChangeListener(null);
 		ridingCheckBox.setChecked(item.getIsParticipating());
 		ridingCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			public void onCheckedChanged(CompoundButton button, boolean isChecked) {
-				if (!item.getIsParticipating() && isChecked)
+				if (!item.getIsParticipating() && isChecked) {
+					try {
+						throw new Exception();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					item.setIsParticipating(isChecked);
+				}
 			}
 		
 		});

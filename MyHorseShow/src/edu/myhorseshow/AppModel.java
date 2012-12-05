@@ -80,6 +80,9 @@ public class AppModel extends EventDispatcher
 		
 		for (Division division: event.getDivisions())
 		{
+			if (division.getClasses() == null)
+				continue;
+			
 			for (ShowClass showClass: division.getClasses())
 			{
 				if (showClass.getId() == classId)

@@ -126,12 +126,12 @@
 			        <RelativeLayout
 			            android:id="@+id/admin_rider_subview"
 			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
+			            android:layout_height="400dp"
 			            android:visibility="gone">
 			            
 		            	<ListView
 		            	    android:id="@+id/admin_event_participants_list_view"
-							android:layout_height="400dp"
+							android:layout_height="match_parent"
 							android:layout_width="275dp"
 				            android:background="@color/beige"
 				            android:divider="@color/light_brown"
@@ -139,17 +139,14 @@
 		            	
 		            	<ListView
 		            	    android:id="@+id/admin_event_participant_classes_list_view"
-		            	    android:layout_height="400dp"
+		            	    style="@style/list_view_default_style"
 		            	    android:layout_width="275dp"
-		            	    android:background="@color/beige"
-		            	    android:divider="@color/light_brown"
-		            	    android:dividerHeight="1dp"
 		            	    android:layout_marginLeft="1dp"
 		            	    android:layout_toRightOf="@id/admin_event_participants_list_view" />
 		            	    
 		            	<LinearLayout 
-		            	    android:layout_height="400dp"
-		            	    android:layout_width="275dp"
+		            	    android:layout_height="match_parent"
+		            	    android:layout_width="match_parent"
 		            	    android:orientation="vertical"
 		            	    android:layout_marginLeft="1dp"
 		            	    android:layout_toRightOf="@id/admin_event_participant_classes_list_view">
@@ -169,25 +166,75 @@
 			            
 			        </RelativeLayout>
 			        
-			        <Button
+			        <!-- Button
 			            style="@style/event_button_style"
 			            android:id="@+id/admin_instructor_button"
-			            android:text="@string/admin_instructor_button" />
+			            android:text="@string/admin_instructor_button" /-->
 			        
 			        <Button
 			            style="@style/event_button_style"
 			            android:id="@+id/admin_divisions_button"
 			            android:text="@string/admin_divisions_button" />
 			        
-			        <Button
+			        <RelativeLayout
+			            android:id="@+id/admin_divisions_subview"
+			            android:layout_width="match_parent"
+			            android:layout_height="500dp"
+			            android:visibility="gone">
+		            	
+			            <LinearLayout
+			                android:id="@+id/admin_divisions_subview_division_linear_layout"
+			                android:layout_width="275dp"
+			                android:layout_height="match_parent"
+			                android:layout_marginTop="4dp"
+			                android:layout_marginLeft="4dp"
+			                android:orientation="vertical">
+			                
+			                <Button
+			                    android:id="@+id/admin_divisions_add_division_button"
+			                    style="@style/event_button_style"
+			                    android:layout_marginBottom="4dp"
+			                    android:text="@string/admin_divisions_add_division_caption" />
+			                
+			                <ListView
+			                    android:id="@+id/admin_divisions_list_view"
+			                    style="@style/list_view_default_style"
+			                    android:layout_marginRight="1dp"/>
+			                
+			            </LinearLayout>
+			            
+			            <LinearLayout
+			                android:layout_width="275dp"
+			                android:layout_height="match_parent"
+			                android:layout_marginTop="4dp"
+			                android:layout_marginLeft="4dp"
+			                android:layout_toRightOf="@id/admin_divisions_subview_division_linear_layout"
+			                android:orientation="vertical">
+			                
+			                <Button
+			                    android:id="@+id/admin_divisions_add_class_button"
+			                    style="@style/event_button_style"
+			                    android:layout_marginBottom="4dp"
+			                    android:text="@string/admin_divisions_add_class_caption" />
+			                
+			                <ListView
+			                    android:id="@+id/admin_divisions_classes_list_view"
+			                    style="@style/list_view_default_style"
+			                    android:layout_marginRight="1dp"/>
+			                
+			            </LinearLayout>
+			            
+		            </RelativeLayout>
+			        
+			        <!-- Button
 			            style="@style/event_button_style"
 			            android:id="@+id/admin_arenas_button"
-			            android:text="@string/admin_arenas_button" />
+			            android:text="@string/admin_arenas_button" /-->
 			        
-			        <Button
+			        <!-- Button
 			            style="@style/event_button_style"
 			            android:id="@+id/admin_final_results_button"
-			            android:text="@string/admin_final_results_button" />
+			            android:text="@string/admin_final_results_button" /-->
 			        
 			    </LinearLayout>
 			    

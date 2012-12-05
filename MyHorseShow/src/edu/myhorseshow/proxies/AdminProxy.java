@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import edu.myhorseshow.Constants;
 import edu.myhorseshow.activities.AdminActivity;
+import edu.myhorseshow.models.Division;
 import edu.myhorseshow.models.Participant;
 import edu.myhorseshow.models.Participation;
 import edu.myhorseshow.models.ShowClass;
@@ -50,6 +51,72 @@ public final class AdminProxy
 		.execute(event);
 	}
 	
+	public static void addClassToDivision(final AdminActivity activity, final long divisionId, final String className)
+	{
+		new AsyncTask<Object, Integer, ShowClass>()
+		{
+			protected ShowClass doInBackground(Object... params)
+			{
+				ShowClass newShowClass = new ShowClass();
+				newShowClass.setName(className);
+				
+				String url = new UrlBuilder(Constants.SERVER_DOMAIN)
+					.addPath(Constants.TYPE_DIVISIONS)
+					.addPath(divisionId)
+					.toString();
+				
+				String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_CLASS, newShowClass));
+				if (result == null)
+					return null;
+				
+				return new Gson().fromJson(result, ShowClass.class);
+			}
+			
+			protected void onPostExecute(ShowClass result)
+			{
+				activity.signalProxyFinished(AdminActivity.ADD_CLASS_TO_DIVISION, result);
+			}
+		}
+		.execute();
+	}
+	
+	public static void addDivisionToEvent(final AdminActivity activity, long eventId, String name)
+	{
+		new AsyncTask<Object, Integer, Division>()
+		{
+			protected Division doInBackground(Object... params)
+			{
+				if (params.length != 2)
+					return null;
+				
+				long eventId = (Long)params[0];
+				String name = (String)params[1];
+				
+				Division newDivision = new Division();
+				newDivision.setName(name);
+				
+				String url = new UrlBuilder(Constants.SERVER_DOMAIN)
+					.addPath(Constants.TYPE_EVENT)
+					.addPath(eventId)
+					.toString();
+				
+				String result = Utility.postJsonObject(url, new JsonObject(Constants.TYPE_DIVISION, newDivision));
+				if (result != null)
+					Log.d(TAG, result);
+				else
+					return null;
+				
+				return new Gson().fromJson(result, Division.class);
+			}
+			
+			protected void onPostExecute(Division result)
+			{
+				activity.signalProxyFinished(AdminActivity.ADD_DIVISION_TO_EVENT, result);
+			}
+		}
+		.execute(eventId, name);
+	}
+	
 	public static void addUserToEvent(final AdminActivity activity, String email, long eventId)
 	{
 		new AsyncTask<Object, Integer, Participant>()
@@ -78,10 +145,7 @@ public final class AdminProxy
 			
 			public void onPostExecute(Participant user)
 			{
-				if (user != null)
-					activity.signalProxyFinished(AdminActivity.ADD_USER_TO_EVENT, user);
-				else
-					Log.d("ASD", "returned null.");
+				activity.signalProxyFinished(AdminActivity.ADD_USER_TO_EVENT, user);
 			}
 		}
 		.execute(email, eventId);

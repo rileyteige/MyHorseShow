@@ -18,7 +18,9 @@ public class ShowClassAdapter extends ArrayAdapter<ShowClass>
 	
 	public ShowClassAdapter(Context context, ShowClass[] classes)
 	{
-		this(context, new ArrayList<ShowClass>(Arrays.asList(classes)));
+		this(context, classes != null ?
+				new ArrayList<ShowClass>(Arrays.asList(classes)) :
+				new ArrayList<ShowClass>());
 	}
 	
 	public ShowClassAdapter(Context context, ArrayList<ShowClass> classes)

@@ -44,6 +44,7 @@
 	            
 	            <EditText 
 	                android:id="@+id/main_email_edit_text"
+	                style="@style/edit_text_default_style"
 	                android:layout_alignParentRight="true"
 	                android:layout_width="@dimen/edit_text_default_width"
 	                android:layout_height="@dimen/edit_text_default_height"
@@ -68,6 +69,7 @@
 	            
 	            <EditText
 	                android:id="@+id/main_password_edit_text"
+	                style="@style/edit_text_default_style"
 	                android:layout_marginLeft="30dp"
 	                android:layout_width="@dimen/edit_text_default_width"
 	                android:layout_height="@dimen/edit_text_default_height"

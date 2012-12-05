@@ -1,5 +1,6 @@
 package edu.myhorseshow.models;
 
+import android.util.Log;
 import edu.myhorseshow.events.EventDispatcher;
 
 public class ShowClassParticipator extends EventDispatcher
