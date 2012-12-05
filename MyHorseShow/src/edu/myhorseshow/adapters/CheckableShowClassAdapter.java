@@ -6,7 +6,6 @@ import java.util.Arrays;
 import edu.myhorseshow.R;
 import edu.myhorseshow.models.ShowClassParticipator;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

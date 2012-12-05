@@ -19,7 +19,6 @@ import edu.myhorseshow.models.ShowEvent;
 import edu.myhorseshow.models.User;
 import edu.myhorseshow.proxies.AdminProxy;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
@@ -486,11 +485,6 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		View view = findViewById(id);
 		if (view != null)
 			view.setVisibility(visibilityFlag ? View.VISIBLE : View.INVISIBLE);
-	}
-	
-	private static void sayNotImplemented(String what)
-	{
-		Log.w(TAG, what + " has not been implemented yet.");
 	}
 	
 	private ShowEvent getCurrentEvent() { return mCurrentEvent; }
