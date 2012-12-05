@@ -113,9 +113,9 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 		
 		mAlerts = new ArrayList<Alert>();
 		
-		if (getModel().getCurrentUser().getEvents() != null)
+		if (getModel().getCurrentUser().getShowEvents() != null)
 		{
-			upcomingEventsListView.setAdapter(new EventAdapter(this, getModel().getCurrentUser().getEvents()));
+			upcomingEventsListView.setAdapter(new EventAdapter(this, getModel().getCurrentUser().getShowEvents()));
 			upcomingEventsListView.setOnItemClickListener(this);
 			upcomingEventsListView.setEnabled(true);
 		}
@@ -130,7 +130,7 @@ public class HomeActivity extends Activity implements OnItemClickListener, OnCli
 	
 	private void upcomingEventClicked(View clickedView, int position, long resourceId)
 	{
-		ShowEvent clickedEvent = getModel().getCurrentUser().getEvents()[position];
+		ShowEvent clickedEvent = getModel().getCurrentUser().getShowEvents()[position];
 		Intent eventIntent = new Intent(this, EventActivity.class);
 		eventIntent.putExtra(EVENT_ID, clickedEvent.getId());
 		startActivity(eventIntent);

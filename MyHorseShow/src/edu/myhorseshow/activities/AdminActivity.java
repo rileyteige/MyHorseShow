@@ -55,7 +55,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	public void onDestroy()
 	{
 		getModel().getCurrentUser().removeListener(User.EventMeta.EVENT_COUNT_CHANGED, this);
-		ShowEvent[] events = getModel().getCurrentUser().getEvents();
+		ShowEvent[] events = getModel().getCurrentUser().getShowEvents();
 		for (ShowEvent e: events) {
 			e.removeListener(this);
 			if (e.getDivisions() != null) {
@@ -116,7 +116,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 			showCreateEventForm();
 			break;
 		case R.id.admin_create_event_submit_button:
-			createEvent();
+			createShowEvent();
 			break;
 		case R.id.admin_divisions_button:
 			divisionsButtonClicked();
@@ -162,7 +162,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		{
 		case (CREATE_EVENT):
 			if (returnValue != null)
-				addEvent((ShowEvent)returnValue);
+				addShowEvent((ShowEvent)returnValue);
 			break;
 		case (ADD_USER_TO_EVENT):
 			if (returnValue != null)
@@ -203,8 +203,8 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	{
 		ListView EventsListView = (ListView) findViewById(R.id.admin_event_list_view);
 		
-		if (getModel().getCurrentUser().getEvents() != null)
-			setEvents(new ArrayList<ShowEvent>(Arrays.asList(getModel().getCurrentUser().getEvents())));			
+		if (getModel().getCurrentUser().getShowEvents() != null)
+			setEvents(new ArrayList<ShowEvent>(Arrays.asList(getModel().getCurrentUser().getShowEvents())));			
 		
 		if (getEvents() != null)
 		{
@@ -270,7 +270,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 					public void onClick(DialogInterface dialog, int which) {
 						EditText nameEditText = (EditText)dialogView.findViewById(R.id.dialog_rider_enter_horse_name_edit_text);
 						String name = nameEditText.getText().toString();
-						AdminProxy.addDivisionToEvent(activity, eventId, name);
+						AdminProxy.addDivisionToShowEvent(activity, eventId, name);
 					}
 				});
 		AlertDialog alert = builder.create();
@@ -279,7 +279,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	
 	private void addParticipant(String email)
 	{
-		AdminProxy.addUserToEvent(this, email, getCurrentEvent().getId());
+		AdminProxy.addUserToShowEvent(this, email, getCurrentEvent().getId());
 	}
 	
 	private void eventListItemClicked(int position)
@@ -384,13 +384,13 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		return newUsers;
 	}
 	
-	private void addEvent(ShowEvent event)
+	private void addShowEvent(ShowEvent event)
 	{
-		getModel().getCurrentUser().addEvent(event);
+		getModel().getCurrentUser().addShowEvent(event);
 		setupListAdapters();
 	}
 	
-	private void createEvent()
+	private void createShowEvent()
 	{
 		EditText eventNameEditText = (EditText)findViewById(R.id.admin_create_event_event_name_edit_text);
 		DatePicker eventStartDateDatePicker = (DatePicker)findViewById(R.id.admin_create_event_event_start_date_date_picker);
@@ -409,7 +409,7 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		Utility.showProgressDialog(this, 
 				getString(R.string.admin_creating_event_caption), 
 				getString(R.string.admin_creating_event_description));
-		AdminProxy.createEvent(this, createdEvent);
+		AdminProxy.createShowEvent(this, createdEvent);
 	}
 	
 	private void addLocalUserToEvent(Participant user)

@@ -20,7 +20,7 @@ public final class AdminProxy
 {
 	private AdminProxy() {}
 	
-	public static void createEvent(final AdminActivity activity, ShowEvent event)
+	public static void createShowEvent(final AdminActivity activity, ShowEvent event)
 	{
 		new AsyncTask<ShowEvent, Integer, ShowEvent>()
     	{
@@ -80,7 +80,7 @@ public final class AdminProxy
 		.execute();
 	}
 	
-	public static void addDivisionToEvent(final AdminActivity activity, long eventId, String name)
+	public static void addDivisionToShowEvent(final AdminActivity activity, long eventId, String name)
 	{
 		new AsyncTask<Object, Integer, Division>()
 		{
@@ -117,7 +117,7 @@ public final class AdminProxy
 		.execute(eventId, name);
 	}
 	
-	public static void addUserToEvent(final AdminActivity activity, String email, long eventId)
+	public static void addUserToShowEvent(final AdminActivity activity, String email, long eventId)
 	{
 		new AsyncTask<Object, Integer, Participant>()
 		{

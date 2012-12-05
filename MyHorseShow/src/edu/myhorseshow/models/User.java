@@ -26,15 +26,15 @@ public class User extends EventDispatcher
 	
 	public String getName() { return getFirstName() + " " + getLastName(); }
 	
-	public void addEvent(ShowEvent event)
+	public void addShowEvent(ShowEvent event)
 	{
-		ArrayList<ShowEvent> events = getEvents() != null ?
-				new ArrayList<ShowEvent>(Arrays.asList(getEvents())) :
+		ArrayList<ShowEvent> events = getShowEvents() != null ?
+				new ArrayList<ShowEvent>(Arrays.asList(getShowEvents())) :
 				new ArrayList<ShowEvent>();
 		
 		events.add(event);
 		
-		setEvents(events.toArray(new ShowEvent[events.size()]));
+		setShowEvents(events.toArray(new ShowEvent[events.size()]));
 		dispatchEvent(new SimpleEvent(EventMeta.EVENT_COUNT_CHANGED));
 	}
 	
@@ -43,7 +43,7 @@ public class User extends EventDispatcher
 	public String getPassword() { return password; }
 	public String getFirstName() { return firstname; }
 	public String getLastName() { return lastname; }
-	public ShowEvent[] getEvents() { return events; }
+	public ShowEvent[] getShowEvents() { return events; }
 	public long getUsefid() { return usefid; }
 	
 	public void setId(int id) { this.id = id; }
@@ -51,7 +51,7 @@ public class User extends EventDispatcher
 	public void setPassword(String password) { this.password = password; }
 	public void setFirstName(String first) { this.firstname = first; }
 	public void setLastName(String last) { this.lastname = last; }
-	public void setEvents(ShowEvent[] events) { this.events = events; }
+	public void setShowEvents(ShowEvent[] events) { this.events = events; }
 	public void setUsefid(long usefid) { this.usefid = usefid; }
 	
 }

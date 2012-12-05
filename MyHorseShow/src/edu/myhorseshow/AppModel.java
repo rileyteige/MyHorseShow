@@ -57,7 +57,7 @@ public class AppModel extends EventDispatcher
 		if (!isUserLoggedIn())
 			return null;
 		
-		for (ShowEvent e: currentUser.getEvents())
+		for (ShowEvent e: currentUser.getShowEvents())
 		{
 			if (e.getId() == eventId)
 				return e;
@@ -178,7 +178,7 @@ public class AppModel extends EventDispatcher
 		
 		currentUserAdminEvents = new ArrayList<ShowEvent>();
 		
-		for (ShowEvent event: currentUser.getEvents())
+		for (ShowEvent event: currentUser.getShowEvents())
 		{
 			if (isCurrentUser(event.getAdminId()))
 				currentUserAdminEvents.add(event);
