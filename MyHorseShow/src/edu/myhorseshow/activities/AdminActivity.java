@@ -70,39 +70,13 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 	{
 		String type = event.getType();
 		if (type == ShowClassParticipator.EventMeta.PARTICIPATING_CHANGED) {
-			final ShowClassParticipator item = (ShowClassParticipator)event.getSource();
-			if (item.getIsParticipating()) {
-				
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				final AdminActivity activity = this;
-				final View dialogView = getLayoutInflater().inflate(R.layout.dialog_rider_enter_horse_name, null);
-				
-				builder.setView(dialogView)
-						.setTitle(R.string.admin_prompt_horse_name)
-						.setPositiveButton(R.string.ok_caption, new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								
-								EditText nameEditText = (EditText)dialogView.findViewById(R.id.dialog_rider_enter_horse_name_edit_text);
-								String name = nameEditText.getText().toString();
-								
-								AdminProxy.addUserToClass(activity,
-										getCurrentEvent().getId(),
-										item.getShowClass().getId(), getSelectedRider().getId(),
-										name);
-							}
-						});
-				AlertDialog alert = builder.create();
-				alert.show();
-			}
+			addUserToClass((ShowClassParticipator)event.getSource());
 		}
 		else if (type == ShowEvent.EventMeta.PARTICIPANTS_CHANGED) {
-			Log.d(TAG, "Participants changed!");
 			setupEventListAdapters();
 		} else if (type == ShowEvent.EventMeta.DIVISIONS_CHANGED) {
-			Log.d(TAG, "Divisions changed!");
 			setupEventListAdapters();
 		} else if (type == Division.EventMeta.CLASSES_CHANGED) {
-			Log.d(TAG, "Classes changed!");
 			setupEventListAdapters();
 			setupClassListAdapters();
 		}
@@ -235,6 +209,33 @@ public class AdminActivity extends AppActivity implements OnClickListener, OnIte
 		addRiderButton.setOnClickListener(this);
 		addDivisionButton.setOnClickListener(this);
 		addClassButton.setOnClickListener(this);
+	}
+	
+	private void addUserToClass(final ShowClassParticipator item)
+	{
+		if (item.getIsParticipating()) {
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			final AdminActivity activity = this;
+			final View dialogView = getLayoutInflater().inflate(R.layout.dialog_rider_enter_horse_name, null);
+			
+			builder.setView(dialogView)
+					.setTitle(R.string.admin_prompt_horse_name)
+					.setPositiveButton(R.string.ok_caption, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							
+							EditText nameEditText = (EditText)dialogView.findViewById(R.id.dialog_rider_enter_horse_name_edit_text);
+							String name = nameEditText.getText().toString();
+							
+							AdminProxy.addUserToClass(activity,
+									getCurrentEvent().getId(),
+									item.getShowClass().getId(), getSelectedRider().getId(),
+									name);
+						}
+					});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 	}
 	
 	private void addClass()
